@@ -1,0 +1,45 @@
+package ch.openech.model.tax;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+import org.minimalj.model.annotation.NotEmpty;
+import org.minimalj.model.annotation.Size;
+
+import ch.openech.model.EchFormats;
+import ch.openech.model.tax.SecurityTaxValue.QuotationType;
+
+public class SecurityStock {
+
+	@NotEmpty
+	public LocalDate referenceDate;
+	
+	public Boolean mutation;
+	
+	@Size(255)
+	public String name;
+	
+	public QuotationType quotationType;
+
+	public BigDecimal quantity;
+	
+	@Size(EchFormats.currencyIdISO3)
+	public String balanceCurrency;
+
+	public BigDecimal unitPrice;
+	
+	public BigDecimal balance;
+	
+	public BigDecimal reductionCost;
+	
+	public BigDecimal exchangeRate;
+	
+	@NotEmpty @Size(EchFormats.currencyIdISO3)
+	public String currency = "CHF";
+
+	public BigDecimal value;
+
+	public Boolean blocked;
+	public LocalDate blockingTo;
+
+}
