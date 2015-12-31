@@ -3,6 +3,7 @@ package ch.openech.model.tax;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import org.minimalj.model.Keys;
 import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
 import org.minimalj.model.annotation.Sizes;
@@ -11,6 +12,7 @@ import ch.openech.model.EchFormats;
 
 @Sizes(EchFormats.class)
 public class Expense {
+	public static final Expense $ = Keys.of(Expense.class);
 
 	public Object id;
 	

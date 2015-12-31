@@ -42,11 +42,6 @@ public class WriterEch0196 extends WriterElement {
 		endDocument();
 	}
 
-//	public void create(Object object) throws Exception {
-//		WriterElement child = create(URI, StringUtils.lowerFirstChar(object.getClass().getSimpleName()));
-//		write(child, object, URI);
-//	}
-	
 	private void write(WriterElement child, Object object, String URI) throws Exception {
 		for (PropertyInterface property : Properties.getProperties(object.getClass()).values()) {
 			if (FieldUtils.isAllowedPrimitive(property.getClazz())) {

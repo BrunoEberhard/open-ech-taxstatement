@@ -57,7 +57,7 @@ xsd:ID attributes cannot have default or fixed values specified.
 
  	public final ListOfLumpSumTaxCredit listOfLumpSumTaxCredit = new ListOfLumpSumTaxCredit();
 
-	@NotEmpty
+	@NotEmpty @Size(Size.TIME_WITH_SECONDS)
 	public LocalDateTime creationDate = LocalDateTime.now();
 	
 	@NotEmpty

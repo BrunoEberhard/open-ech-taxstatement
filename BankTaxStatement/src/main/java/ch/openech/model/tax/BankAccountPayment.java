@@ -3,12 +3,14 @@ package ch.openech.model.tax;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import org.minimalj.model.Keys;
 import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
 
 import ch.openech.model.EchFormats;
 
 public class BankAccountPayment {
+	public static final BankAccountPayment $ = Keys.of(BankAccountPayment.class);
 
 	public Object id;
 	

@@ -3,12 +3,16 @@ package ch.openech.model.tax;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import org.minimalj.model.Keys;
 import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
 
 import ch.openech.model.EchFormats;
 
 public class SecurityTaxValue {
+	public static final SecurityTaxValue $ = Keys.of(SecurityTaxValue.class);
+
+	public Object id;
 	
 	@NotEmpty
 	public LocalDate referenceDate;

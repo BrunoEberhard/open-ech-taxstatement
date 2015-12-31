@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
+import org.minimalj.model.annotation.ViewReference;
 
 import ch.openech.model.EchFormats;
 import ch.openech.model.tax.SecurityTaxValue.QuotationType;
@@ -14,8 +15,10 @@ import ch.openech.model.tax.SecurityTaxValue.QuotationType;
 public class SecurityPayment {
 	public Object id;
 	
-	public final List<SecurityPurchaseDisposition> purchase = new ArrayList<>();
+	@ViewReference
+	public List<SecurityPurchaseDisposition> purchase = new ArrayList<>();
 	
+	@ViewReference
 	public SecurityPurchaseDisposition disposition;
 	
 	@NotEmpty

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.minimalj.model.Keys;
 import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
 import org.minimalj.model.annotation.Sizes;
@@ -15,15 +16,18 @@ import ch.openech.model.organisation.UidStructure;
 
 @Sizes(EchFormats.class)
 public class SecuritySecurity {
+	public static final SecuritySecurity $ = Keys.of(SecuritySecurity.class);
 
 	public Object id;
 	
-	public final List<SecurityTaxValue> taxValue = new ArrayList<>();
+	@ViewReference
+	public List<SecurityTaxValue> taxValue = new ArrayList<>();
 
 	@ViewReference
-	public List<SecurityPayment> payment;
+	public List<SecurityPayment> payment = new ArrayList<>();
 
-	public final List<SecurityStock> stock = new ArrayList<>();
+	@ViewReference
+	public List<SecurityStock> stock = new ArrayList<>();
 
 	public UidStructure uid;
 	
@@ -54,7 +58,7 @@ public class SecuritySecurity {
 	
 	public BigDecimal issuePrice;
 	
-	public BigDecimal redemptionPrice, rdemptionPriceEarly;
+	public BigDecimal redemptionPrice, redemptionPriceEarly;
 	
 	public BigDecimal interestRate;
 	

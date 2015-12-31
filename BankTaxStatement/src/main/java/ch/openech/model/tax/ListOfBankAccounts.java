@@ -7,8 +7,8 @@ import java.util.List;
 import org.minimalj.model.Keys;
 import org.minimalj.model.Rendering;
 import org.minimalj.model.annotation.NotEmpty;
-import org.minimalj.model.annotation.ViewReference;
 import org.minimalj.model.annotation.Size;
+import org.minimalj.model.annotation.ViewReference;
 
 import ch.openech.model.EchFormats;
 
@@ -19,7 +19,7 @@ public class ListOfBankAccounts implements Rendering {
 	public static final ListOfBankAccounts $ = Keys.of(ListOfBankAccounts.class);
 	
 	@ViewReference
-	public final List<BankAccount> bankAccount = new ArrayList<>();
+	public List<BankAccount> bankAccount = new ArrayList<>();
 	
 	@NotEmpty @Size(EchFormats.currencyIdISO3)
 	public String currency = "CHF";

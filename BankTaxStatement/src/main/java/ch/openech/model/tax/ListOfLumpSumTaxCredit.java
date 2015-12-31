@@ -1,14 +1,18 @@
 package ch.openech.model.tax;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.minimalj.model.annotation.Size;
+import org.minimalj.model.annotation.ViewReference;
 
 import ch.openech.model.EchFormats;
 
 public class ListOfLumpSumTaxCredit {
 
-	// public final List<SecurityDepot> depot = new ArrayList<>();
+	@ViewReference
+	public List<SecurityDepot> depot = new ArrayList<>();
 
 	@Size(EchFormats.currencyIdISO3)
 	public String currency;

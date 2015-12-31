@@ -1,6 +1,7 @@
 package ch.openech.model.tax;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.minimalj.model.annotation.NotEmpty;
@@ -12,7 +13,7 @@ import ch.openech.model.EchFormats;
 public class ListOfExpenses {
 
 	@ViewReference
-	public List<Expense> expense;
+	public List<Expense> expense = new ArrayList<>();
 	
 	@NotEmpty @Size(EchFormats.currencyIdISO3)
 	public String currency = "CHF";
