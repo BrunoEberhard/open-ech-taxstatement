@@ -20,10 +20,6 @@ public class SecurityTaxValue {
 	@Size(255) // schema is missing size
 	public String name;
 	
-	public static enum QuotationType {
-		PIECE, PERCENT;
-	}
-	
 	public QuotationType quotationType;
 	
 	public BigDecimal quantity;

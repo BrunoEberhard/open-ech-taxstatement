@@ -5,14 +5,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.minimalj.model.Keys;
 import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
 import org.minimalj.model.annotation.ViewReference;
 
 import ch.openech.model.EchFormats;
-import ch.openech.model.tax.SecurityTaxValue.QuotationType;
 
 public class SecurityPayment {
+	public static final SecurityPayment $ = Keys.of(SecurityPayment.class);
+
 	public Object id;
 	
 	@ViewReference
@@ -22,6 +24,8 @@ public class SecurityPayment {
 	public SecurityPurchaseDisposition disposition;
 	
 	@NotEmpty
+	public LocalDate paymentDate;
+
 	public LocalDate exDate;
 	
 	@Size(255)
@@ -33,7 +37,7 @@ public class SecurityPayment {
 	
 	@Size(EchFormats.currencyIdISO3)
 	public String amountCurrency;
-
+	public BigDecimal amount;
 	public BigDecimal amountPerUnit;
 	
 	public BigDecimal exchangeRate;

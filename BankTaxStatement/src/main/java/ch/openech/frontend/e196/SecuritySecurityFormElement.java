@@ -35,6 +35,8 @@ public class SecuritySecurityFormElement extends ListFormElement<SecuritySecurit
     	form.line($.interestRate, $.variableInterest);
     	form.line($.iup, $.bfp);
     	form.line(new SecurityTaxValueFormElement(Keys.getProperty($.taxValue)));
+    	form.line(new SecurityStockFormElement(Keys.getProperty($.stock)));
+    	form.line(new SecurityPaymentElement(Keys.getProperty($.payment)));
     	return form;
 	}
 	

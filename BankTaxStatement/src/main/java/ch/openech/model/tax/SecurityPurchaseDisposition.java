@@ -8,7 +8,6 @@ import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
 
 import ch.openech.model.EchFormats;
-import ch.openech.model.tax.SecurityTaxValue.QuotationType;
 
 public class SecurityPurchaseDisposition {
 	public static final SecurityPurchaseDisposition $ = Keys.of(SecurityPurchaseDisposition.class);
