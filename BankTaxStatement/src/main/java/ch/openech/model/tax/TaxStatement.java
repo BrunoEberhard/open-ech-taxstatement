@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.minimalj.model.Keys;
 import org.minimalj.model.annotation.NotEmpty;
@@ -13,6 +14,7 @@ import org.minimalj.util.mock.Mocking;
 
 import ch.openech.model.EchFormats;
 import ch.openech.model.common.Canton;
+import ch.openech.util.mock.MockBank;
 
 /**
  * Steuerauszug
@@ -85,10 +87,20 @@ xsd:ID attributes cannot have default or fixed values specified.
 	@NotEmpty
 	public BigDecimal totalWithHoldingTaxClaim; // in Schema ohne "Claim"
 	
+	public Client getMainClient() {
+		if (Keys.isKeyObject(this)) return Keys.methodOf(this, "mainClient", Client.class);
+		if (client.isEmpty()) {
+			return null;
+		} else {
+			return client.get(0);
+		}
+	}
+	
 	@Override
 	public void mock() {
 		statementId = "mockId1234";
 		minorVersion = 1;
+		instituion.name = MockBank.getName();
 		instituion.uid.mock();
 		taxPeriod = 2014;
 		periodFrom = LocalDate.of(2014, 1, 1);
@@ -104,6 +116,20 @@ xsd:ID attributes cannot have default or fixed values specified.
 		client.firstName = "Felix";
 		client.lastName = "Muster";
 		this.client.add(client);
+		
+		Random random = new Random();
+		
+		listOfSecurities.depot.clear();
+		for (int i = 0; i<random.nextInt(3); i++) {
+			SecurityDepot depot = new SecurityDepot();
+			depot.depotNumber = String.valueOf(random.nextInt(900000) + 100000);
+			listOfSecurities.depot.add(depot);
+			for (int j = 0; j<random.nextInt(3); j++) {
+				SecuritySecurity security = new SecuritySecurity();
+				security.mock();
+				depot.security.add(security);
+			}
+		}
 //		accompanyingLetter.add(new AccompanyingLetter());
 
 	}

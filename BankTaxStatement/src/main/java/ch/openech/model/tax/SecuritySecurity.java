@@ -10,12 +10,13 @@ import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
 import org.minimalj.model.annotation.Sizes;
 import org.minimalj.model.annotation.ViewReference;
+import org.minimalj.util.mock.Mocking;
 
 import ch.openech.model.EchFormats;
 import ch.openech.model.organisation.UidStructure;
 
 @Sizes(EchFormats.class)
-public class SecuritySecurity {
+public class SecuritySecurity implements Mocking {
 	public static final SecuritySecurity $ = Keys.of(SecuritySecurity.class);
 
 	public Object id;
@@ -67,5 +68,10 @@ public class SecuritySecurity {
 	public Boolean iup;
 	
 	public Boolean bfp;
+	
+	@Override
+	public void mock() {
+		securityName = "" + Math.random();
+	}
 
 }

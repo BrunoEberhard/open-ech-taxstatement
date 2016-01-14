@@ -1,0 +1,275 @@
+Clientis AG
+Entris Banking AG
+Pfandbriefbank schweizerischer Hypothekarinstitute AG
+Pfandbriefzentrale der schweizerischen Kantonalbanken AG
+Schweizerische Nationalbank
+SIX SIS AG
+SIX x-clear AG
+Aargauische Kantonalbank
+Appenzeller Kantonalbank
+Banca dello Stato del Cantone Ticino
+Banque Cantonale de Fribourg
+Banque Cantonale de Genève
+Banque Cantonale du Jura SA
+Banque Cantonale du Valais
+Banque cantonale neuchâteloise
+Banque Cantonale Vaudoise
+Basellandschaftliche Kantonalbank
+Basler Kantonalbank
+Berner Kantonalbank AG
+Glarner Kantonalbank
+Graubündner Kantonalbank
+Luzerner Kantonalbank AG
+Nidwaldner Kantonalbank
+Obwaldner Kantonalbank
+Schaffhauser Kantonalbank
+Schwyzer Kantonalbank
+St.Galler Kantonalbank AG
+Thurgauer Kantonalbank
+Urner Kantonalbank
+Zuger Kantonalbank
+Zürcher Kantonalbank
+Credit Suisse AG
+UBS AG
+Bank BSU Genossenschaft
+Bank in Zuzwil AG
+Bank Leerau Genossenschaft
+Bank Oberaargau AG
+BANK ZIMMERBERG AG
+Bernerland Bank AG
+Biene Bank im Rheintal Genossenschaft
+BS Bank Schaffhausen AG
+Burgerliche Ersparniskasse Bern, Genossenschaft
+Caisse d'Epargne CEC SA
+Caisse d'Epargne de Cossonay société coopérative
+Clientis Bank im Thal AG
+Clientis Bank Küttigen-Erlinsbach AG
+Clientis Bank Oberuzwil AG
+Clientis Bank Thur Genossenschaft
+Clientis Bank Toggenburg AG
+Clientis EB Entlebucher Bank AG
+Clientis Sparkasse Oftringen Genossenschaft
+Clientis Zürcher Regionalbank Genossenschaft
+CREDIT MUTUEL DE LA VALLEE SA
+Ersparniskasse Affoltern i.E. AG
+Ersparniskasse Schaffhausen AG
+GRB Glarner Regionalbank Genossenschaft
+Leihkasse Stammheim AG
+Lienhardt & Partner Privatbank Zürich AG
+Regiobank Männedorf AG
+SB Saanen Bank AG
+SPAR + LEIHKASSE MÜNSINGEN AG
+Spar- und Leihkasse Thayngen AG
+Spar+Leihkasse Riggisberg AG
+Sparcassa 1816 Genossenschaft
+Sparkasse Schwyz AG
+Sparkasse Sense
+Triba Partner Bank AG
+Valiant Bank AG
+Zürcher Landbank AG
+acrevis Bank AG
+AEK BANK 1826 Genossenschaft
+Alpha RHEINTAL Bank AG
+Baloise Bank SoBa AG
+Bank EEK AG
+Bank EKI Genossenschaft
+Bank Gantrisch Genossenschaft
+Bank Sparhafen Zürich AG
+Bank Thalwil Genossenschaft
+BBO Bank Brienz Oberhasli AG
+Bezirks-Sparkasse Dielsdorf Genossenschaft
+Burgergemeinde Bern, DC Bank Deposito-Cassa der Stadt Bern
+Caisse d'Epargne d'Aubonne société coopérative
+Caisse d'Epargne de Nyon société coopérative
+Caisse d'Epargne et de Crédit Mutuel de Chermignon société coopérative
+Caisse d'Epargne Riviera, société coopérative
+Ersparniskasse Rüeggisberg Genossenschaft
+Ersparniskasse Speicher
+Hypothekarbank Lenzburg AG
+Neue Aargauer Bank AG
+Regiobank Solothurn AG
+SPAR + LEIHKASSE GÜRBETAL AG
+Spar- und Leihkasse Bucheggberg AG
+Spar- und Leihkasse Frutigen AG
+Spar- und Leihkasse Leuk und Umgebung Genossenschaft
+Spar- und Leihkasse Wynigen AG
+Vadian Bank AG
+Raiffeisen-Gruppe sowie Raiffeisenbanken
+ARVEST Privatbank AG
+AXION SWISS BANK SA
+BANCA ARNER SA
+Bank am Bellevue AG
+Bank Hottinger & Cie AG
+Bank Julius Bär & Co. AG
+Bank La Roche & Co AG
+Bank von Roll AG
+Bank Vontobel AG
+Banque Baring Brothers Sturdza SA
+Banque Bonhôte & Cie SA
+Banque Cramer & Cie SA
+Banque Genevoise de Gestion SA
+Banque Lombard Odier & Cie SA
+BANQUE MORVAL SA
+Banque Pâris Bertrand Sturdza SA
+Banque Pictet & Cie SA
+Banque SYZ SA
+BZ Bank Aktiengesellschaft
+CBH Compagnie Bancaire Helvétique SA
+Dreyfus Söhne & Cie. Aktiengesellschaft, Banquiers
+Dukascopy Bank SA
+Edmond de Rothschild (Lugano) SA
+Edmond de Rothschild (Suisse) S.A.
+Globalance Bank AG
+GS Banque SA
+Hyposwiss Private Bank Genève SA
+LANDOLT & CIE SA
+Maerki Baumann & Co. AG
+MediBank AG
+Mirabaud & Cie SA
+Notenstein Privatbank AG
+NPB Neue Privat Bank AG
+PHZ Privat- und Handelsbank Zürich AG
+Piguet Galland & Cie SA
+Privatbank Bellerive AG
+Privatbank IHAG Zürich AG
+Privatbank Von Graffenried AG
+Private Client Bank AG
+Private Client Partners AG
+REYL & Cie SA
+Sallfort Privatbank AG
+Scobag Privatbank AG
+Società Bancaria Ticinese SA
+Swissquote Bank SA
+Trafina Privatbank AG
+UNION BANCAIRE PRIVEE, UBP SA
+Alternative Bank Schweiz AG
+Aquila & Co. AG
+Bank Coop AG
+Bank-now AG
+Cornèr Banca SA
+Freie Gemeinschaftsbank Genossenschaft
+InCore Bank AG
+Migros Bank AG
+Neue Helvetische Bank AG
+PostFinance AG
+Swiss Bankers Prepaid Services AG
+VZ Depotbank AG
+WIR Bank Genossenschaft
+AP ANLAGE & PRIVATBANK AG
+Arab Bank (Switzerland) Ltd.
+Banca Aletti & C. (Suisse) SA
+BANCA CREDINVEST SA
+BANCA DEL CERESIO SA
+BANCA DEL SEMPIONE SA
+Banca Intermobiliare di Investimenti e Gestioni (Suisse) SA
+Banca Popolare di Sondrio (Suisse) SA
+BANCA ZARATTINI & CO. SA
+Banco Itaú (Suisse) SA
+Banco Santander (Suisse) SA
+Bank CIC (Schweiz) AG
+Bank Hapoalim (Schweiz) AG
+Bank J. Safra Sarasin AG
+Bank Linth LLB AG
+BANK MORGAN STANLEY AG
+bank zweiplus ag
+Bankhaus Jungholz AG
+BankMed (Suisse) SA
+Banque Algérienne du Commerce Extérieur SA
+BANQUE AUDI (SUISSE) SA
+Banque de Commerce et de Placements SA
+Banque du Léman SA
+BANQUE HERITAGE SA
+Banque Internationale à Luxembourg (Suisse) SA
+Banque Pasche SA
+BANQUE PRIVEE BCP (SUISSE) SA
+BANQUE PROFIL DE GESTION SA
+Banque Thaler SA
+Bantleon Bank AG
+Barclays Bank (Suisse) SA
+BBVA (Suiza) SA
+BERENBERG BANK (SCHWEIZ) AG
+BHF-BANK (Schweiz) AG
+BLOM BANK (Switzerland) SA
+BNP Paribas (Suisse) SA
+BSI SA
+Cembra Money Bank AG
+CIM BANQUE SA
+Citibank (Switzerland) AG
+Coutts & Co AG
+Crédit Agricole (Suisse) SA
+Crédit Agricole Financements (Suisse) SA
+Credit Europe Bank (Suisse) SA
+Deutsche Bank (Suisse) SA
+Dominick Company AG
+DZ PRIVATBANK (Schweiz) AG
+EFG Bank AG
+EFG Bank European Financial Group SA
+F. van Lanschot Bankiers (Schweiz) AG
+Falcon Private Bank AG
+Fibi Bank (Schweiz) AG
+FINTER BANK ZÜRICH AG
+Frankfurter Bankgesellschaft (Schweiz) AG
+Gazprombank (Schweiz) AG
+Goldman Sachs Bank AG
+Habib Bank AG Zürich
+HINDUJA BANQUE (SUISSE) SA
+HSBC Private Bank (Suisse) SA
+IDB (Swiss) Bank Ltd
+INTESA SANPAOLO PRIVATE BANK (SUISSE) SA
+Investec Bank (Switzerland) AG
+J.P. Morgan (Suisse) SA
+Jyske Bank (Schweiz) AG
+KBL (SWITZERLAND) LTD
+LBBW (Schweiz) AG
+Leumi Private Bank AG
+LGT Bank (Schweiz) AG
+M.M. Warburg Bank (Schweiz) AG
+Mercantil Bank (Schweiz) AG
+Merrill Lynch Capital Markets AG
+Mitsubishi UFJ Wealth Management Bank (Switzerland), Ltd.
+Mizuho Bank (Schweiz) AG
+NBAD Private Bank (Suisse) SA
+NBK Private Bank (Switzerland) Ltd
+Nomura Bank (Schweiz) AG
+Petercam Private Bank (Switzerland) SA
+PKB PRIVATBANK SA
+QNB Banque Privée (Suisse) SA
+Quilvest (Switzerland) Ltd.
+Rothschild Bank AG
+ROYAL BANK OF CANADA (SUISSE) SA
+SAXO BANK (SCHWEIZ) AG
+Sberbank (Switzerland) AG
+Schroder & Co Bank AG
+SOCIETE GENERALE Private Banking  (Lugano-Svizzera) SA
+SOCIETE GENERALE Private Banking (Suisse) SA
+UBL (Switzerland) AG
+UNITED MIZRAHI BANK (Switzerland) Ltd.
+Volksbank AG
+VP Bank (Schweiz) AG
+Bank für Tirol und Vorarlberg Aktiengesellschaft, Innsbruck, Zweigniederlassung Staad
+Banque Internationale de Commerce - Bred, Paris, succursale de Genève
+Barclays Capital, Zurich Branch of Barclays Bank PLC, London
+BNP PARIBAS SECURITIES SERVICES, Paris, succursale de Zurich
+Citibank, N.A., Sioux Falls, Zurich Branch
+COMMERZBANK Aktiengesellschaft, Frankfurt am Main, Zweigniederlassung Zürich
+Deutsche Bank Aktiengesellschaft, Frankfurt a.M., Zweigniederlassung Zürich
+EXANE DERIVATIVES, Paris, succursale de Genève
+Habibsons Bank Limited, London, Zweigniederlassung Zürich
+HSBC Bank plc, London,  Zweigniederlassung Zürich
+ING Belgique, Bruxelles, succursale de Genève
+Isbank AG, Frankfurt am Main (DE), Zweigniederlassung Zürich
+J.P. Morgan Securities plc, London, Zweigniederlassung Zürich
+JPMorgan Chase Bank, National Association, Columbus, Zurich Branch
+Lloyds Bank plc, Londres, succursale de Genève
+NCG BANCO, S.A., La Corogne, succursale de Genève
+Newedge Group, Paris, Zurich Branch
+Nordea Bank S.A., Luxemburg, Zweigniederlassung Zürich
+RBC Investor Services Bank S.A., Esch-sur-Alzette, Zweigniederlassung Zürich
+Skandinaviska Enskilda Banken SA, Luxembourg, Geneva Branch
+Société Générale, Paris, Zweigniederlassung Zürich
+State Street Bank GmbH, München, Zweigniederlassung Zürich
+STRATEO, Genève, Succursale de Keytrade Bank SA, Bruxelles
+The Royal Bank of Scotland plc, Edinburgh, Zweigniederlassung Zürich
+UBS LIMITED, London, Swiss Branch, Opfikon
+UniCredit Bank AG, München,  Zweigniederlassung Zürich
+Vorarlberger Landes- und Hypothekenbank Aktiengesellschaft, Bregenz, Zweigniederlassung St. Gallen

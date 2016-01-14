@@ -56,12 +56,13 @@ public class WriterEch0196 extends WriterElement {
 		for (PropertyInterface property : Properties.getProperties(object.getClass()).values()) {
 			String name = property.getName();
 			Object value = property.getValue(object);
+			System.out.println(name + " : " + value);
 
 			if (value instanceof UidStructure) {
 				ech97.uidStructure(child, "uid", (UidStructure) value);
 			} else if (value != null && value.getClass().getName().startsWith("ch.openech")) {
 				WriterElement child2 = child.create(URI, name);
-				write(child2, child2, URI);
+				write(child2, value, URI);
 			} else if (value instanceof List) {
 				List<?> list = (List<?>) value;
 				for (Object item : list) {

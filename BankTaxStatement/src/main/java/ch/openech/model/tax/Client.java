@@ -7,6 +7,7 @@ import ch.openech.model.EchFormats;
 import ch.openech.model.types.MrMrs;
 
 public class Client {
+//	public static final Client $ = Keys.of(Client.class);
 	
 	// The extension elements are ignored at the moment
 	// @Size(1024) public byte[] other;
