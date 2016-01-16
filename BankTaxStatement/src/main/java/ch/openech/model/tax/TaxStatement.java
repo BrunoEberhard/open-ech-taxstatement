@@ -10,10 +10,13 @@ import java.util.Random;
 import org.minimalj.model.Keys;
 import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
+import org.minimalj.util.mock.MockName;
+import org.minimalj.util.mock.MockPrename;
 import org.minimalj.util.mock.Mocking;
 
 import ch.openech.model.EchFormats;
 import ch.openech.model.common.Canton;
+import ch.openech.model.types.MrMrs;
 import ch.openech.util.mock.MockBank;
 
 /**
@@ -111,11 +114,11 @@ xsd:ID attributes cannot have default or fixed values specified.
 		totalGrossRevenueBCanton = BigDecimal.valueOf(230.0);
 		totalTaxValue = BigDecimal.valueOf(345.0);
 		totalWithHoldingTaxClaim = BigDecimal.valueOf(340.0);
-		Client client = new Client();
+		Client client = getMainClient();
 		client.clientNumber = "42";
-		client.firstName = "Felix";
-		client.lastName = "Muster";
-		this.client.add(client);
+		client.salutation = MrMrs.Herr;
+		client.firstName = MockPrename.getFirstName(true);
+		client.lastName = MockName.officialName();
 		
 		Random random = new Random();
 		
