@@ -7,19 +7,12 @@ import org.minimalj.frontend.form.Form;
 
 import ch.openech.frontend.e196.TaxStatementForm;
 import ch.openech.frontend.page.TaxStatementPage;
-import ch.openech.model.tax.Client;
 import ch.openech.model.tax.TaxStatement;
 
 public class TaxStatementEditor extends SimpleEditor<TaxStatement> {
 
 	private final TaxStatement taxStatement;
 
-	public TaxStatementEditor(String name) {
-		super(name);
-		taxStatement = new TaxStatement();
-		taxStatement.client.add(new Client());
-	}
-	
 	public TaxStatementEditor(TaxStatement taxStatement) {
 		this.taxStatement = taxStatement;
 	}

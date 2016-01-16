@@ -8,7 +8,7 @@ import java.util.Set;
 import org.minimalj.application.Application;
 import org.minimalj.frontend.action.Action;
 
-import ch.openech.action.TaxStatementEditor;
+import ch.openech.action.NewTaxStatementAction;
 import ch.openech.action.TaxStatementMockAction;
 import ch.openech.action.TaxStatementXmlImport;
 import ch.openech.model.tax.TaxStatement;
@@ -37,7 +37,7 @@ public class TaxStatementApplication extends Application {
 	@Override
 	public List<Action> getNavigation() {
 		List<Action> navigation = new ArrayList<>();
-		navigation.add(new TaxStatementEditor("Neuer Steuerauszug erstellen"));
+		navigation.add(new NewTaxStatementAction());
 		navigation.add(new TaxStatementXmlImport());
 		navigation.add(new TaxStatementMockAction("Steuerauszug aus Zufallswerten"));
 

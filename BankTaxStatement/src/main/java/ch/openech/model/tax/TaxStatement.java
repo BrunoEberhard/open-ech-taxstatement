@@ -93,10 +93,9 @@ xsd:ID attributes cannot have default or fixed values specified.
 	public Client getMainClient() {
 		if (Keys.isKeyObject(this)) return Keys.methodOf(this, "mainClient", Client.class);
 		if (client.isEmpty()) {
-			return null;
-		} else {
-			return client.get(0);
+			client.add(new Client());
 		}
+		return client.get(0);
 	}
 	
 	@Override

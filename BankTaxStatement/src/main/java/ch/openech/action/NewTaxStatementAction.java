@@ -1,19 +1,15 @@
 package ch.openech.action;
 
+import org.minimalj.backend.Backend;
 import org.minimalj.frontend.Frontend;
-import org.minimalj.frontend.editor.Editor.SimpleEditor;
+import org.minimalj.frontend.editor.Editor.NewObjectEditor;
 import org.minimalj.frontend.form.Form;
 
 import ch.openech.frontend.e196.TaxStatementForm;
 import ch.openech.frontend.page.TaxStatementPage;
 import ch.openech.model.tax.TaxStatement;
 
-public class NewTaxStatementAction extends SimpleEditor<TaxStatement> {
-
-	@Override
-	protected TaxStatement createObject() {
-		return new TaxStatement();
-	}
+public class NewTaxStatementAction extends NewObjectEditor<TaxStatement> {
 
 	@Override
 	protected Form<TaxStatement> createForm() {
@@ -22,8 +18,7 @@ public class NewTaxStatementAction extends SimpleEditor<TaxStatement> {
 
 	@Override
 	protected TaxStatement save(TaxStatement taxStatement) {
-		// Backend.insert(taxStatement);
-		return taxStatement;
+		return Backend.save(taxStatement);
 	}
 
 	@Override
