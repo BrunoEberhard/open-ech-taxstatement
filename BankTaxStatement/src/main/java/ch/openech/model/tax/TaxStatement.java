@@ -45,7 +45,7 @@ xsd:ID attributes cannot have default or fixed values specified.
 	public Integer minorVersion;	// Die Versionsnummer des Steuerauszugs
 	
 	@NotEmpty
-	public final Instituion instituion = new Instituion();
+	public final Institution instituion = new Institution();
 	
 	@NotEmpty
 	public final List<Client> client = new ArrayList<>();
