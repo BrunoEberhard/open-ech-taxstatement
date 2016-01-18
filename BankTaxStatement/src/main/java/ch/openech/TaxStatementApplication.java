@@ -11,6 +11,7 @@ import org.minimalj.frontend.action.Action;
 import ch.openech.action.NewTaxStatementAction;
 import ch.openech.action.TaxStatementMockAction;
 import ch.openech.action.TaxStatementXmlImport;
+import ch.openech.model.common.CountryIdentification;
 import ch.openech.model.tax.TaxStatement;
 
 public class TaxStatementApplication extends Application {
@@ -52,6 +53,6 @@ public class TaxStatementApplication extends Application {
 
 	@Override
 	public Class<?>[] getEntityClasses() {
-		return new Class<?>[] { TaxStatement.class };
+		return new Class<?>[] { TaxStatement.class, CountryIdentification.class };
 	}
 }
