@@ -1,6 +1,10 @@
 package ch.openech.action;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.minimalj.frontend.Frontend;
+import org.minimalj.frontend.action.Action;
 
 import ch.openech.frontend.page.TaxStatementPage;
 import ch.openech.model.tax.TaxStatement;
@@ -10,6 +14,12 @@ public class TaxStatementXmlImport extends TaxStatementXmlEditor {
 
 	public TaxStatementXmlImport() {
 		super(null);
+	}
+
+	@Override
+	protected List<Action> createAdditionalActions() {
+		// No Demo - Action, even in Dev - Mode
+		return Collections.emptyList();
 	}
 
 	@Override
