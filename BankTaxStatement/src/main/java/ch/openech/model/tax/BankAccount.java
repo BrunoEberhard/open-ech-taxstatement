@@ -16,6 +16,9 @@ import ch.openech.model.EchFormats;
 public class BankAccount {
 	public static final BankAccount $ = Keys.of(BankAccount.class);
 	
+	public static final boolean BANK_ACCOUNT = true;
+	public static final boolean LIABILITY_ACCOUNT = false;
+	
 	public Object id;
 	
 	public BankAccountTaxValue taxValue;

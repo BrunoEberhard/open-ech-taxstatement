@@ -47,7 +47,7 @@ public class BankAccountTablePage extends TablePage<BankAccount> {
 
 		@Override
 		protected Form<BankAccount> createForm() {
-			return new BankAccountForm(Form.EDITABLE);
+			return new BankAccountForm(Form.EDITABLE, BankAccount.BANK_ACCOUNT);
 		}		
 		
 		@Override

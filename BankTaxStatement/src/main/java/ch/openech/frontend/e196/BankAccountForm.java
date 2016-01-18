@@ -10,7 +10,7 @@ import ch.openech.model.tax.BankAccount;
 
 public class BankAccountForm extends Form<BankAccount> {
 
-	public BankAccountForm(boolean editable) {
+	public BankAccountForm(boolean editable, boolean bankAccountType) {
 		super(editable, 2);
 		
 		line($.iban, $.bankAccountNumber);
@@ -27,8 +27,12 @@ public class BankAccountForm extends Form<BankAccount> {
 		line(new BankAccountPaymentsFormElement(Keys.getProperty($.payment)));
 
 		line($.currency);
-		line($.totalGrossRevenueA, $.totalGrossRevenueB);
-		line($.totalTaxValue, $.totalWithHoldingTaxClaim);
+		if (bankAccountType == BankAccount.BANK_ACCOUNT) {
+			line($.totalGrossRevenueA, $.totalGrossRevenueB);
+			line($.totalTaxValue, $.totalWithHoldingTaxClaim);
+		} else {
+			line($.totalGrossRevenueB, $.totalTaxValue);
+		}
 
 		addDependecy($.getHasTaxValue(), $.taxValue);
 	}

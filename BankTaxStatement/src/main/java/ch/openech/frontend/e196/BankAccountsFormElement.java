@@ -20,7 +20,7 @@ public class BankAccountsFormElement extends ListFormElement<BankAccount> {
 
 	@Override
 	protected Form<BankAccount> createForm(boolean edit) {
-		return new BankAccountForm(edit);
+		return new BankAccountForm(edit,  BankAccount.BANK_ACCOUNT);
 	}
 	
 	@Override

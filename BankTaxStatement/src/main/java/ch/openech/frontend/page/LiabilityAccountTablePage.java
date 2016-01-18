@@ -37,7 +37,7 @@ public class LiabilityAccountTablePage extends TablePage<BankAccount> {
 	public class NewLiabilityAccountEditor extends NewObjectEditor<BankAccount> {
 		@Override
 		protected Form<BankAccount> createForm() {
-			return new BankAccountForm(Form.EDITABLE);
+			return new BankAccountForm(Form.EDITABLE,  BankAccount.LIABILITY_ACCOUNT);
 		}		
 		
 		@Override
