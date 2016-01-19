@@ -5,27 +5,24 @@ import static ch.openech.model.tax.BankAccount.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.minimalj.frontend.Frontend.IContent;
 import org.minimalj.frontend.action.Action;
-import org.minimalj.frontend.editor.Editor.NewObjectEditor;
 import org.minimalj.frontend.form.Form;
-import org.minimalj.frontend.page.TablePage;
-import org.minimalj.model.Keys;
-import org.minimalj.model.properties.PropertyInterface;
-import org.minimalj.model.validation.EmptyValidator;
-import org.minimalj.model.validation.ValidationMessage;
-import org.minimalj.util.StringUtils;
+import org.minimalj.frontend.page.Page;
+import org.minimalj.frontend.page.TablePage.TablePageWithDetail;
 
 import ch.openech.frontend.e196.BankAccountForm;
+import ch.openech.frontend.page.BankAccountTablePage.BankAccountPage;
 import ch.openech.model.tax.BankAccount;
 import ch.openech.model.tax.TaxStatement;
 
-public class BankAccountTablePage extends TablePage<BankAccount> {
-
+public class BankAccountTablePage extends TablePageWithDetail<BankAccount, BankAccountPage> {
 	public static final Object[] COLUMNS = {$.bankAccountNumber, $.iban, $.bankAccountName, $.bankAccountCurrency, $.taxValue.balance};
+
 	private final TaxStatement taxStatement;
 	
 	public BankAccountTablePage(TaxStatement taxStatement) {
-		super(COLUMNS);
+		super(BankAccountTablePage.COLUMNS);
 		this.taxStatement = taxStatement;
 	}
 
@@ -40,32 +37,46 @@ public class BankAccountTablePage extends TablePage<BankAccount> {
 		actions.add(new NewBankAccountEditor());
 		return actions;
 	}
-	
-	private static final PropertyInterface ibanProperty = Keys.getProperty($.iban);
 
-	public class NewBankAccountEditor extends NewObjectEditor<BankAccount> {
+	@Override
+	protected BankAccountPage createDetailPage(BankAccount account) {
+		return new BankAccountPage(account);
+	}
+	
+	@Override
+	protected BankAccountPage updateDetailPage(BankAccountPage page, BankAccount account) {
+		page.setAccount(account);
+		return page;
+	}
+	
+	public class BankAccountPage extends Page {
+		private Form<BankAccount> form;
+		
+		public BankAccountPage(BankAccount account) {
+			form = new BankAccountForm(Form.READ_ONLY,  BankAccount.BANK_ACCOUNT);
+			form.setObject(account);
+		}
 
 		@Override
+		public IContent getContent() {
+			return form.getContent();
+		}
+		
+		public void setAccount(BankAccount account) {
+			form.setObject(account);
+		}
+	}
+
+	public class NewBankAccountEditor extends NewDetailEditor<BankAccount> {
+		@Override
 		protected Form<BankAccount> createForm() {
-			return new BankAccountForm(Form.EDITABLE, BankAccount.BANK_ACCOUNT);
+			return new BankAccountForm(Form.EDITABLE,  BankAccount.BANK_ACCOUNT);
 		}		
 		
 		@Override
 		protected BankAccount save(BankAccount changedObject) {
 			taxStatement.listOfBankAccounts.bankAccount.add(changedObject);
 			return changedObject;
-		}
-		
-		@Override
-		protected void finished(BankAccount result) {
-			BankAccountTablePage.this.refresh();
-		}
-		
-		@Override
-		protected void validate(BankAccount object, List<ValidationMessage> validationMessages) {
-			if (StringUtils.isEmpty(object.iban)) {
-				validationMessages.add(new ValidationMessage(ibanProperty, EmptyValidator.createMessage(ibanProperty)));
-			}
 		}
 	}
 }
