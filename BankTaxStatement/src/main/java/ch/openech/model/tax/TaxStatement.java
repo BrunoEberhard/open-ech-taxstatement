@@ -52,9 +52,9 @@ xsd:ID attributes cannot have default or fixed values specified.
 	
 	public final List<AccompanyingLetter> accompanyingLetter = new ArrayList<>();
 
-	public final ListOfBankAccounts listOfBankAccounts = new ListOfBankAccounts();
+	public final ListOfAccounts listOfBankAccounts = new ListOfAccounts();
 
-	public final ListOfBankAccounts listOfLiabilities = new ListOfBankAccounts();
+	public final ListOfAccounts listOfLiabilities = new ListOfAccounts();
 
 	public final ListOfExpenses listOfExpenses = new ListOfExpenses();
 

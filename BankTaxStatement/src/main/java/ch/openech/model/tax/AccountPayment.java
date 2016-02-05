@@ -9,42 +9,33 @@ import org.minimalj.model.annotation.Size;
 
 import ch.openech.model.EchFormats;
 
-public class SecurityStock {
-	public static final SecurityStock $ = Keys.of(SecurityStock.class);
+// GrossRevenueA und Claim ist nur bei Bank, nicht bei Liablility
+public class AccountPayment {
+	public static final AccountPayment $ = Keys.of(AccountPayment.class);
 
 	public Object id;
-	public SecuritySecurity parent;
+	public Account parent;
 	public Integer position;
 	
 	@NotEmpty
-	public LocalDate referenceDate;
+	public LocalDate paymentDate;
 	
-	@Size(255)
+	@Size(255) // schema is missing size
 	public String name;
 	
-	public Boolean mutation;
-	
-	public QuotationType quotationType;
-	
-	public BigDecimal quantity;
-	
 	@Size(EchFormats.currencyIdISO3)
-	public String balanceCurrency;
+	public String amountCurrency;
 
-	public BigDecimal unitPrice;
-	
-	public BigDecimal balance;
-	
-	public BigDecimal reductionCost;
+	public BigDecimal amount;
 	
 	public BigDecimal exchangeRate;
 	
 	@NotEmpty @Size(EchFormats.currencyIdISO3)
 	public String currency = "CHF";
 
-	public BigDecimal value;
+	public BigDecimal grossRevenueA;
+	public BigDecimal grossRevenueB;
+	public BigDecimal withHoldingTaxClaim;
 
-	public Boolean blocked;
-	public LocalDate blockingTo;
-
+	
 }

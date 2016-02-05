@@ -6,7 +6,6 @@ import java.util.List;
 import org.minimalj.model.Keys;
 import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
-import org.minimalj.model.annotation.ViewReference;
 
 import ch.openech.model.EchFormats;
 
@@ -14,8 +13,10 @@ public class SecurityDepot {
 	public static final SecurityDepot $ = Keys.of(SecurityDepot.class);
 
 	public Object id;
-
-	@ViewReference
+	public TaxStatement parent;
+	public String discriminator;
+	public Integer position;
+	
 	public List<SecuritySecurity> security = new ArrayList<>();
 
 	@NotEmpty @Size(EchFormats.currencyIdISO3)

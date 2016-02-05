@@ -5,13 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.minimalj.model.annotation.Size;
-import org.minimalj.model.annotation.ViewReference;
 
 import ch.openech.model.EchFormats;
 
 public class ListOfSecurities {
 
-	@ViewReference
 	public List<SecurityDepot> depot = new ArrayList<>();
 
 	@Size(EchFormats.currencyIdISO3)

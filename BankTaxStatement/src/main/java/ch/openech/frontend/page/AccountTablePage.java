@@ -1,5 +1,7 @@
 package ch.openech.frontend.page;
 
+import static ch.openech.model.tax.Account.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,31 +13,31 @@ import ch.openech.frontend.e196.AccountForm;
 import ch.openech.model.tax.Account;
 import ch.openech.model.tax.TaxStatement;
 
-// pretty much the same as BankAccountTablePage
-public class LiabilityAccountTablePage extends TablePageWithDetail<Account, AccountPage> {
+public class AccountTablePage extends TablePageWithDetail<Account, AccountPage> {
+	public static final Object[] COLUMNS = {$.bankAccountNumber, $.iban, $.bankAccountName, $.bankAccountCurrency, $.taxValue.balance};
 
 	private final TaxStatement taxStatement;
 	
-	public LiabilityAccountTablePage(TaxStatement taxStatement) {
+	public AccountTablePage(TaxStatement taxStatement) {
 		super(AccountTablePage.COLUMNS);
 		this.taxStatement = taxStatement;
 	}
 
 	@Override
 	protected List<Account> load() {
-		return taxStatement.listOfLiabilities.bankAccount;
+		return taxStatement.listOfBankAccounts.bankAccount;
 	}
 	
 	@Override
 	public List<Action> getActions() {
 		List<Action> actions = new ArrayList<>();
-		actions.add(new NewLiabilityAccountEditor());
+		actions.add(new NewBankAccountEditor());
 		return actions;
 	}
 
 	@Override
 	protected AccountPage createDetailPage(Account account) {
-		return new AccountPage(account, Account.LIABILITY_ACCOUNT);
+		return new AccountPage(account, Account.BANK_ACCOUNT);
 	}
 	
 	@Override
@@ -44,15 +46,15 @@ public class LiabilityAccountTablePage extends TablePageWithDetail<Account, Acco
 		return page;
 	}
 	
-	public class NewLiabilityAccountEditor extends NewDetailEditor<Account> {
+	public class NewBankAccountEditor extends NewDetailEditor<Account> {
 		@Override
 		protected Form<Account> createForm() {
-			return new AccountForm(Form.EDITABLE,  Account.LIABILITY_ACCOUNT);
+			return new AccountForm(Form.EDITABLE,  Account.BANK_ACCOUNT);
 		}		
 		
 		@Override
 		protected Account save(Account changedObject) {
-			taxStatement.listOfLiabilities.bankAccount.add(changedObject);
+			taxStatement.listOfBankAccounts.bankAccount.add(changedObject);
 			return changedObject;
 		}
 	}

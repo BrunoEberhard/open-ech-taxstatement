@@ -10,7 +10,7 @@ import org.minimalj.model.properties.PropertyInterface;
 import org.minimalj.util.FieldUtils;
 
 import ch.openech.model.organisation.UidStructure;
-import ch.openech.model.tax.BankAccount;
+import ch.openech.model.tax.Account;
 import ch.openech.model.tax.TaxStatement;
 import ch.openech.xml.read.StaxEch0196;
 
@@ -85,7 +85,7 @@ public class WriterEch0196 extends WriterElement {
 		WriterEch0196 w = new WriterEch0196(stringWriter, EchSchema.getNamespaceContext(196, "1.0"));
 		TaxStatement taxStatement = new TaxStatement();
 		taxStatement.mock();
-		BankAccount bankAccount = new BankAccount();
+		Account bankAccount = new Account();
 		bankAccount.bankAccountName = "bankAccountName";
 		taxStatement.listOfBankAccounts.bankAccount.add(bankAccount);
 		w.write(taxStatement);

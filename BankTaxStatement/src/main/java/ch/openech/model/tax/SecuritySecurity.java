@@ -9,7 +9,6 @@ import org.minimalj.model.Keys;
 import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
 import org.minimalj.model.annotation.Sizes;
-import org.minimalj.model.annotation.ViewReference;
 import org.minimalj.util.mock.Mocking;
 
 import ch.openech.model.EchFormats;
@@ -20,14 +19,13 @@ public class SecuritySecurity implements Mocking {
 	public static final SecuritySecurity $ = Keys.of(SecuritySecurity.class);
 
 	public Object id;
+	public SecurityDepot parent;
+	public Integer position;
 	
-	@ViewReference
 	public List<SecurityTaxValue> taxValue = new ArrayList<>();
-
-	@ViewReference
+	
 	public List<SecurityPayment> payment = new ArrayList<>();
 
-	@ViewReference
 	public List<SecurityStock> stock = new ArrayList<>();
 
 	public UidStructure uid;

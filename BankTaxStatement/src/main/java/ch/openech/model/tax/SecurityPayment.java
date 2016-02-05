@@ -8,7 +8,6 @@ import java.util.List;
 import org.minimalj.model.Keys;
 import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
-import org.minimalj.model.annotation.ViewReference;
 
 import ch.openech.model.EchFormats;
 
@@ -16,11 +15,11 @@ public class SecurityPayment {
 	public static final SecurityPayment $ = Keys.of(SecurityPayment.class);
 
 	public Object id;
+	public SecuritySecurity parent;
+	public Integer position;
 	
-	@ViewReference
 	public List<SecurityPurchaseDisposition> purchase = new ArrayList<>();
 	
-	@ViewReference
 	public SecurityPurchaseDisposition disposition;
 	
 	@NotEmpty

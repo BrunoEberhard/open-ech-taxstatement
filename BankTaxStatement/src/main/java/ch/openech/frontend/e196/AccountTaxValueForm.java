@@ -1,16 +1,16 @@
 package ch.openech.frontend.e196;
 
-import static ch.openech.model.tax.BankAccount.*;
+import static ch.openech.model.tax.Account.*;
 
 import org.minimalj.frontend.form.Form;
 import org.minimalj.model.Keys;
 
 import ch.openech.frontend.e08.CountryFormElement;
-import ch.openech.model.tax.BankAccount;
+import ch.openech.model.tax.Account;
 
-public class BankAccountForm extends Form<BankAccount> {
+public class AccountTaxValueForm extends Form<Account> {
 
-	public BankAccountForm(boolean editable, boolean bankAccountType) {
+	public AccountTaxValueForm(boolean editable, boolean accountType) {
 		super(editable, 2);
 		
 		line($.iban, $.bankAccountNumber);
@@ -27,7 +27,7 @@ public class BankAccountForm extends Form<BankAccount> {
 		line(new BankAccountPaymentsFormElement(Keys.getProperty($.payment)));
 
 		line($.currency);
-		if (bankAccountType == BankAccount.BANK_ACCOUNT) {
+		if (accountType == Account.BANK_ACCOUNT) {
 			line($.totalGrossRevenueA, $.totalGrossRevenueB);
 			line($.totalTaxValue, $.totalWithHoldingTaxClaim);
 		} else {

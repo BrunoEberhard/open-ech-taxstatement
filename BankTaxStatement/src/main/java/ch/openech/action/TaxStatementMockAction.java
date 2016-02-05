@@ -1,5 +1,6 @@
 package ch.openech.action;
 
+import org.minimalj.backend.Backend;
 import org.minimalj.frontend.Frontend;
 import org.minimalj.frontend.action.Action;
 
@@ -16,6 +17,7 @@ public class TaxStatementMockAction extends Action {
 	public void action() {
 		TaxStatement taxStatement = new TaxStatement();
 		taxStatement.mock();
+		taxStatement = Backend.save(taxStatement);
 		Frontend.show(new TaxStatementPage(taxStatement));
 	}
 

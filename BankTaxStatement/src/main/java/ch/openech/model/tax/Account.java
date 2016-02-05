@@ -8,23 +8,24 @@ import java.util.List;
 import org.minimalj.model.Keys;
 import org.minimalj.model.annotation.Size;
 import org.minimalj.model.annotation.Sizes;
-import org.minimalj.model.annotation.ViewReference;
 
 import ch.openech.model.EchFormats;
 
 @Sizes(EchFormats.class)
-public class BankAccount {
-	public static final BankAccount $ = Keys.of(BankAccount.class);
+public class Account {
+	public static final Account $ = Keys.of(Account.class);
 	
 	public static final boolean BANK_ACCOUNT = true;
 	public static final boolean LIABILITY_ACCOUNT = false;
 	
 	public Object id;
-	
+	public TaxStatement parent;
+	public String discriminator;
+	public Integer position;
+
 	public BankAccountTaxValue taxValue;
 	
-	@ViewReference
-	public List<BankAccountPayment> payment = new ArrayList<>();
+	public List<AccountPayment> payment = new ArrayList<>();
 	
 	public String iban;  // not empty for bank account (may be empty for liability)
 	public String bankAccountNumber;

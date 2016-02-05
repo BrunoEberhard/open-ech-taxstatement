@@ -5,22 +5,22 @@ import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.form.element.ListFormElement;
 import org.minimalj.model.properties.PropertyInterface;
 
-import ch.openech.model.tax.BankAccount;
+import ch.openech.model.tax.Account;
 
-public class BankAccountsFormElement extends ListFormElement<BankAccount> {
+public class BankAccountsFormElement extends ListFormElement<Account> {
 
 	public BankAccountsFormElement(PropertyInterface property) {
 		super(property);
 	}
 
 	@Override
-	protected void showEntry(BankAccount entry) {
+	protected void showEntry(Account entry) {
 		add(entry.currency + " " + entry.bankAccountName, new ListEntryEditor(entry));
 	}
 
 	@Override
-	protected Form<BankAccount> createForm(boolean edit) {
-		return new BankAccountForm(edit,  BankAccount.BANK_ACCOUNT);
+	protected Form<Account> createForm(boolean edit) {
+		return new AccountForm(edit,  Account.BANK_ACCOUNT);
 	}
 	
 	@Override
