@@ -14,8 +14,6 @@ public class AccountPayment {
 	public static final AccountPayment $ = Keys.of(AccountPayment.class);
 
 	public Object id;
-	public Account parent;
-	public Integer position;
 	
 	@NotEmpty
 	public LocalDate paymentDate;

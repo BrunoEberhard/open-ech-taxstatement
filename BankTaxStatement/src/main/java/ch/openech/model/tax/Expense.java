@@ -15,8 +15,6 @@ public class Expense {
 	public static final Expense $ = Keys.of(Expense.class);
 
 	public Object id;
-	public TaxStatement parent;
-	public Integer position;
 	
 	public LocalDate referenceDate;
 	

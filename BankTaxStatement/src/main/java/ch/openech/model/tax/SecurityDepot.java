@@ -13,9 +13,6 @@ public class SecurityDepot {
 	public static final SecurityDepot $ = Keys.of(SecurityDepot.class);
 
 	public Object id;
-	public TaxStatement parent;
-	public String discriminator;
-	public Integer position;
 	
 	public List<SecuritySecurity> security = new ArrayList<>();
 

@@ -13,8 +13,6 @@ public class SecurityStock {
 	public static final SecurityStock $ = Keys.of(SecurityStock.class);
 
 	public Object id;
-	public SecuritySecurity parent;
-	public Integer position;
 	
 	@NotEmpty
 	public LocalDate referenceDate;

@@ -15,8 +15,6 @@ public class SecurityPayment {
 	public static final SecurityPayment $ = Keys.of(SecurityPayment.class);
 
 	public Object id;
-	public SecuritySecurity parent;
-	public Integer position;
 	
 	public List<SecurityPurchaseDisposition> purchase = new ArrayList<>();
 	

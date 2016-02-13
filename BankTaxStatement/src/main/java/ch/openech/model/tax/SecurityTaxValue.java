@@ -13,8 +13,6 @@ public class SecurityTaxValue {
 	public static final SecurityTaxValue $ = Keys.of(SecurityTaxValue.class);
 
 	public Object id;
-	public SecuritySecurity parent;
-	public Integer position;
 	
 	@NotEmpty
 	public LocalDate referenceDate;

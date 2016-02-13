@@ -19,8 +19,6 @@ public class SecuritySecurity implements Mocking {
 	public static final SecuritySecurity $ = Keys.of(SecuritySecurity.class);
 
 	public Object id;
-	public SecurityDepot parent;
-	public Integer position;
 	
 	public List<SecurityTaxValue> taxValue = new ArrayList<>();
 	

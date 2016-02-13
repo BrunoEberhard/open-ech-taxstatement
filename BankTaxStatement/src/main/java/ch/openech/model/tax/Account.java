@@ -19,9 +19,6 @@ public class Account {
 	public static final boolean LIABILITY_ACCOUNT = false;
 	
 	public Object id;
-	public TaxStatement parent;
-	public String discriminator;
-	public Integer position;
 
 	public BankAccountTaxValue taxValue;
 	
