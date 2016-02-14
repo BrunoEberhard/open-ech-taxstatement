@@ -1,6 +1,6 @@
 package ch.openech.frontend.page;
 
-import static ch.openech.model.tax.Account.*;
+import static ch.openech.model.tax.AccountPayment.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import ch.openech.model.tax.Account;
 import ch.openech.model.tax.AccountPayment;
 
 public class AccountPaymentTablePage extends TablePageWithDetail<AccountPayment, AccountPaymentPage> {
-	public static final Object[] COLUMNS = {$.bankAccountNumber, $.iban, $.bankAccountName, $.bankAccountCurrency, $.taxValue.balance};
+	public static final Object[] COLUMNS = {$.paymentDate, $.paymentDate, $.amountCurrency, $.amount};
 
 	private final Account bankAccount;
 	private final boolean accountType;
