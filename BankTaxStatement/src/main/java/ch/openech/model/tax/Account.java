@@ -20,7 +20,7 @@ public class Account {
 	
 	public Object id;
 
-	public BankAccountTaxValue taxValue;
+	public AccountTaxValue taxValue;
 	
 	public List<AccountPayment> payment = new ArrayList<>();
 	
@@ -54,7 +54,7 @@ public class Account {
 	public void setHasTaxValue(Boolean hasTaxValue) {
 		if (Boolean.TRUE.equals(hasTaxValue)) {
 			if (taxValue == null) {
-				taxValue = new BankAccountTaxValue();
+				taxValue = new AccountTaxValue();
 			}
 		} else if (Boolean.FALSE.equals(hasTaxValue)) {
 			taxValue = null;
