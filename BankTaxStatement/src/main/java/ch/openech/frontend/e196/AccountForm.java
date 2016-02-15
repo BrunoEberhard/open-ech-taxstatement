@@ -14,7 +14,7 @@ public class AccountForm extends Form<Account> {
 		super(editable, 2);
 		
 		line($.iban, $.bankAccountNumber);
-		line($.bankAccountName, new CountryFormElement(Keys.getProperty($.bankAccountCountry)));
+		line($.bankAccountName, editable ? new CountryFormElement(Keys.getProperty($.bankAccountCountry)) : $.bankAccountCountry);
 		line($.bankAccountCurrency);
 		line($.openingDate, $.closingDate);
 
