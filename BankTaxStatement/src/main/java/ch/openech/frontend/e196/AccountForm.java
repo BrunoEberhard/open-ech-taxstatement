@@ -24,8 +24,6 @@ public class AccountForm extends Form<Account> {
 		line($.taxValue.exchangeRate);
 		line($.taxValue.currency, $.taxValue.value);
 
-		line(new BankAccountPaymentsFormElement(Keys.getProperty($.payment)));
-
 		line($.currency);
 		if (accountType == Account.BANK_ACCOUNT) {
 			line($.totalGrossRevenueA, $.totalGrossRevenueB);
