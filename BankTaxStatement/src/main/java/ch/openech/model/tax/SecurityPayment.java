@@ -16,8 +16,10 @@ public class SecurityPayment {
 
 	public Object id;
 	
+	// only sec
 	public List<SecurityPurchaseDisposition> purchase = new ArrayList<>();
 	
+	// only sec
 	public SecurityPurchaseDisposition disposition;
 	
 	@NotEmpty
@@ -32,24 +34,26 @@ public class SecurityPayment {
 
 	public BigDecimal quantity;
 	
+	// for lump: required, for sec: optional, default CHF
 	@Size(EchFormats.currencyIdISO3)
 	public String amountCurrency;
+	
 	public BigDecimal amount;
 	public BigDecimal amountPerUnit;
 	
+	// for lump: required, for sec: optional
 	public BigDecimal exchangeRate;
 	
 	@NotEmpty @Size(EchFormats.currencyIdISO3)
 	public String currency = "CHF";
 
-	public BigDecimal grossRevenueA;
-	public BigDecimal grossRevenueACanton;
-	public BigDecimal grossRevenueB;
-	public BigDecimal grossRevenueBCanton;
-	public BigDecimal totalWithHoldingTaxClaim;
-	public BigDecimal grossRevenueIUP;
+	public BigDecimal grossRevenueA; // only sec
+	public BigDecimal grossRevenueACanton; // only sec
+	public BigDecimal grossRevenueB; // for lump: required, for sec: optional
+	public BigDecimal grossRevenueBCanton; 
+	public BigDecimal totalWithHoldingTaxClaim; // only sec
 	
-	public Boolean lumpSumTaxCredit;
+	public Boolean lumpSumTaxCredit; // only sec
 	public BigDecimal lumpSumTaxCreditPercent;
 	public BigDecimal lumpSumTaxCreditAmount;
 
@@ -57,12 +61,15 @@ public class SecurityPayment {
 	public BigDecimal nonRecoverableTaxAmount;
 	public BigDecimal additionalWithHoldingTaxUSA;
 	
+	// only sec
 	public Boolean iup;
 	public Boolean conversion;
 	public Boolean gratis;
 	public Boolean securitiesLending;
 	public Boolean lendingFee;
 	public Boolean retrocession;
+	
+	// all
 	public Boolean undefined;
 	public Boolean kursliste = true;
 	public Boolean sign;

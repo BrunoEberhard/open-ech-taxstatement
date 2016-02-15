@@ -24,19 +24,23 @@ public class SecuritySecurity implements Mocking {
 	
 	public List<SecurityPayment> payment = new ArrayList<>();
 
+	// not for lump
 	public List<SecurityStock> stock = new ArrayList<>();
 
+	// not for lump
 	public UidStructure uid;
 	
 	public String valorNumber;
 	public String isin;
 	
+	// for lump: required, for sec: optional, default CH
 	@Size(EchFormats.countryIdISO2)
 	public String country = "CH";
 	
 	@Size(EchFormats.town)
 	public String city;
 
+	// for lump: required, for sec: optional, default CHF
 	@NotEmpty @Size(EchFormats.currencyIdISO3)
 	public String currency = "CHF";
 
@@ -46,6 +50,8 @@ public class SecuritySecurity implements Mocking {
 	
 	public String securityCategory = "SHARE";
 	public String securityType;
+	
+	// sec only
 	
 	@NotEmpty
 	public String securityName;
