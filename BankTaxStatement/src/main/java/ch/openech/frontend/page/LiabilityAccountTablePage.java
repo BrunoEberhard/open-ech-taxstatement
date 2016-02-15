@@ -17,7 +17,7 @@ public class LiabilityAccountTablePage extends TablePageWithDetail<Account, Acco
 	private final TaxStatement taxStatement;
 	
 	public LiabilityAccountTablePage(TaxStatement taxStatement) {
-		super(AccountTablePage.COLUMNS);
+		super(BankAccountTablePage.COLUMNS);
 		this.taxStatement = taxStatement;
 	}
 

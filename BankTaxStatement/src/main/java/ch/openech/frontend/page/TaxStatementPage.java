@@ -44,7 +44,7 @@ public class TaxStatementPage extends Page {
 	public List<Action> getActions() {
 		List<Action> actions = new ArrayList<>();
 		actions.add(new TaxStatementEditor());
-		actions.add(new DetailPageAction(this, new AccountTablePage(taxStatement)));
+		actions.add(new DetailPageAction(this, new BankAccountTablePage(taxStatement)));
 		actions.add(new DetailPageAction(this, new LiabilityAccountTablePage(taxStatement)));
 		actions.add(new DetailPageAction(this, new SecurityDepotTablePage(taxStatement)));
 		actions.add(new DetailPageAction(this, new SecurityDepotTablePage(taxStatement)));

@@ -13,13 +13,13 @@ import ch.openech.frontend.e196.AccountForm;
 import ch.openech.model.tax.Account;
 import ch.openech.model.tax.TaxStatement;
 
-public class AccountTablePage extends TablePageWithDetail<Account, AccountPage> {
+public class BankAccountTablePage extends TablePageWithDetail<Account, AccountPage> {
 	public static final Object[] COLUMNS = {$.bankAccountNumber, $.iban, $.bankAccountName, $.bankAccountCurrency, $.taxValue.balance};
 
 	private final TaxStatement taxStatement;
 	
-	public AccountTablePage(TaxStatement taxStatement) {
-		super(AccountTablePage.COLUMNS);
+	public BankAccountTablePage(TaxStatement taxStatement) {
+		super(BankAccountTablePage.COLUMNS);
 		this.taxStatement = taxStatement;
 	}
 
