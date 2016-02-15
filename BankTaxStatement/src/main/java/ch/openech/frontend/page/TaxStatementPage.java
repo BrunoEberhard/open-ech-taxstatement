@@ -51,9 +51,6 @@ public class TaxStatementPage extends Page {
 		actions.add(new PageAction(new TaxStatementXmlPage(taxStatement)));
 //		actions.add(new TaxStatementXmlEditor(this));
 
-//		actions.add(new PageAction(new BankAccountTablePage(taxStatement)));
-//		actions.add(new PageAction(new LiabilityAccountTablePage(taxStatement)));
-//		actions.add(new PageAction(new SecurityDepotTablePage(taxStatement)));
 		return actions;
 	}
 	
