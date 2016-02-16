@@ -6,6 +6,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import org.minimalj.model.Keys;
+import org.minimalj.model.annotation.AnnotationUtil;
+
+import ch.openech.model.tax.Institution;
+
 // https://www.snb.ch/de/iabout/stat/bchpub/id/statpub_bankench_hist
 public class MockBank {
 
@@ -15,7 +20,7 @@ public class MockBank {
 	public static String getName() {
 		if (names.isEmpty()) readNames();
 		pos = (pos + 1) % names.size();
-		return names.get(pos);
+		return limitLength(names.get(pos), AnnotationUtil.getSize(Keys.getProperty(Institution.$.name)));
 	}
 	
 	private static void readNames() {
@@ -36,6 +41,10 @@ public class MockBank {
 		}
 		Collections.shuffle(names);
 		scanner.close();
+	}
+	
+	private static String limitLength(String s, int maxLength) {
+		return s.length() > maxLength ? s.substring(0, maxLength) : s;
 	}
 	
 }
