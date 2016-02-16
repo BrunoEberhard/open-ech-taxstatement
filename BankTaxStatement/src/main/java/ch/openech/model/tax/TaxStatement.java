@@ -121,7 +121,7 @@ xsd:ID attributes cannot have default or fixed values specified.
 		
 		Random random = new Random();
 		
-		listOfSecurities.depot.clear();
+		listOfSecurities.depot = new ArrayList<>();
 		for (int i = 0; i<random.nextInt(3); i++) {
 			SecurityDepot depot = new SecurityDepot();
 			depot.depotNumber = String.valueOf(random.nextInt(900000) + 100000);
@@ -132,6 +132,14 @@ xsd:ID attributes cannot have default or fixed values specified.
 				depot.security.add(security);
 			}
 		}
+
+		listOfBankAccounts.bankAccount = new ArrayList<>();
+		for (int i = 0; i<random.nextInt(3); i++) {
+			Account account = new Account();
+			account.mock();
+			listOfBankAccounts.bankAccount.add(account);
+		}
+
 //		accompanyingLetter.add(new AccompanyingLetter());
 
 	}

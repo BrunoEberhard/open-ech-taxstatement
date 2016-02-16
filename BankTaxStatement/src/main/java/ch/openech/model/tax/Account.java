@@ -4,15 +4,17 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.minimalj.model.Keys;
 import org.minimalj.model.annotation.Size;
 import org.minimalj.model.annotation.Sizes;
+import org.minimalj.util.mock.Mocking;
 
 import ch.openech.model.EchFormats;
 
 @Sizes(EchFormats.class)
-public class Account {
+public class Account implements Mocking {
 	public static final Account $ = Keys.of(Account.class);
 	
 	public static final boolean BANK_ACCOUNT = true;
@@ -59,6 +61,15 @@ public class Account {
 		} else if (Boolean.FALSE.equals(hasTaxValue)) {
 			taxValue = null;
 		}
+	}
+	
+	//
+	
+	@Override
+	public void mock() {
+		Random random = new Random();
+		iban = String.valueOf(random.nextInt(900000) + 100000);
+		totalTaxValue = BigDecimal.valueOf(random.nextInt(9000) + 1000);
 	}
 	
 }
