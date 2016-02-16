@@ -1,5 +1,6 @@
 package ch.openech.model.tax;
 
+import org.minimalj.model.Keys;
 import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
 
@@ -7,7 +8,8 @@ import ch.openech.model.EchFormats;
 import ch.openech.model.organisation.UidStructure;
 
 public class Institution {
-
+	public static final Institution $ = Keys.of(Institution.class);
+	
 	@NotEmpty
 	public final UidStructure uid = new UidStructure();
 
