@@ -18,10 +18,12 @@ public class SecurityTablePage extends TablePage<SecuritySecurity> {
 
 	private static final Object[] columns = {$.securityName, $.isin, $.currency, $.nominalValue};
 	private final SecurityDepot depot;
-	
-	public SecurityTablePage(SecurityDepot depot) {
+	private final boolean securityDepotType;
+
+	public SecurityTablePage(SecurityDepot depot, final boolean securityDepotType) {
 		super(columns);
 		this.depot = depot;
+		this.securityDepotType = securityDepotType;
 	}
 
 	@Override
@@ -32,7 +34,9 @@ public class SecurityTablePage extends TablePage<SecuritySecurity> {
 	@Override
 	public List<Action> getActions() {
 		List<Action> actions = new ArrayList<>();
-		actions.add(new NewSecurityEditor());
+		if (securityDepotType) {
+			actions.add(new NewSecurityEditor());
+		}
 		return actions;
 	}
 	
