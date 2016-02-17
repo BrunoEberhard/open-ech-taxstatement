@@ -8,6 +8,7 @@ import java.util.List;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.page.TablePage.TablePageWithDetail;
+import org.minimalj.util.resources.Resources;
 
 import ch.openech.frontend.e196.AccountPaymentForm;
 import ch.openech.model.tax.Account;
@@ -24,7 +25,12 @@ public class AccountPaymentTablePage extends TablePageWithDetail<AccountPayment,
 		this.bankAccount = bankAccount;
 		this.accountType = accountType;
 	}
-
+	
+	@Override
+	public String getTitle() {
+		return Resources.getString((accountType ? "Bank" : "Liability") + getClass().getSimpleName());
+	}
+	
 	@Override
 	protected List<AccountPayment> load() {
 		return bankAccount.payment;
