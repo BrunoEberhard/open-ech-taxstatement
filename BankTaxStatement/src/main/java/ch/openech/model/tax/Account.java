@@ -70,6 +70,20 @@ public class Account implements Mocking {
 		Random random = new Random();
 		iban = String.valueOf(random.nextInt(900000) + 100000);
 		totalTaxValue = BigDecimal.valueOf(random.nextInt(9000) + 1000);
+		
+		taxValue = new AccountTaxValue();
+		taxValue.balance = totalTaxValue;
+		taxValue.name = "Mock Value";
+		taxValue.referenceDate = LocalDate.ofYearDay(2016, 1);
+		
+		AccountPayment payment = new AccountPayment();
+		payment.name = "Mock Gebühren";
+		payment.paymentDate = LocalDate.ofYearDay(2016, 1);
+		payment.amount = BigDecimal.valueOf(20 + random.nextInt(100));
+		payment.amountCurrency = "CHF";
+		payment.exchangeRate = BigDecimal.ONE;
+		
+		this.payment.add(payment);
 	}
 	
 }
