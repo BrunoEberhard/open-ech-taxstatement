@@ -60,7 +60,12 @@ xsd:ID attributes cannot have default or fixed values specified.
 
 	public final ListOfSecurities listOfSecurities = new ListOfSecurities();
 
- 	public final ListOfLumpSumTaxCredit listOfLumpSumTaxCredit = new ListOfLumpSumTaxCredit();
+	// In der Struktur werden nur die Titel mit den Ausschüttungen ab-gebildet, die im DA-1 
+	// Formular aufzuführen sind. Das Verzeichnis Pauschale Steueranrech-nung und Steuerrückbehalt
+	// USA ist ein Auszug aus dem Wertschriftenverzeichnis. Alle In-formationen im Verzeichnis
+	// Pauschale Steueranrechnung und Steuerrückbehalt sind somit redundant zum
+	// Wertschriftenverzeichnis vorhanden.
+ 	public final transient ListOfLumpSumTaxCredit listOfLumpSumTaxCredit = new ListOfLumpSumTaxCredit();
 
 	@NotEmpty @Size(Size.TIME_WITH_SECONDS)
 	public LocalDateTime creationDate = LocalDateTime.now();
