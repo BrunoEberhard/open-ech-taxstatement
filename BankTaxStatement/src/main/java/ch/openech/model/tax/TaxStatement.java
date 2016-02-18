@@ -45,7 +45,7 @@ xsd:ID attributes cannot have default or fixed values specified.
 	public Integer minorVersion;	// Die Versionsnummer des Steuerauszugs
 	
 	@NotEmpty
-	public final Institution instituion = new Institution();
+	public final Institution institution = new Institution();
 	
 	@NotEmpty
 	public final List<Client> client = new ArrayList<>();
@@ -107,8 +107,8 @@ xsd:ID attributes cannot have default or fixed values specified.
 	public void mock() {
 		statementId = "mockId1234";
 		minorVersion = 1;
-		instituion.name = MockBank.getName();
-		instituion.uid.mock();
+		institution.name = MockBank.getName();
+		institution.uid.mock();
 		taxPeriod = 2014;
 		periodFrom = LocalDate.of(2014, 1, 1);
 		periodTo = LocalDate.of(2014, 12, 31);
