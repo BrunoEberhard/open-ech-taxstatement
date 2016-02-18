@@ -16,12 +16,6 @@ import ch.openech.model.tax.TaxStatement;
 
 public class TaxStatementApplication extends Application {
 
-//	private static final TaxStatement TaxStatement = new TaxStatement();
-//	
-//	public static TaxStatement getTaxStatement() {
-//		return TaxStatement;
-//	}
-	
 	@Override
 	protected Set<String> getResourceBundleNames() {
 		Set<String> resourceBundleNames = new HashSet<>();
@@ -29,11 +23,6 @@ public class TaxStatementApplication extends Application {
 		resourceBundleNames.add(this.getClass().getName() + "_xml");
 		return resourceBundleNames;
 	}
-
-//	@Override
-//	public Page createDefaultPage() {
-//		return new TaxStatementPage(getTaxStatement());
-//	}
 	
 	@Override
 	public List<Action> getNavigation() {
@@ -41,13 +30,6 @@ public class TaxStatementApplication extends Application {
 		navigation.add(new NewTaxStatementAction());
 		navigation.add(new TaxStatementXmlImport());
 		navigation.add(new TaxStatementMockAction("Steuerauszug aus Zufallswerten"));
-
-//		navigation.add(new TaxStatementEditor(getTaxStatement()));
-//		navigation.add(new PageAction(new TaxStatementPage(getTaxStatement())));
-//		navigation.add(new PageAction(new BankAccountTablePage(getTaxStatement())));
-//		navigation.add(new PageAction(new LiabilityAccountTablePage(getTaxStatement())));
-//		navigation.add(new PageAction(new SecurityDepotTablePage(getTaxStatement())));
-//		navigation.add(new PageAction(new TaxStatementXmlPage(getTaxStatement())));
 		return navigation;
 	}
 
