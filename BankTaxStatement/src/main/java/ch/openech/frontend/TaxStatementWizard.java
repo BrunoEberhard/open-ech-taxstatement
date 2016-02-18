@@ -30,7 +30,7 @@ public class TaxStatementWizard extends Wizard<TaxStatement> {
 			Form<TaxStatement> form = new Form<>(4);
 			form.line($.taxPeriod, $.statementId, $.minorVersion, $.creationDate);
 			form.line($.periodFrom, $.periodTo, $.canton);
-			form.line($.instituion.name, $.instituion.lei, $.instituion.uid.value);
+			form.line($.institution.name, $.institution.lei, $.institution.uid.value);
 			return form;
 		}
 		
