@@ -16,7 +16,7 @@ public class TaxStatementForm extends Form<TaxStatement> {
 		addTitle("Steuerauszug");
 		line($.taxPeriod, $.statementId, $.minorVersion, $.creationDate);
 		line($.periodFrom, $.periodTo, $.canton);
-		line($.instituion.name, $.instituion.lei, $.instituion.uid.value);
+		line($.institution.name, $.institution.lei, $.institution.uid.value);
 
 		addTitle("Kunde");
 		line($.getMainClient().clientNumber, $.getMainClient().tin);
