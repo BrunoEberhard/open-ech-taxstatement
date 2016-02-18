@@ -2,6 +2,7 @@ package ch.openech.xml.write;
 
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.minimalj.application.Application;
@@ -12,6 +13,7 @@ import org.minimalj.util.FieldUtils;
 import ch.openech.model.organisation.UidStructure;
 import ch.openech.model.tax.Account;
 import ch.openech.model.tax.TaxStatement;
+import ch.openech.model.types.EchCode;
 import ch.openech.xml.read.StaxEch0196;
 
 public class WriterEch0196 extends WriterElement {
@@ -43,6 +45,7 @@ public class WriterEch0196 extends WriterElement {
 	}
 
 	private void write(WriterElement child, Object object, String URI) throws Exception {
+		List<PropertyInterface> elementProperties = new ArrayList<>();
 		for (PropertyInterface property : Properties.getProperties(object.getClass()).values()) {
 			if (FieldUtils.isAllowedPrimitive(property.getClazz())) {
 				String name = property.getName();
@@ -51,9 +54,15 @@ public class WriterEch0196 extends WriterElement {
 					name = "id";
 				}
 				child.writeAttribute(name, value != null ? value.toString() : "");
+			} else if (EchCode.class.isAssignableFrom(property.getClazz())) {
+				String name = property.getName();
+				EchCode code = (EchCode) property.getValue(object);
+				child.writeAttribute(name, code != null ? code.getValue() : "");
+			} else {
+				elementProperties.add(property);
 			}
 		}
-		for (PropertyInterface property : Properties.getProperties(object.getClass()).values()) {
+		for (PropertyInterface property : elementProperties) {
 			String name = property.getName();
 			Object value = property.getValue(object);
 

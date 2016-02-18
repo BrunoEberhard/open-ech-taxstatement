@@ -20,7 +20,10 @@ import org.minimalj.util.StringUtils;
 
 import ch.openech.model.XmlConstants;
 import ch.openech.model.organisation.UidStructure;
+import ch.openech.model.tax.ListOfAccounts;
+import ch.openech.model.tax.SecurityDepot;
 import ch.openech.model.tax.TaxStatement;
+import ch.openech.model.types.EchCode;
 
 public class StaxEch0196 {
 
@@ -52,16 +55,18 @@ public class StaxEch0196 {
 					return uid;
 				}
 				String className = StringUtils.upperFirstChar(startName);
-				if (XmlConstants.LIST_OF_LIABILITIES.equalsIgnoreCase(className)) {
-					className = "ListOfBankAccounts";
+				if (XmlConstants.LIST_OF_LIABILITIES.equalsIgnoreCase(className) || XmlConstants.LIST_OF_BANK_ACCOUNTS.equalsIgnoreCase(className)) {
+					className = ListOfAccounts.class.getName();
+				} else if (XmlConstants.DEPOT.equalsIgnoreCase(className)) {
+					className = SecurityDepot.class.getName();
+				} else {
+					className = PKG + "." + className;
 				}
-				className = PKG + "." + className;
 				try {
 					Class<?> clazz = Class.forName(className);
 					object = CloneHelper.newInstance(clazz);
 				} catch (ClassNotFoundException e) {
-					System.out.println("Class not found: " + className);
-					return null;
+					throw new RuntimeException("Class not found: " + className + " for element " + startName);
 				}
 				Iterator<?> i = startElement.getAttributes();
 				while (i.hasNext()) {
@@ -77,8 +82,13 @@ public class StaxEch0196 {
 					PropertyInterface property = Properties.getProperty(object.getClass(), name);
 					if (property != null) {
 						String stringValue = attribute.getValue();
-						Object value = FieldUtils.parse(stringValue, property.getClazz());
-						property.setValue(object, value);
+						Object value;
+						if (EchCode.class.isAssignableFrom(property.getClazz())) {
+							StaxEch.enuum(stringValue, object, property);
+						} else {
+							value = FieldUtils.parse(stringValue, property.getClazz());
+							property.setValue(object, value);
+						}
  					}
 				}
 				break;
@@ -96,11 +106,13 @@ public class StaxEch0196 {
 				if (property.getClazz() == List.class) {
 					if (oldValue == null) {
 						oldValue = new ArrayList<>();
-						property.setValue(object, value);
+						property.setValue(object, oldValue);
 					}
 					((List) oldValue).add(value);
-				} else {
+				} else if (!property.isFinal()) {
 					property.setValue(object, value);
+				} else if (value != null) {
+					CloneHelper.deepCopy(value, property.getValue(object));
 				}
 			} else {
 				event = xml.nextEvent();
