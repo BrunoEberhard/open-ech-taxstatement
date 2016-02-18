@@ -12,6 +12,7 @@ import org.minimalj.frontend.page.Page;
 import org.minimalj.frontend.page.PageAction;
 import org.minimalj.util.CloneHelper;
 
+import ch.openech.action.TaxStatementXmlEditor;
 import ch.openech.frontend.e196.TaxStatementForm;
 import ch.openech.model.tax.TaxStatement;
 
@@ -47,9 +48,12 @@ public class TaxStatementPage extends Page {
 		actions.add(new DetailPageAction(this, new BankAccountTablePage(taxStatement)));
 		actions.add(new DetailPageAction(this, new LiabilityAccountTablePage(taxStatement)));
 		actions.add(new DetailPageAction(this, new SecurityDepotTablePage(taxStatement, SecurityDepotTablePage.SECURITIES)));
-		actions.add(new DetailPageAction(this, new SecurityDepotTablePage(taxStatement, SecurityDepotTablePage.LUMP)));
+		// Im moment wird das spezielle Anzeigen oder sogar editieren der Pauschalabgabe nicht unterstützt
+		// Es könnte Sinn machen Differenzen zwischen Wertschriftenverzeichnis / Pauschalabgabe im XML
+		// als Use Case anzubieten. Aber momentan lasse ich dies out of scope
+		// actions.add(new DetailPageAction(this, new SecurityDepotTablePage(taxStatement, SecurityDepotTablePage.LUMP)));
 		actions.add(new PageAction(new TaxStatementXmlPage(taxStatement)));
-//		actions.add(new TaxStatementXmlEditor(this));
+		actions.add(new TaxStatementXmlEditor(this));
 
 		return actions;
 	}
