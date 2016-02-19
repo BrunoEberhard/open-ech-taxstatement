@@ -5,16 +5,13 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.minimalj.application.Application;
 import org.minimalj.model.properties.Properties;
 import org.minimalj.model.properties.PropertyInterface;
 import org.minimalj.util.FieldUtils;
 
 import ch.openech.model.organisation.UidStructure;
-import ch.openech.model.tax.Account;
 import ch.openech.model.tax.TaxStatement;
 import ch.openech.model.types.EchCode;
-import ch.openech.xml.read.StaxEch0196;
 
 public class WriterEch0196 extends WriterElement {
 
@@ -38,10 +35,14 @@ public class WriterEch0196 extends WriterElement {
 		return URI;
 	}
 
-	public void write(TaxStatement taxStatement) throws Exception {
-		startDocument(context, 196, "taxStatement");
-		write(this, taxStatement, URI);
-		endDocument();
+	public void write(TaxStatement taxStatement) {
+		try {
+			startDocument(context, 196, "taxStatement");
+			write(this, taxStatement, URI);
+			endDocument();
+		} catch (Exception x) {
+			throw new RuntimeException(x);
+		}
 	}
 
 	private void write(WriterElement child, Object object, String URI) throws Exception {
@@ -81,32 +82,11 @@ public class WriterEch0196 extends WriterElement {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
-		Application.setApplication(new Application() {
-			@Override
-			public Class<?>[] getEntityClasses() {
-				return new Class<?>[]{ TaxStatement.class } ;
-			}
-		});
-		
+	public static String writeToString(TaxStatement taxStatement) {
 		StringWriter stringWriter = new StringWriter();
 		WriterEch0196 w = new WriterEch0196(stringWriter, EchSchema.getNamespaceContext(196, "1.0"));
-		TaxStatement taxStatement = new TaxStatement();
-		taxStatement.mock();
-		Account bankAccount = new Account();
-		bankAccount.bankAccountName = "bankAccountName";
-		taxStatement.listOfBankAccounts.bankAccount.add(bankAccount);
 		w.write(taxStatement);
-		
-		String s = stringWriter.toString();
-		System.out.println(s);
-
-		TaxStatement ts2 = new StaxEch0196().process(s);
-		stringWriter = new StringWriter();
-		w = new WriterEch0196(stringWriter, EchSchema.getNamespaceContext(196, "1.0"));
-		w.write(ts2);
-		
-		s = stringWriter.toString();
-		System.out.println(s);
+		return stringWriter.toString();
 	}
+
 }

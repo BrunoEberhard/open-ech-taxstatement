@@ -1,7 +1,5 @@
 package ch.openech.action;
 
-import java.io.StringWriter;
-
 import org.minimalj.frontend.editor.Editor;
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.form.element.StringFormElement;
@@ -12,7 +10,6 @@ import ch.openech.action.TaxStatementXmlEditor.XmlValue;
 import ch.openech.frontend.page.TaxStatementPage;
 import ch.openech.model.tax.TaxStatement;
 import ch.openech.xml.read.StaxEch0196;
-import ch.openech.xml.write.EchSchema;
 import ch.openech.xml.write.WriterEch0196;
 
 public class TaxStatementXmlEditor extends Editor<XmlValue, TaxStatement> {
@@ -44,12 +41,9 @@ public class TaxStatementXmlEditor extends Editor<XmlValue, TaxStatement> {
 	@Override
 	protected XmlValue createObject() {
 		XmlValue xmlValue = new XmlValue();
-		StringWriter stringWriter = new StringWriter();
-		WriterEch0196 w = new WriterEch0196(stringWriter, EchSchema.getNamespaceContext(196, "1.0"));
 		String s;
 		try {
-			w.write(taxStatementPage.getTaxStatement());
-			s = stringWriter.toString();
+			s = WriterEch0196.writeToString(taxStatementPage.getTaxStatement());
 		} catch (Exception x) {
 			s = "Writer failed: " + x.getLocalizedMessage();
 		}
