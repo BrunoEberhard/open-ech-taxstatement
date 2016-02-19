@@ -31,7 +31,7 @@ public class StaxEch0196 {
 			XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 			XMLEventReader xml = inputFactory.createXMLEventReader(new StringReader(xmlString));
 			
-			TaxStatement ts = (TaxStatement) process(xml, TaxStatement.class);
+			TaxStatement ts = process(xml, TaxStatement.class);
 			xml.close();
 			return ts;
 		} catch (XMLStreamException x) {
