@@ -16,12 +16,9 @@ import org.minimalj.model.properties.Properties;
 import org.minimalj.model.properties.PropertyInterface;
 import org.minimalj.util.CloneHelper;
 import org.minimalj.util.FieldUtils;
-import org.minimalj.util.StringUtils;
+import org.minimalj.util.GenericUtils;
 
-import ch.openech.model.XmlConstants;
 import ch.openech.model.organisation.UidStructure;
-import ch.openech.model.tax.ListOfAccounts;
-import ch.openech.model.tax.SecurityDepot;
 import ch.openech.model.tax.TaxStatement;
 import ch.openech.model.types.EchCode;
 
@@ -34,7 +31,7 @@ public class StaxEch0196 {
 			XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 			XMLEventReader xml = inputFactory.createXMLEventReader(new StringReader(xmlString));
 			
-			TaxStatement ts = (TaxStatement) process(xml);
+			TaxStatement ts = (TaxStatement) process(xml, TaxStatement.class);
 			xml.close();
 			return ts;
 		} catch (XMLStreamException x) {
@@ -42,8 +39,8 @@ public class StaxEch0196 {
 		}
 	}
 
-	private Object process(XMLEventReader xml) throws XMLStreamException {
-		Object object = null;
+	private <T> T process(XMLEventReader xml, Class<T> clazz) throws XMLStreamException {
+		T object = null;
 		while (xml.hasNext()) {
 			XMLEvent event = xml.nextEvent();
 			if (event.isStartElement()) {
@@ -52,22 +49,9 @@ public class StaxEch0196 {
 				if ("uid".equals(startName)) {
 					UidStructure uid = new UidStructure();
 					StaxEch0097.uidStructure(xml, uid);
-					return uid;
+					return (T) uid;
 				}
-				String className = StringUtils.upperFirstChar(startName);
-				if (XmlConstants.LIST_OF_LIABILITIES.equalsIgnoreCase(className) || XmlConstants.LIST_OF_BANK_ACCOUNTS.equalsIgnoreCase(className)) {
-					className = ListOfAccounts.class.getName();
-				} else if (XmlConstants.DEPOT.equalsIgnoreCase(className)) {
-					className = SecurityDepot.class.getName();
-				} else {
-					className = PKG + "." + className;
-				}
-				try {
-					Class<?> clazz = Class.forName(className);
-					object = CloneHelper.newInstance(clazz);
-				} catch (ClassNotFoundException e) {
-					throw new RuntimeException("Class not found: " + className + " for element " + startName);
-				}
+				object = CloneHelper.newInstance(clazz);
 				Iterator<?> i = startElement.getAttributes();
 				while (i.hasNext()) {
 					Attribute attribute = (Attribute) i.next();
@@ -100,19 +84,23 @@ public class StaxEch0196 {
 			if (event.isStartElement()) {
 				StartElement startElement = event.asStartElement();
 				String startName = startElement.getName().getLocalPart();
-				Object value = process(xml);
 				PropertyInterface property = Properties.getProperty(object.getClass(), startName);
-				Object oldValue = property.getValue(object);
-				if (property.getClazz() == List.class) {
+				Class<?> elementClass = property.getClazz();
+				if (elementClass == List.class) {
+					Object oldValue = property.getValue(object);
 					if (oldValue == null) {
 						oldValue = new ArrayList<>();
 						property.setValue(object, oldValue);
 					}
+					Object value = process(xml, GenericUtils.getGenericClass(property.getType()));
 					((List) oldValue).add(value);
-				} else if (!property.isFinal()) {
-					property.setValue(object, value);
-				} else if (value != null) {
-					CloneHelper.deepCopy(value, property.getValue(object));
+				} else {
+					Object value = process(xml, elementClass);
+					if (!property.isFinal()) {
+						property.setValue(object, value);
+					} else if (value != null) {
+						CloneHelper.deepCopy(value, property.getValue(object));
+					}
 				}
 			} else {
 				event = xml.nextEvent();
