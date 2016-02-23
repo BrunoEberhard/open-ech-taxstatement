@@ -21,6 +21,7 @@ public class TaxStatementApplication extends Application {
 		Set<String> resourceBundleNames = new HashSet<>();
 		resourceBundleNames.add(this.getClass().getName());
 		resourceBundleNames.add(this.getClass().getName() + "_xml");
+		resourceBundleNames.add("ch.openech.resources.OpenEch");
 		return resourceBundleNames;
 	}
 	
