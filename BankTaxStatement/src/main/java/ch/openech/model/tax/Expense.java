@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import org.minimalj.model.Keys;
+import org.minimalj.model.annotation.Enabled;
 import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
 import org.minimalj.model.annotation.Sizes;
@@ -14,6 +15,9 @@ import ch.openech.model.EchFormats;
 public class Expense {
 	public static final Expense $ = Keys.of(Expense.class);
 
+	public static enum ExpenseType { ACCOUNT, DEPOT };
+	public transient ExpenseType expenseType = ExpenseType.ACCOUNT;
+	
 	public Object id;
 	
 	public LocalDate referenceDate;
@@ -21,8 +25,10 @@ public class Expense {
 	@Size(255) // schema is missing size
 	public String name;
 	
-	public String iban;
-	public String bankAccountNumber;
+	@Enabled("isBankAccount")
+	public String iban, bankAccountNumber;
+
+	@Enabled("!isBankAccount")
 	public String depotNumber;
 	
 	@Size(EchFormats.currencyIdISO3)
@@ -38,5 +44,34 @@ public class Expense {
 	public BigDecimal expenses;
 	public BigDecimal expensesDeductible;
 	public BigDecimal expensesDeductibleCanton;
+	
+	//
+
+	public boolean isBankAccount() {
+		return expenseType == ExpenseType.ACCOUNT;
+	}
+	
+//	public Boolean getTypeAccount() {
+//		if (Keys.isKeyObject(this)) return Keys.methodOf(this, "getTypeAccount", Boolean.class);
+//		updateExpenseType();
+//		return expenseType == ExpenseType.ACCOUNT;
+//	}
+//
+//	public Boolean getTypeDepot() {
+//		if (Keys.isKeyObject(this)) return Keys.methodOf(this, "getTypeDepot", Boolean.class);
+//		updateExpenseType();
+//		return expenseType == ExpenseType.DEPOT;
+//	}
+//
+//	public void updateExpenseType() {
+//		if (!StringUtils.isEmpty(depotNumber)) {
+//			expenseType = ExpenseType.DEPOT;
+//		} else {
+//			expenseType = ExpenseType.ACCOUNT;
+//		}
+//	}
+//
+//	public void setTypeAccount(Boolean typeAccount) {
+//	}
 	
 }

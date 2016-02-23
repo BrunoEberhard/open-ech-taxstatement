@@ -48,6 +48,8 @@ public class TaxStatementPage extends Page {
 		actions.add(new DetailPageAction(this, new BankAccountTablePage(taxStatement)));
 		actions.add(new DetailPageAction(this, new LiabilityAccountTablePage(taxStatement)));
 		actions.add(new DetailPageAction(this, new SecurityDepotTablePage(taxStatement, SecurityDepotTablePage.SECURITIES)));
+		actions.add(new DetailPageAction(this, new ExpenseTablePage(taxStatement)));
+
 		// Im moment wird das spezielle Anzeigen oder sogar editieren der Pauschalabgabe nicht unterstützt
 		// Es könnte Sinn machen Differenzen zwischen Wertschriftenverzeichnis / Pauschalabgabe im XML
 		// als Use Case anzubieten. Aber momentan lasse ich dies out of scope
