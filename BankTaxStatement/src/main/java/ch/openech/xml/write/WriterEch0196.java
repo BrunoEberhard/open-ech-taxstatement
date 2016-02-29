@@ -65,6 +65,9 @@ public class WriterEch0196 extends WriterElement {
 		}
 		for (PropertyInterface property : elementProperties) {
 			String name = property.getName();
+			if (name.equals("id")) {
+				continue;
+			}
 			Object value = property.getValue(object);
 
 			if (value instanceof UidStructure) {
