@@ -93,7 +93,7 @@ xsd:ID attributes cannot have default or fixed values specified.
 	public BigDecimal totalGrossRevenueB, totalGrossRevenueBCanton;
 	
 	@NotEmpty
-	public BigDecimal totalWithHoldingTaxClaim; // in Schema ohne "Claim"
+	public BigDecimal totalWithHoldingTaxClaim;
 	
 	public Client getMainClient() {
 		if (Keys.isKeyObject(this)) return Keys.methodOf(this, "mainClient", Client.class);
