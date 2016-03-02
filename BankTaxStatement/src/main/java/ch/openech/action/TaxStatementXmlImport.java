@@ -7,6 +7,7 @@ import org.minimalj.backend.Backend;
 import org.minimalj.frontend.Frontend;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.model.validation.ValidationMessage;
+import org.minimalj.util.StringUtils;
 
 import ch.openech.frontend.page.TaxStatementPage;
 import ch.openech.model.EchSchemaValidation;
@@ -34,10 +35,12 @@ public class TaxStatementXmlImport extends TaxStatementXmlEditor {
 
 	@Override
 	protected void validate(XmlValue value, List<ValidationMessage> validationMessages) {
-		String result = EchSchemaValidation.validate(value.xml);
-		if (!EchSchemaValidation.OK.equals(result)) {
-			validationMessages.add(new ValidationMessage(XmlValue.$.xml, result));
-		}		
+		if (!StringUtils.isBlank(value.xml)) {
+			String result = EchSchemaValidation.validate(value.xml);
+			if (!EchSchemaValidation.OK.equals(result)) {
+				validationMessages.add(new ValidationMessage(XmlValue.$.xml, result));
+			}		
+		}
 	}
 	
 	@Override
