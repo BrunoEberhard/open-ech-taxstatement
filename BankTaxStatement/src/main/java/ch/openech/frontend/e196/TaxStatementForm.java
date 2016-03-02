@@ -2,16 +2,16 @@ package ch.openech.frontend.e196;
 
 import static ch.openech.model.tax.TaxStatement.*;
 
-import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.form.element.FormElement;
 import org.minimalj.model.Keys;
 
+import ch.openech.frontend.ewk.event.EchForm;
 import ch.openech.model.tax.TaxStatement;
 
-public class TaxStatementForm extends Form<TaxStatement> {
+public class TaxStatementForm extends EchForm<TaxStatement> {
 
 	public TaxStatementForm(boolean editable) {
-		super(editable, 4);
+		super(null, editable, 4);
 		
 		addTitle("Steuerauszug");
 		line($.taxPeriod, $.statementId, $.minorVersion, $.creationDate);
