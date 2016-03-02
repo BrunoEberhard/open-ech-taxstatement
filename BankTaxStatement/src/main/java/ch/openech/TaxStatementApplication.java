@@ -6,16 +6,27 @@ import java.util.List;
 import java.util.Set;
 
 import org.minimalj.application.Application;
+import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
 
 import ch.openech.action.NewTaxStatementAction;
 import ch.openech.action.TaxStatementMockAction;
 import ch.openech.action.TaxStatementXmlImport;
+import ch.openech.backend.TaxStatementInHeapBackend;
+import ch.openech.model.common.Canton;
 import ch.openech.model.common.CountryIdentification;
 import ch.openech.model.tax.TaxStatement;
+import ch.openech.xml.read.StaxEch0071;
 
 public class TaxStatementApplication extends Application {
 
+	static {
+		System.setProperty("MjBackend", TaxStatementInHeapBackend.class.getName());
+		for (Canton canton : StaxEch0071.getInstance().getCantons()) {
+			Backend.insert(canton);
+		}
+	}
+	
 	@Override
 	protected Set<String> getResourceBundleNames() {
 		Set<String> resourceBundleNames = new HashSet<>();
@@ -30,7 +41,7 @@ public class TaxStatementApplication extends Application {
 		List<Action> navigation = new ArrayList<>();
 		navigation.add(new NewTaxStatementAction());
 		navigation.add(new TaxStatementXmlImport());
-		navigation.add(new TaxStatementMockAction("Steuerauszug aus Zufallswerten"));
+		navigation.add(new TaxStatementMockAction("Steuerauszug mit Zufallswerten"));
 		return navigation;
 	}
 
