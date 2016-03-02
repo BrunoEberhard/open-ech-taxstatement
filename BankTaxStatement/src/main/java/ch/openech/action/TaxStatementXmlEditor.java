@@ -4,6 +4,7 @@ import org.minimalj.frontend.editor.Editor;
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.form.element.StringFormElement;
 import org.minimalj.model.Keys;
+import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
 
 import ch.openech.action.TaxStatementXmlEditor.XmlValue;
@@ -34,7 +35,7 @@ public class TaxStatementXmlEditor extends Editor<XmlValue, TaxStatement> {
 	public static class XmlValue {
 		public static final XmlValue $ = Keys.of(XmlValue.class);
 		
-		@Size(1024*1024)
+		@Size(1024*1024) @NotEmpty
 		public String xml;
 	}
 
@@ -43,7 +44,7 @@ public class TaxStatementXmlEditor extends Editor<XmlValue, TaxStatement> {
 		XmlValue xmlValue = new XmlValue();
 		String s;
 		try {
-			s = WriterEch0196.writeToString(taxStatementPage.getTaxStatement());
+			s = WriterEch0196.writeToString(taxStatementPage.getObject());
 		} catch (Exception x) {
 			s = "Writer failed: " + x.getLocalizedMessage();
 		}
@@ -59,6 +60,6 @@ public class TaxStatementXmlEditor extends Editor<XmlValue, TaxStatement> {
 	
 	@Override
 	protected void finished(TaxStatement result) {
-		taxStatementPage.setTaxStatement(result);
+		taxStatementPage.setObject(result);
 	}
 }
