@@ -22,8 +22,6 @@ public class SecuritySecurityForm extends Form<SecuritySecurity> {
     	line($.interestRate, $.variableInterest);
     	line($.iup, $.bfp);
     	line(new SecurityTaxValueFormElement(Keys.getProperty($.taxValue)));
-    	line(new SecurityStockFormElement(Keys.getProperty($.stock)));
-    	line(new SecurityPaymentElement(Keys.getProperty($.payment)));
 	}
 	
 }

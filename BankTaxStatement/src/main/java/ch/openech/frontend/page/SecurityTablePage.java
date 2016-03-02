@@ -8,13 +8,13 @@ import java.util.List;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.editor.Editor.NewObjectEditor;
 import org.minimalj.frontend.form.Form;
-import org.minimalj.frontend.page.TablePage;
+import org.minimalj.frontend.page.TablePage.TablePageWithDetail;
 
 import ch.openech.frontend.e196.SecuritySecurityForm;
 import ch.openech.model.tax.SecurityDepot;
 import ch.openech.model.tax.SecuritySecurity;
 
-public class SecurityTablePage extends TablePage<SecuritySecurity> {
+public class SecurityTablePage extends TablePageWithDetail<SecuritySecurity, SecurityPage> {
 
 	private static final Object[] columns = {$.securityName, $.isin, $.currency, $.nominalValue};
 	private final SecurityDepot depot;
@@ -38,6 +38,17 @@ public class SecurityTablePage extends TablePage<SecuritySecurity> {
 			actions.add(new NewSecurityEditor());
 		}
 		return actions;
+	}
+
+	@Override
+	protected SecurityPage createDetailPage(SecuritySecurity security) {
+		return new SecurityPage(security);
+	}
+	
+	@Override
+	protected SecurityPage updateDetailPage(SecurityPage page, SecuritySecurity security) {
+		page.setObject(security);
+		return page;
 	}
 	
 	public class NewSecurityEditor extends NewObjectEditor<SecuritySecurity> {
