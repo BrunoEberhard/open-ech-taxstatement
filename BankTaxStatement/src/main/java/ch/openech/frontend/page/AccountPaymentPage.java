@@ -7,6 +7,7 @@ import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.page.ObjectPage;
+import org.minimalj.util.resources.Resources;
 
 import ch.openech.frontend.e196.AccountPaymentForm;
 import ch.openech.model.tax.AccountPayment;
@@ -39,6 +40,11 @@ public class AccountPaymentPage extends ObjectPage<AccountPayment> {
 			return new AccountPaymentForm(Form.EDITABLE,  accountType);
 		}
 
+		@Override
+		protected Object[] getNameArguments() {
+			return new Object[] { Resources.getString(accountType ? "AccountPayment" : "LiabilityAccountPayment") };
+		}
+		
 		@Override
 		protected AccountPayment save(AccountPayment object) {
 			return Backend.save(object);

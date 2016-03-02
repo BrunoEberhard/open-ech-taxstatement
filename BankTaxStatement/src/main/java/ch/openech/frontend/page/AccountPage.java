@@ -8,6 +8,7 @@ import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.page.DetailPageAction;
 import org.minimalj.frontend.page.ObjectPage;
+import org.minimalj.util.resources.Resources;
 
 import ch.openech.frontend.e196.AccountForm;
 import ch.openech.model.tax.Account;
@@ -41,6 +42,11 @@ public class AccountPage extends ObjectPage<Account> {
 			return new AccountForm(Form.EDITABLE,  accountType);
 		}
 
+		@Override
+		protected Object[] getNameArguments() {
+			return new Object[] { Resources.getString(accountType ? "BankAccount" : "LiabilityAccount") };
+		}
+		
 		@Override
 		protected Account save(Account object) {
 			return Backend.save(object);
