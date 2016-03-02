@@ -12,9 +12,11 @@ import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
+import org.minimalj.model.Code;
 import org.minimalj.model.properties.Properties;
 import org.minimalj.model.properties.PropertyInterface;
 import org.minimalj.util.CloneHelper;
+import org.minimalj.util.Codes;
 import org.minimalj.util.FieldUtils;
 import org.minimalj.util.GenericUtils;
 
@@ -69,6 +71,9 @@ public class StaxEch0196 {
 						Object value;
 						if (EchCode.class.isAssignableFrom(property.getClazz())) {
 							StaxEch.enuum(stringValue, object, property);
+						} else if (Code.class.isAssignableFrom(property.getClazz())) {
+							Class codeClazz = property.getClazz();
+							value = Codes.findCode(codeClazz, stringValue);
 						} else {
 							value = FieldUtils.parse(stringValue, property.getClazz());
 							property.setValue(object, value);
