@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
+import org.minimalj.frontend.action.Separator;
 import org.minimalj.frontend.editor.Editor.SimpleEditor;
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.page.DetailPageAction;
@@ -39,9 +40,11 @@ public class TaxStatementPage extends ObjectPage<TaxStatement> {
 
 		// Im moment wird das spezielle Anzeigen oder sogar editieren der Pauschalabgabe nicht unterstützt
 		// Es könnte Sinn machen Differenzen zwischen Wertschriftenverzeichnis / Pauschalabgabe im XML
-		// als Use Case anzubieten. Aber momentan lasse ich dies out of scope
+		// als Use Case anzubieten. Aber momentan lasse ich dies out of scope und daher auskommentiert
 		// actions.add(new DetailPageAction(this, new SecurityDepotTablePage(taxStatement, SecurityDepotTablePage.LUMP)));
-		actions.add(new PageAction(new TaxStatementXmlPage(taxStatement)));
+
+		actions.add(new Separator());
+		actions.add(new PageAction(new TaxStatementXmlPage(taxStatement), "XML anzeigen"));
 		actions.add(new TaxStatementXmlEditor(this));
 
 		return actions;
