@@ -3,12 +3,12 @@ package ch.openech.frontend.page;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.minimalj.frontend.Frontend.IContent;
+import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.editor.Editor.SimpleEditor;
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.page.DetailPageAction;
-import org.minimalj.frontend.page.Page;
+import org.minimalj.frontend.page.ObjectPage;
 import org.minimalj.frontend.page.PageAction;
 import org.minimalj.util.CloneHelper;
 
@@ -16,33 +16,20 @@ import ch.openech.action.TaxStatementXmlEditor;
 import ch.openech.frontend.e196.TaxStatementForm;
 import ch.openech.model.tax.TaxStatement;
 
-public class TaxStatementPage extends Page {
+public class TaxStatementPage extends ObjectPage<TaxStatement> {
 
-	private final TaxStatement taxStatement;
-	private TaxStatementForm form;
-	
 	public TaxStatementPage(TaxStatement taxStatement) {
-		this.taxStatement = taxStatement;
+		super(taxStatement);
 	}
 	
-	public TaxStatement getTaxStatement() {
-		return taxStatement;
-	}
-	
-	public void setTaxStatement(TaxStatement taxStatement) {
-		CloneHelper.deepCopy(taxStatement, this.taxStatement);
-		form.setObject(taxStatement);
-	}
-
 	@Override
-	public IContent getContent() {
-		form = new TaxStatementForm(Form.READ_ONLY);
-		form.setObject(taxStatement);
-		return form.getContent();
+	protected Form<TaxStatement> createForm() {
+		return new TaxStatementForm(Form.READ_ONLY);
 	}
 	
 	@Override
 	public List<Action> getActions() {
+		TaxStatement taxStatement = getObject();
 		List<Action> actions = new ArrayList<>();
 		actions.add(new TaxStatementEditor());
 		actions.add(new DetailPageAction(this, new BankAccountTablePage(taxStatement)));
@@ -64,7 +51,7 @@ public class TaxStatementPage extends Page {
 
 		@Override
 		protected TaxStatement createObject() {
-			return CloneHelper.clone(TaxStatementPage.this.taxStatement);
+			return CloneHelper.clone(TaxStatementPage.this.getObject());
 		}
 
 		@Override
@@ -74,13 +61,12 @@ public class TaxStatementPage extends Page {
 
 		@Override
 		protected TaxStatement save(TaxStatement taxStatement) {
-			CloneHelper.deepCopy(taxStatement, TaxStatementPage.this.taxStatement);
-			return TaxStatementPage.this.taxStatement;
+			return Backend.save(taxStatement);
 		}
 
 		@Override
 		protected void finished(TaxStatement result) {
-			form.setObject(result);
+			TaxStatementPage.this.setObject(result);
 		}
 	}
 }
