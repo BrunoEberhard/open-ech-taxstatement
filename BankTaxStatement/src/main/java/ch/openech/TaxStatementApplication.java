@@ -1,6 +1,6 @@
 package ch.openech;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -8,6 +8,9 @@ import java.util.Set;
 import org.minimalj.application.Application;
 import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
+import org.minimalj.frontend.action.ActionGroup;
+import org.minimalj.frontend.page.HtmlPage;
+import org.minimalj.frontend.page.Page;
 
 import ch.openech.action.NewTaxStatementAction;
 import ch.openech.action.TaxStatementMockAction;
@@ -38,15 +41,20 @@ public class TaxStatementApplication extends Application {
 	
 	@Override
 	public List<Action> getNavigation() {
-		List<Action> navigation = new ArrayList<>();
-		navigation.add(new NewTaxStatementAction());
-		navigation.add(new TaxStatementXmlImport());
-		navigation.add(new TaxStatementMockAction("Steuerauszug mit Zufallswerten"));
-		return navigation;
+		ActionGroup actions = new ActionGroup("Steuerauszug");
+		actions.add(new NewTaxStatementAction());
+		actions.add(new TaxStatementXmlImport());
+		actions.add(new TaxStatementMockAction());
+		return Collections.singletonList(actions);
 	}
 
 	@Override
 	public Class<?>[] getEntityClasses() {
 		return new Class<?>[] { TaxStatement.class, CountryIdentification.class };
+	}
+	
+	@Override
+	public Page createDefaultPage() {
+		return new HtmlPage("TaxStatement_Hilfe.html", "Hinweise zu Steuerauszug (Open-eCH)");
 	}
 }

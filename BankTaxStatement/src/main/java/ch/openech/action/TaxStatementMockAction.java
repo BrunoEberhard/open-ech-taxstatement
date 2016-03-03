@@ -9,10 +9,6 @@ import ch.openech.model.tax.TaxStatement;
 
 public class TaxStatementMockAction extends Action {
 
-	public TaxStatementMockAction(String name) {
-		super(name);
-	}
-	
 	@Override
 	public void action() {
 		TaxStatement taxStatement = new TaxStatement();
