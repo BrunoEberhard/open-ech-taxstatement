@@ -79,6 +79,8 @@ public class TaxStatementInHeapPersistence implements Persistence {
 				for (Object o : list) {
 					markInHeapObject(o, visited);
 				}
+			} else {
+				property.setValue(object, new InHeapList());
 			}
 		}
 		for (PropertyInterface property : FlatProperties.getProperties(object.getClass()).values()) {
@@ -89,6 +91,10 @@ public class TaxStatementInHeapPersistence implements Persistence {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private static class InHeapList extends ArrayList {
 		private static final long serialVersionUID = 1L;
+		
+		public InHeapList() {
+			super();
+		}
 
 		public InHeapList(Collection collection) {
 			super(collection);
