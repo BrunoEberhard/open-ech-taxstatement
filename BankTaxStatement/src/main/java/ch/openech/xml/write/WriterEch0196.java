@@ -48,19 +48,22 @@ public class WriterEch0196 extends WriterElement {
 	private void write(WriterElement child, Object object, String URI) throws Exception {
 		List<PropertyInterface> elementProperties = new ArrayList<>();
 		for (PropertyInterface property : Properties.getProperties(object.getClass()).values()) {
+			String name = property.getName();
 			if (FieldUtils.isAllowedPrimitive(property.getClazz())) {
-				String name = property.getName();
 				Object value = property.getValue(object);
 				if (name.equals("statementId")) {
 					name = "id";
 				}
 				child.writeAttribute(name, value != null ? value.toString() : "");
 			} else if (EchCode.class.isAssignableFrom(property.getClazz())) {
-				String name = property.getName();
 				EchCode code = (EchCode) property.getValue(object);
 				child.writeAttribute(name, code != null ? code.getValue() : "");
 			} else {
-				elementProperties.add(property);
+				// Die eigentliche Prüfung wäre hier auf !transient, aber das
+				// lässt sich leider über PropertyInterface nicht mehr ermitteln
+				if (!name.equals("expenseType")) {
+					elementProperties.add(property);
+				}
 			}
 		}
 		for (PropertyInterface property : elementProperties) {
@@ -72,15 +75,15 @@ public class WriterEch0196 extends WriterElement {
 
 			if (value instanceof UidStructure) {
 				ech97.uidStructure(child, "uid", (UidStructure) value);
-			} else if (value != null && value.getClass().getName().startsWith("ch.openech")) {
-				WriterElement child2 = child.create(URI, name);
-				write(child2, value, URI);
 			} else if (value instanceof List) {
 				List<?> list = (List<?>) value;
 				for (Object item : list) {
 					WriterElement child2 = child.create(URI, name);
 					write(child2, item, URI);
 				}
+			} else if (value != null && value.getClass().getName().startsWith("ch.openech")) {
+				WriterElement child2 = child.create(URI, name);
+				write(child2, value, URI);
 			}
 		}
 	}
