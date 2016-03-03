@@ -22,9 +22,9 @@ public class ListOfAccounts implements Rendering {
 	public String currency = "CHF";
 	
 	public BigDecimal totalTaxValue;
-	public BigDecimal totalGrossRevenueA;
+	public BigDecimal totalGrossRevenueA; // not for liabilities
 	public BigDecimal totalGrossRevenueB;
-	public BigDecimal totalWithHoldingTaxClaim;
+	public BigDecimal totalWithHoldingTaxClaim; // not for liabilities
 	
 	@Override
 	public String render(RenderType renderType) {
