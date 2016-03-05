@@ -31,7 +31,7 @@ public class SecurityStockTablePage extends TablePageWithDetail<SecurityStock, S
 	@Override
 	public List<Action> getActions() {
 		List<Action> actions = new ArrayList<>();
-		actions.add(new NewBankSecurityStockEditor());
+		actions.add(new NewSecurityStockEditor());
 		return actions;
 	}
 
@@ -46,7 +46,7 @@ public class SecurityStockTablePage extends TablePageWithDetail<SecurityStock, S
 		return page;
 	}
 	
-	public class NewBankSecurityStockEditor extends NewDetailEditor<SecurityStock> {
+	public class NewSecurityStockEditor extends NewDetailEditor<SecurityStock> {
 		@Override
 		protected Form<SecurityStock> createForm() {
 			return new SecurityStockForm(Form.EDITABLE);
