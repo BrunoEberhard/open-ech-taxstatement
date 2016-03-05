@@ -29,6 +29,7 @@ public class SecurityPage extends ObjectPage<SecuritySecurity> {
 		actions.add(new SecuritySecurityEditor());
 		actions.add(new DetailPageAction(this, new SecurityPaymentTablePage(getObject())));
 		actions.add(new DetailPageAction(this, new SecurityStockTablePage(getObject())));
+		actions.add(new DetailPageAction(this, new SecurityTaxValueTablePage(getObject())));
 		return actions;
 	}
 

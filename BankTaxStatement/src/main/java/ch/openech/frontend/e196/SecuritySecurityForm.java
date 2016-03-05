@@ -3,7 +3,6 @@ package ch.openech.frontend.e196;
 import static ch.openech.model.tax.SecuritySecurity.*;
 
 import org.minimalj.frontend.form.Form;
-import org.minimalj.model.Keys;
 
 import ch.openech.model.tax.SecuritySecurity;
 
@@ -21,7 +20,6 @@ public class SecuritySecurityForm extends Form<SecuritySecurity> {
     	line($.redemptionDateEarly, $.redemptionPriceEarly);
     	line($.interestRate, $.variableInterest);
     	line($.iup, $.bfp);
-    	line(new SecurityTaxValueFormElement(Keys.getProperty($.taxValue)));
 	}
 	
 }
