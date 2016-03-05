@@ -9,14 +9,15 @@ import ch.openech.model.tax.AccountPayment;
 public class AccountPaymentForm extends Form<AccountPayment> {
 
 	public AccountPaymentForm(boolean editable, boolean accountType) {
-		super(editable, 2);
+		super(editable, 4);
 		
-		line($.paymentDate, $.name);
-		line($.amountCurrency, $.amount);
-		line($.exchangeRate, $.currency);
+		addTitle("Bezeichnung");
+		line($.paymentDate, $.name, $.amountCurrency, $.amount);
+		
+		addTitle("Ertrag");
 		if (accountType) {
-			line($.grossRevenueA, $.grossRevenueB);
-			line($.withHoldingTaxClaim);
+			line($.currency, $.exchangeRate);
+			line($.grossRevenueA, $.grossRevenueB, $.withHoldingTaxClaim);
 		} else {
 			line($.grossRevenueB);
 		}

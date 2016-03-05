@@ -11,23 +11,23 @@ import ch.openech.model.tax.Account;
 public class AccountForm extends Form<Account> {
 
 	public AccountForm(boolean editable, boolean accountType) {
-		super(editable, 2);
+		super(editable, 4);
 		
-		line($.iban, $.bankAccountNumber);
-		line($.bankAccountName, editable ? new CountryFormElement(Keys.getProperty($.bankAccountCountry)) : $.bankAccountCountry);
-		line($.bankAccountCurrency);
-		line($.openingDate, $.closingDate);
+		addTitle("Bezeichnung");
+		
+		line($.iban, $.bankAccountNumber, $.bankAccountName, $.bankAccountCurrency);
+		line($.openingDate, $.closingDate, editable ? new CountryFormElement(Keys.getProperty($.bankAccountCountry)) : $.bankAccountCountry);
 
+		addTitle("Steuerwert");
+		
 		line($.getHasTaxValue());
-		line($.taxValue.referenceDate, $.taxValue.name);
-		line($.taxValue.balanceCurrency, $.taxValue.balance);
-		line($.taxValue.exchangeRate);
-		line($.taxValue.currency, $.taxValue.value);
+		line($.taxValue.referenceDate, $.taxValue.name, $.taxValue.balanceCurrency, $.taxValue.balance);
+		line($.taxValue.currency, $.taxValue.value, $.taxValue.exchangeRate);
 
+		addTitle("Total");
 		line($.currency);
 		if (accountType == Account.BANK_ACCOUNT) {
-			line($.totalGrossRevenueA, $.totalGrossRevenueB);
-			line($.totalTaxValue, $.totalWithHoldingTaxClaim);
+			line($.totalGrossRevenueA, $.totalGrossRevenueB, $.totalTaxValue, $.totalWithHoldingTaxClaim);
 		} else {
 			line($.totalGrossRevenueB, $.totalTaxValue);
 		}
