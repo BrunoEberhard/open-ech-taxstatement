@@ -9,7 +9,7 @@ import ch.openech.model.tax.SecurityStock;
 public class SecurityStockForm extends Form<SecurityStock> {
 
 	public SecurityStockForm(boolean editable) {
-		super(2);
+		super(editable, 2);
 
     	line($.name);
     	line($.quotationType);   	
