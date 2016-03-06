@@ -9,12 +9,16 @@ import ch.openech.model.tax.Expense;
 public class ExpenseForm extends Form<Expense> {
 
 	public ExpenseForm(boolean editable) {
-		super(editable, 2);
+		super(editable, 4);
 		
 		line($.referenceDate, $.name);
-		line($.expenseType);
-		line($.iban, $.bankAccountNumber);
-		line($.depotNumber);
+		if (editable) {
+			line($.expenseType);
+			line($.iban, $.bankAccountNumber);
+			line($.depotNumber);
+		} else {
+			line($.expenseType, $.iban, $.bankAccountNumber, $.depotNumber);
+		}
 		line($.amountCurrency, $.amount);
 		line($.currency, $.exchangeRate);
 		line($.expenses);
