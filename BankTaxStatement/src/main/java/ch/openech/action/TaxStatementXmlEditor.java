@@ -3,6 +3,7 @@ package ch.openech.action;
 import java.util.Collections;
 import java.util.List;
 
+import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.editor.Editor;
 import org.minimalj.frontend.form.Form;
@@ -84,7 +85,7 @@ public class TaxStatementXmlEditor extends Editor<XmlValue, TaxStatement> {
 	@Override
 	protected TaxStatement save(XmlValue xmlValue) {
 		TaxStatement taxStatement = new StaxEch0196().process(xmlValue.xml);
-		return taxStatement;
+		return Backend.save(taxStatement);
 	}
 	
 	@Override
