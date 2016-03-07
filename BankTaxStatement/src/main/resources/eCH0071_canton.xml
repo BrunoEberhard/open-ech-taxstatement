@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eCH-0071:nomenclature xmlns:eCH-0071="http://www.ech.ch/xmlns/eCH-0071/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ech.ch/xmlns/eCH-0071/1 http://www.ech.ch/xmlns/eCH-0071/1/eCH-0071-1-1.xsd">
+	<validFrom>2010-04-25</validFrom>
+<cantons>
+	<canton>
+		<cantonId>1</cantonId>
+		<cantonAbbreviation>ZH</cantonAbbreviation>
+		<cantonLongName>Zürich</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>2</cantonId>
+		<cantonAbbreviation>BE</cantonAbbreviation>
+		<cantonLongName>Bern / Berne</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>3</cantonId>
+		<cantonAbbreviation>LU</cantonAbbreviation>
+		<cantonLongName>Luzern</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>4</cantonId>
+		<cantonAbbreviation>UR</cantonAbbreviation>
+		<cantonLongName>Uri</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>5</cantonId>
+		<cantonAbbreviation>SZ</cantonAbbreviation>
+		<cantonLongName>Schwyz</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>6</cantonId>
+		<cantonAbbreviation>OW</cantonAbbreviation>
+		<cantonLongName>Obwalden</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>7</cantonId>
+		<cantonAbbreviation>NW</cantonAbbreviation>
+		<cantonLongName>Nidwalden</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>8</cantonId>
+		<cantonAbbreviation>GL</cantonAbbreviation>
+		<cantonLongName>Glarus</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>9</cantonId>
+		<cantonAbbreviation>ZG</cantonAbbreviation>
+		<cantonLongName>Zug</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>10</cantonId>
+		<cantonAbbreviation>FR</cantonAbbreviation>
+		<cantonLongName>Fribourg / Freiburg</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>11</cantonId>
+		<cantonAbbreviation>SO</cantonAbbreviation>
+		<cantonLongName>Solothurn</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>12</cantonId>
+		<cantonAbbreviation>BS</cantonAbbreviation>
+		<cantonLongName>Basel-Stadt</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>13</cantonId>
+		<cantonAbbreviation>BL</cantonAbbreviation>
+		<cantonLongName>Basel-Landschaft</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>14</cantonId>
+		<cantonAbbreviation>SH</cantonAbbreviation>
+		<cantonLongName>Schaffhausen</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>15</cantonId>
+		<cantonAbbreviation>AR</cantonAbbreviation>
+		<cantonLongName>Appenzell Ausserrhoden</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>16</cantonId>
+		<cantonAbbreviation>AI</cantonAbbreviation>
+		<cantonLongName>Appenzell Innerrhoden</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>17</cantonId>
+		<cantonAbbreviation>SG</cantonAbbreviation>
+		<cantonLongName>St. Gallen</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>18</cantonId>
+		<cantonAbbreviation>GR</cantonAbbreviation>
+		<cantonLongName>Graubünden / Grigioni / Grischun</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>19</cantonId>
+		<cantonAbbreviation>AG</cantonAbbreviation>
+		<cantonLongName>Aargau</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>20</cantonId>
+		<cantonAbbreviation>TG</cantonAbbreviation>
+		<cantonLongName>Thurgau</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>21</cantonId>
+		<cantonAbbreviation>TI</cantonAbbreviation>
+		<cantonLongName>Ticino</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>22</cantonId>
+		<cantonAbbreviation>VD</cantonAbbreviation>
+		<cantonLongName>Vaud</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>23</cantonId>
+		<cantonAbbreviation>VS</cantonAbbreviation>
+		<cantonLongName>Valais / Wallis</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>24</cantonId>
+		<cantonAbbreviation>NE</cantonAbbreviation>
+		<cantonLongName>Neuchâtel</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>25</cantonId>
+		<cantonAbbreviation>GE</cantonAbbreviation>
+		<cantonLongName>Genève</cantonLongName>
+	</canton>
+	<canton>
+		<cantonId>26</cantonId>
+		<cantonAbbreviation>JU</cantonAbbreviation>
+		<cantonLongName>Jura</cantonLongName>
+	</canton>
+</cantons>
+</eCH-0071:nomenclature>
