@@ -3,6 +3,7 @@ package ch.openech;
 import java.io.IOException;
 
 import org.minimalj.application.Application;
+import org.minimalj.application.DevMode;
 import org.minimalj.frontend.Frontend;
 import org.minimalj.frontend.impl.json.JsonFrontend;
 import org.minimalj.frontend.impl.nanoserver.MjWebDaemon;
@@ -42,6 +43,8 @@ public class NanoHttpdApplication {
 	public static void main(final String[] args) throws Exception {
 		Frontend.setInstance(new JsonFrontend());
 		Application.initApplication(args);
+		
+		System.out.println("Dev mode: " + DevMode.isActive());
 		
 		NanoHTTPD daemon = null;
         try {
