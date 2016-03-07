@@ -1,1 +1,1 @@
-web:    java $JAVA_OPTS -cp target/classes:target/dependency/* ch.openech.NanoHttpdApplication ch.openech.TaxStatementApplication -DMjFrontendPort=80
+web:    java $JAVA_OPTS -cp target/classes:target/dependency/* ch.openech.NanoHttpdApplication ch.openech.TaxStatementApplication
