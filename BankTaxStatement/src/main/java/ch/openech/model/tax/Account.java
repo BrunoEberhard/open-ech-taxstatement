@@ -12,6 +12,7 @@ import org.minimalj.model.annotation.Sizes;
 import org.minimalj.util.mock.Mocking;
 
 import ch.openech.model.EchFormats;
+import ch.openech.model.common.CountryIdentification;
 
 @Sizes(EchFormats.class)
 public class Account implements Mocking {
@@ -30,8 +31,7 @@ public class Account implements Mocking {
 	public String bankAccountNumber;
 	public String bankAccountName;
 	
-	@Size(EchFormats.countryIdISO2)
-	public String bankAccountCountry;
+	public CountryIdentification bankAccountCountry;
 	
 	@Size(EchFormats.currencyIdISO3)
 	public String bankAccountCurrency;

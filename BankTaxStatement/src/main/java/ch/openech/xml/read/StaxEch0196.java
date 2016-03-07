@@ -12,14 +12,18 @@ import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
+import org.minimalj.backend.Backend;
 import org.minimalj.model.Code;
 import org.minimalj.model.properties.Properties;
 import org.minimalj.model.properties.PropertyInterface;
+import org.minimalj.transaction.criteria.By;
 import org.minimalj.util.CloneHelper;
 import org.minimalj.util.Codes;
 import org.minimalj.util.FieldUtils;
 import org.minimalj.util.GenericUtils;
+import org.minimalj.util.StringUtils;
 
+import ch.openech.model.common.CountryIdentification;
 import ch.openech.model.organisation.UidStructure;
 import ch.openech.model.tax.TaxStatement;
 import ch.openech.model.types.EchCode;
@@ -68,14 +72,18 @@ public class StaxEch0196 {
 					PropertyInterface property = Properties.getProperty(object.getClass(), name);
 					if (property != null) {
 						String stringValue = attribute.getValue();
-						Object value;
 						if (EchCode.class.isAssignableFrom(property.getClazz())) {
 							StaxEch.enuum(stringValue, object, property);
-						} else if (Code.class.isAssignableFrom(property.getClazz())) {
-							Class codeClazz = property.getClazz();
-							value = Codes.findCode(codeClazz, stringValue);
 						} else {
-							value = FieldUtils.parse(stringValue, property.getClazz());
+							Object value;
+							if (CountryIdentification.class == property.getClazz()) {
+								value = countryIdentification(stringValue);										
+							} else if (Code.class.isAssignableFrom(property.getClazz())) {
+								Class codeClazz = property.getClazz();
+								value = Codes.findCode(codeClazz, stringValue);
+							} else {
+								value = FieldUtils.parse(stringValue, property.getClazz());
+							}
 							property.setValue(object, value);
 						}
  					}
@@ -115,6 +123,21 @@ public class StaxEch0196 {
 			}
 		}
 		return object;
+	}
+	
+	private CountryIdentification countryIdentification(String iso) {
+		CountryIdentification country = null;
+		if (!StringUtils.isBlank(iso)) {
+			List<CountryIdentification> countries = Backend.read(CountryIdentification.class, By.field(CountryIdentification.$.countryIdISO2, iso), 1);
+			if (!countries.isEmpty()) {
+				country = countries.get(0);
+			} else {
+				country = new CountryIdentification();
+				country.countryIdISO2 = iso;
+				country.countryNameShort = iso;
+			}
+		}
+		return country;
 	}
 	
 }

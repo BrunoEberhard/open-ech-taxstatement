@@ -10,9 +10,12 @@ import org.minimalj.model.Code;
 import org.minimalj.model.properties.FlatProperties;
 import org.minimalj.model.properties.PropertyInterface;
 import org.minimalj.transaction.PersistenceTransaction;
+import org.minimalj.transaction.criteria.By;
 import org.minimalj.transaction.criteria.Criteria;
+import org.minimalj.transaction.criteria.FieldCriteria;
 import org.minimalj.util.CloneHelper;
 import org.minimalj.util.IdUtils;
+import org.minimalj.util.StringUtils;
 
 import ch.openech.model.common.Canton;
 import ch.openech.model.common.CountryIdentification;
@@ -21,6 +24,17 @@ import ch.openech.xml.read.StaxEch0072;
 
 public class TaxStatementInHeapPersistence implements Persistence {
 
+	private final StaxEch0071 staxEch0071;
+	private final StaxEch0072 staxEch0072;
+	
+	public TaxStatementInHeapPersistence() {
+		staxEch0071 = new StaxEch0071(TaxStatementInHeapPersistence.class.getClassLoader().getResourceAsStream("eCH0071_canton.xml"));
+		staxEch0072 = new StaxEch0072(TaxStatementInHeapPersistence.class.getClassLoader().getResourceAsStream("eCH0072.xml"));
+		for (Canton canton : staxEch0071.getCantons()) {
+			insert(canton);
+		}
+	}
+	
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> T read(Class<T> clazz, Object id) {
@@ -44,12 +58,24 @@ public class TaxStatementInHeapPersistence implements Persistence {
 	@SuppressWarnings("unchecked")
 	public <T> List<T> read(Class<T> clazz, Criteria criteria, int maxResults) {
 		if (clazz == CountryIdentification.class) {
-			return (List<T>) StaxEch0072.getInstance().getCountryIdentifications();
+			if (criteria == By.ALL) {
+				return (List<T>) staxEch0072.getCountryIdentifications();
+			} else if (criteria instanceof FieldCriteria) {
+				FieldCriteria fieldCriteria = (FieldCriteria) criteria;
+				if (fieldCriteria.getKey() == CountryIdentification.$.countryIdISO2) {
+					List countries = new ArrayList();
+					for (CountryIdentification c : staxEch0072.getCountryIdentifications()) {
+						if (StringUtils.equals(c.countryIdISO2, (String) fieldCriteria.getValue())) {
+							countries.add(c);
+						}
+					}
+					return countries;
+				}
+			}
 		} else if (clazz == Canton.class) {
-			return (List<T>) StaxEch0071.getInstance().getCantons();
-		} else {
-			throw new RuntimeException("Not supported");
-		}
+			return (List<T>) staxEch0071.getCantons();
+		} 
+		throw new RuntimeException("Not supported");
 	}
 
 	@Override
