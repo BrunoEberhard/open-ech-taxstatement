@@ -4,6 +4,13 @@
 	<groupId>BankTaxStatement</groupId>
 	<artifactId>BankTaxStatement</artifactId>
 	<version>0.1.0.0</version>
+	<repositories>
+		<repository>
+			<id>project.local</id>
+			<name>TaxStatement</name>
+			<url>file:${project.basedir}/repo</url>
+		</repository>
+	</repositories>
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
@@ -23,13 +30,11 @@
 			<artifactId>minimalj</artifactId>
 			<version>0.10.1.0</version>
 		</dependency>
-	<!-- 
 		<dependency>
-			<groupId>OpenEch</groupId>
-			<artifactId>OpenEch</artifactId>
-			<version>0.1.0.1-SNAPSHOT</version>
-		</dependency>
-		 -->
+			<groupId>ch.openech</groupId>
+			<artifactId>open_ech_common_ts</artifactId>
+			<version>1.0</version>
+		</dependency>		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
