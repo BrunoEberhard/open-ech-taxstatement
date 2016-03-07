@@ -18,7 +18,7 @@ public class NanoHttpdApplication {
 	private static boolean useWebSocket = Boolean.valueOf(System.getProperty("MjUseWebSocket", "false"));
 	
 	private static int getPort(boolean secure) {
-		String portString = System.getProperty("MjFrontendPort" + (secure ? "Ssl" : ""), secure ? "-1" : "8080");
+		String portString = System.getProperty("MjFrontendPort" + (secure ? "Ssl" : ""), secure ? "-1" : "80");
 		return !StringUtils.isEmpty(portString) ? Integer.valueOf(portString) : -1 ;
 	}
 	
