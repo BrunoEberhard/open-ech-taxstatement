@@ -1,1 +1,1 @@
-web:    java -cp target/classes:target/dependency/* ch.openech.NanoHttpdApplication ch.openech.TaxStatementApplication
+web:    java -cp target/classes:target/dependency/* ch.openech.NanoHttpdApplication ch.openech.TaxStatementApplication -DMjFrontendPort=80
