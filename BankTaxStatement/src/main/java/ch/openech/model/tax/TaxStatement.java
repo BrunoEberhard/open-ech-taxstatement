@@ -10,8 +10,6 @@ import java.util.Random;
 import org.minimalj.model.Keys;
 import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
-import org.minimalj.util.mock.MockName;
-import org.minimalj.util.mock.MockPrename;
 import org.minimalj.util.mock.Mocking;
 
 import ch.openech.model.EchFormats;
@@ -121,8 +119,8 @@ xsd:ID attributes cannot have default or fixed values specified.
 		Client client = getMainClient();
 		client.clientNumber = "42";
 		client.salutation = MrMrs.Herr;
-		client.firstName = MockPrename.getFirstName(true);
-		client.lastName = MockName.officialName();
+		client.firstName = "Felix"; // MockPrename.getFirstName(true);
+		client.lastName = "Muster"; // MockName.officialName();
 		
 		Random random = new Random();
 		
