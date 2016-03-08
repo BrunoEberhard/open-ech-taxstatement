@@ -3,9 +3,7 @@ package ch.openech.frontend.e196;
 import static ch.openech.model.tax.TaxStatement.*;
 
 import org.minimalj.frontend.form.Form;
-import org.minimalj.frontend.form.element.FormElement;
 import org.minimalj.frontend.form.element.TextFormElement;
-import org.minimalj.model.Keys;
 
 import ch.openech.frontend.e07.CantonFormElement;
 import ch.openech.model.tax.TaxStatement;
@@ -26,35 +24,25 @@ public class TaxStatementForm extends Form<TaxStatement> {
 		
 		if (!editable) {
 			addTitle("Zusammenfassung");
-			line($.totalGrossRevenueA, $.totalGrossRevenueACanton);
-			line($.totalGrossRevenueB, $.totalGrossRevenueBCanton);
+			line($.totalGrossRevenueA, $.totalGrossRevenueACanton, $.totalGrossRevenueB, $.totalGrossRevenueBCanton);
 			line($.totalTaxValue, $.totalWithHoldingTaxClaim);
 			
 			addTitle("Kontenverzeichnis");
 			line($.listOfBankAccounts.totalGrossRevenueA, $.listOfBankAccounts.totalGrossRevenueB);
 			line($.listOfBankAccounts.totalTaxValue, $.listOfBankAccounts.totalWithHoldingTaxClaim);
-			line(new BankAccountsFormElement(Keys.getProperty($.listOfBankAccounts.bankAccount)));
 			
 			addTitle("Schuldenverzeichnis");
-			line($.listOfLiabilities.totalGrossRevenueA, $.listOfLiabilities.totalGrossRevenueB);
-			line($.listOfLiabilities.totalTaxValue, $.listOfLiabilities.totalWithHoldingTaxClaim);
-			line(new BankAccountsFormElement(Keys.getProperty($.listOfLiabilities.bankAccount)));
+			line($.listOfLiabilities.totalGrossRevenueB);
+			line($.listOfLiabilities.totalTaxValue);
 			
 			addTitle("Spesen");
-			line($.listOfExpenses.currency, $.listOfExpenses.totalExpenses, $.listOfExpenses.totalExpensesDeductible, $.listOfExpenses.totalExpensesDeductibleCanton);
-			line(new ExpensesFormElement(Keys.getProperty($.listOfExpenses.expense)));
+			line($.listOfExpenses.totalExpenses, $.listOfExpenses.totalExpensesDeductible, $.listOfExpenses.totalExpensesDeductibleCanton);
 			
 			addTitle("Wertschriftenverzeichnis");
-			line($.listOfSecurities.totalGrossRevenueA, $.listOfSecurities.totalGrossRevenueB);
+			line($.listOfSecurities.totalGrossRevenueA, $.listOfSecurities.totalGrossRevenueACanton, $.listOfSecurities.totalGrossRevenueB, $.listOfSecurities.totalGrossRevenueBCanton);
 			line($.listOfSecurities.totalTaxValue, $.listOfSecurities.totalWithHoldingTaxClaim);
 			line($.listOfSecurities.totalGrossRevenueIUP, $.listOfSecurities.totalGrossRevenueConversion);
-			line(new SecurityDepotsFormElement(Keys.getProperty($.listOfSecurities.depot)));
 		}
 	}
-	
-	public void line(FormElement<?> element) {
-		if (editable) {
-			super.line((Object) element);
-		}
-	}
+
 }
