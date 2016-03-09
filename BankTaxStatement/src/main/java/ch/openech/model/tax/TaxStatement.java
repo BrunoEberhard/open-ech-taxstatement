@@ -77,7 +77,7 @@ xsd:ID attributes cannot have default or fixed values specified.
 	@Size(EchFormats.countryIdISO2)
 	public String country = "CH";
 	
-	// @NotEmpty
+	@NotEmpty
 	public Canton canton;
 	
 	@NotEmpty @Size(EchFormats.currencyIdISO3)
