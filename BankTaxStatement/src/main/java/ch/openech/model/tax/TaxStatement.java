@@ -108,6 +108,7 @@ xsd:ID attributes cannot have default or fixed values specified.
 		institution.name = MockBank.getName();
 		institution.uid.mock();
 		taxPeriod = 2014;
+		canton = new Canton("SG");
 		periodFrom = LocalDate.of(2014, 1, 1);
 		periodTo = LocalDate.of(2014, 12, 31);
 		totalGrossRevenueA = BigDecimal.valueOf(123.45);
