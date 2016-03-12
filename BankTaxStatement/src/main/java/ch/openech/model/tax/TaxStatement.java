@@ -126,7 +126,7 @@ xsd:ID attributes cannot have default or fixed values specified.
 		Random random = new Random();
 		
 		listOfSecurities.depot = new ArrayList<>();
-		for (int i = 0; i<random.nextInt(3); i++) {
+		for (int i = 1; i<random.nextInt(3); i++) {
 			SecurityDepot depot = new SecurityDepot();
 			depot.depotNumber = String.valueOf(random.nextInt(900000) + 100000);
 			listOfSecurities.depot.add(depot);
