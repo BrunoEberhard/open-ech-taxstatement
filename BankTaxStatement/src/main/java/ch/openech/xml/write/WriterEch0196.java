@@ -9,6 +9,7 @@ import org.minimalj.model.properties.Properties;
 import org.minimalj.model.properties.PropertyInterface;
 import org.minimalj.util.FieldUtils;
 
+import ch.openech.model.common.Canton;
 import ch.openech.model.common.CountryIdentification;
 import ch.openech.model.organisation.UidStructure;
 import ch.openech.model.tax.TaxStatement;
@@ -61,7 +62,10 @@ public class WriterEch0196 extends WriterElement {
 				child.writeAttribute(name, code != null ? code.getValue() : "");
 			} else if (CountryIdentification.class == property.getClazz()) {
 				CountryIdentification country = (CountryIdentification) property.getValue(object);
-				child.writeAttribute(name, country != null ? country.countryIdISO2 : "");				
+				child.writeAttribute(name, country != null ? country.countryIdISO2 : "");			
+			} else if (Canton.class == property.getClazz()) {
+				Canton canton = (Canton) property.getValue(object);
+				child.writeAttribute(name, canton != null ? canton.id : "");					
 			} else {
 				// Die eigentliche Prüfung wäre hier auf !transient, aber das
 				// lässt sich leider über PropertyInterface nicht mehr ermitteln
