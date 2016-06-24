@@ -8,6 +8,7 @@ import org.minimalj.frontend.Frontend;
 import org.minimalj.frontend.impl.json.JsonFrontend;
 import org.minimalj.frontend.impl.nanoserver.MjWebDaemon;
 import org.minimalj.frontend.impl.nanoserver.MjWebSocketDaemon;
+import org.minimalj.util.StringUtils;
 
 import fi.iki.elonen.NanoHTTPD;
 
@@ -16,12 +17,17 @@ public class NanoHttpdApplication {
 	private static final int TIME_OUT = 5 * 60 * 1000;
 	
 	private static boolean useWebSocket = Boolean.valueOf(System.getProperty("MjUseWebSocket", "false"));
-		
-	private static NanoHTTPD start() throws IOException {
-		int port = Integer.valueOf(System.getenv("PORT"));
+	
+	private static int getPort(boolean secure) {
+		String portString = System.getProperty("MjFrontendPort" + (secure ? "Ssl" : ""), secure ? "-1" : "8080");
+		return !StringUtils.isEmpty(portString) ? Integer.valueOf(portString) : -1 ;
+	}
+	
+	private static NanoHTTPD start(boolean secure) throws IOException {
+		int port = getPort(secure);
 		if (port > 0) {
-			System.out.println("Start web " + (useWebSocket ? "socket" : "") + " frontend on " + port);
-			NanoHTTPD daemon = useWebSocket ? new MjWebSocketDaemon(port, false) : new MjWebDaemon(port, false);
+			System.out.println("Start web " + (useWebSocket ? "socket" : "") + " frontend on " + port + (secure ? " (Secure)" : ""));
+			NanoHTTPD daemon = useWebSocket ? new MjWebSocketDaemon(port, secure) : new MjWebDaemon(port, secure);
 			daemon.start(TIME_OUT);
 			return daemon;
 		} else {
@@ -44,11 +50,10 @@ public class NanoHttpdApplication {
 		Frontend.setInstance(new JsonFrontend());
 		Application.initApplication(args);
 		
-		System.out.println("Dev mode: " + DevMode.isActive());
-		
-		NanoHTTPD daemon = null;
+		NanoHTTPD daemon = null, secureDaemon = null;
         try {
-        	daemon = start();
+        	daemon = start(!SECURE);
+        	secureDaemon = start(SECURE);
     		while (true) {
     	        try {
     	            Thread.sleep(1000);
@@ -56,8 +61,8 @@ public class NanoHttpdApplication {
     	        }
     		}
         } finally {
-//        	stop(secureDaemon);
-//        	stop(daemon);
+        	stop(secureDaemon);
+        	stop(daemon);
         }
 	}
 
