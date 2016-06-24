@@ -1,9 +1,9 @@
 package org.minimalj.test;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.minimalj.application.Application;
 
-import ch.openech.backend.TaxStatementInHeapBackend;
+import ch.openech.TaxStatementApplication;
 import ch.openech.model.tax.TaxStatement;
 import ch.openech.xml.read.StaxEch0196;
 import ch.openech.xml.write.WriterEch0196;
@@ -11,13 +11,10 @@ import junit.framework.Assert;
 
 public class TaxStatementXmlTest {
 
-	@BeforeClass
-	public static void setupPersistence() {
-		System.setProperty("MjBackend", TaxStatementInHeapBackend.class.getName());
-	}
-	
 	@Test
 	public void testXmlConversion() {
+		Application.setThreadInstance(new TaxStatementApplication());
+
 		TaxStatement taxStatementOriginal = new TaxStatement();
 		taxStatementOriginal.mock();
 		

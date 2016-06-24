@@ -2,14 +2,13 @@ package ch.openech.backend;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
 import org.minimalj.backend.Persistence;
 import org.minimalj.model.Code;
+import org.minimalj.model.Keys;
 import org.minimalj.model.properties.FlatProperties;
 import org.minimalj.model.properties.PropertyInterface;
-import org.minimalj.transaction.PersistenceTransaction;
 import org.minimalj.transaction.criteria.By;
 import org.minimalj.transaction.criteria.Criteria;
 import org.minimalj.transaction.criteria.FieldCriteria;
@@ -22,8 +21,8 @@ import ch.openech.model.common.CountryIdentification;
 import ch.openech.xml.read.StaxEch0071;
 import ch.openech.xml.read.StaxEch0072;
 
-public class TaxStatementInHeapPersistence implements Persistence {
-
+public class TaxStatementInHeapPersistence extends Persistence {
+	
 	private final StaxEch0071 staxEch0071;
 	private final StaxEch0072 staxEch0072;
 	
@@ -62,7 +61,7 @@ public class TaxStatementInHeapPersistence implements Persistence {
 				return (List<T>) staxEch0072.getCountryIdentifications();
 			} else if (criteria instanceof FieldCriteria) {
 				FieldCriteria fieldCriteria = (FieldCriteria) criteria;
-				if (fieldCriteria.getKey() == CountryIdentification.$.countryIdISO2) {
+				if (fieldCriteria.getPath().equals(Keys.getProperty(CountryIdentification.$.countryIdISO2).getPath())) {
 					List countries = new ArrayList();
 					for (CountryIdentification c : staxEch0072.getCountryIdentifications()) {
 						if (StringUtils.equals(c.countryIdISO2, (String) fieldCriteria.getValue())) {
@@ -83,8 +82,23 @@ public class TaxStatementInHeapPersistence implements Persistence {
 		throw new RuntimeException("Not supported");
 	}
 	
+	@Override
+	public <ELEMENT> List<ELEMENT> getList(String listName, Object parentId) {
+		throw new IllegalStateException("LazyList should not be needed with " + this.getClass().getSimpleName());
+	}
+	
+	@Override
+	public <ELEMENT> ELEMENT add(String listName, Object parentId, ELEMENT element) {
+		throw new IllegalStateException("LazyList should not be needed with " + this.getClass().getSimpleName());
+	}
+
+	@Override
+	public void remove(String listName, Object parentId, int position) {
+		throw new IllegalStateException("LazyList should not be needed with " + this.getClass().getSimpleName());
+	}
+	
 	private static void markInMemoryObject(Object object) {
-		markInHeapObject(object, new HashSet<>());
+		markInHeapObject(object, new ArrayList<>());
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -134,8 +148,14 @@ public class TaxStatementInHeapPersistence implements Persistence {
 		
 	}
 
-	public <T> T execute(PersistenceTransaction<T> transaction) {
-		return transaction.execute(this);
+	@Override
+	public void startTransaction(int transactionIsolationLevel) {
+		// not supported
 	}
-
+	
+	@Override
+	public void endTransaction(boolean commit) {
+		// not supported
+	}
+	
 }
