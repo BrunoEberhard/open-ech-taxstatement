@@ -10,6 +10,11 @@
 			<name>TaxStatement</name>
 			<url>file:${project.basedir}/repo</url>
 		</repository>
+		<repository>
+			<id>sonatype</id>
+			<name>sonatype</name>
+			<url>https://oss.sonatype.org/</url>
+		</repository>		
 	</repositories>
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
