@@ -1,1 +1,1 @@
-web:    java $JAVA_OPTS -DMjDevMode=true -DMjPersistence=ch.openech.backend.TaxStatementInHeapPersistence -DMjFrontendPort=PORT -cp target/classes:target/dependency/* org.minimalj.frontend.impl.nanoserver.NanoWebServer ch.openech.TaxStatementApplication
+web:    java $JAVA_OPTS -DMjDevMode=true -DMjPersistence=ch.openech.backend.TaxStatementInHeapPersistence -DMjFrontendPort=$PORT -cp target/classes:target/dependency/* org.minimalj.frontend.impl.nanoserver.NanoWebServer ch.openech.TaxStatementApplication
