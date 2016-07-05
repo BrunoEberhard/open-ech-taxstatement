@@ -16,12 +16,17 @@ import ch.openech.model.tax.SecurityTaxValue;
 public class SecurityTaxValueTablePage extends TablePageWithDetail<SecurityTaxValue, SecurityTaxValuePage> {
 	public static final Object[] COLUMNS = {$.referenceDate, $.name, $.quantity};
 
-	private final SecuritySecurity security;
+	private SecuritySecurity security;
 	
 	public SecurityTaxValueTablePage(SecuritySecurity security) {
 		super(SecurityTaxValueTablePage.COLUMNS);
 		this.security = security;
 	}
+	
+	public void setSecurity(SecuritySecurity security) {
+		this.security = security;
+		refresh();
+	}		
 	
 	@Override
 	protected List<SecurityTaxValue> load() {

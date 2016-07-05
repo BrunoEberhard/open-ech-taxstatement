@@ -16,12 +16,17 @@ import ch.openech.model.tax.SecurityStock;
 public class SecurityStockTablePage extends TablePageWithDetail<SecurityStock, SecurityStockPage> {
 	public static final Object[] COLUMNS = {$.referenceDate, $.name, $.quantity};
 
-	private final SecuritySecurity security;
+	private SecuritySecurity security;
 	
 	public SecurityStockTablePage(SecuritySecurity security) {
 		super(SecurityStockTablePage.COLUMNS);
 		this.security = security;
 	}
+	
+	public void setSecurity(SecuritySecurity security) {
+		this.security = security;
+		refresh();
+	}	
 	
 	@Override
 	protected List<SecurityStock> load() {

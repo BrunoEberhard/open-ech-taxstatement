@@ -16,11 +16,16 @@ import ch.openech.model.tax.SecuritySecurity;
 public class SecurityPaymentTablePage extends TablePageWithDetail<SecurityPayment, SecurityPaymentPage> {
 	public static final Object[] COLUMNS = {$.paymentDate, $.paymentDate, $.amountCurrency, $.amount};
 
-	private final SecuritySecurity security;
+	private SecuritySecurity security;
 	
 	public SecurityPaymentTablePage(SecuritySecurity security) {
 		super(SecurityPaymentTablePage.COLUMNS);
 		this.security = security;
+	}
+	
+	public void setSecurity(SecuritySecurity security) {
+		this.security = security;
+		refresh();
 	}
 	
 	@Override
