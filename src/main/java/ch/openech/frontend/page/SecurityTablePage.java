@@ -17,7 +17,7 @@ import ch.openech.model.tax.SecuritySecurity;
 public class SecurityTablePage extends TablePageWithDetail<SecuritySecurity, SecurityPage> {
 
 	private static final Object[] columns = {$.securityName, $.isin, $.currency, $.nominalValue};
-	private final SecurityDepot depot;
+	private SecurityDepot depot;
 	private final boolean securityDepotType;
 
 	public SecurityTablePage(SecurityDepot depot, final boolean securityDepotType) {
@@ -26,6 +26,11 @@ public class SecurityTablePage extends TablePageWithDetail<SecuritySecurity, Sec
 		this.securityDepotType = securityDepotType;
 	}
 
+	public void setDepot(SecurityDepot depot) {
+		this.depot = depot;
+		refresh();
+	}
+	
 	@Override
 	protected List<SecuritySecurity> load() {
 		return depot.security;

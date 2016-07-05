@@ -5,17 +5,16 @@ import static ch.openech.model.tax.SecurityDepot.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.minimalj.frontend.Frontend;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.editor.Editor.NewObjectEditor;
 import org.minimalj.frontend.form.Form;
-import org.minimalj.frontend.page.TablePage;
+import org.minimalj.frontend.page.TablePage.TablePageWithDetail;
 import org.minimalj.util.resources.Resources;
 
 import ch.openech.model.tax.SecurityDepot;
 import ch.openech.model.tax.TaxStatement;
 
-public class SecurityDepotTablePage extends TablePage<SecurityDepot> {
+public class SecurityDepotTablePage extends TablePageWithDetail<SecurityDepot, SecurityTablePage> {
 
 	public static final boolean SECURITIES = true;
 	public static final boolean LUMP = false;
@@ -50,8 +49,14 @@ public class SecurityDepotTablePage extends TablePage<SecurityDepot> {
 	}
 	
 	@Override
-	public void action(SecurityDepot depot) {
-		Frontend.showDetail(this, new SecurityTablePage(depot, securityDepotType));
+	protected SecurityTablePage createDetailPage(SecurityDepot depot) {
+		return new SecurityTablePage(depot, securityDepotType);
+	}
+	
+	@Override
+	protected SecurityTablePage updateDetailPage(SecurityTablePage page, SecurityDepot depot) {
+		page.setDepot(depot);
+		return page;
 	}
 	
 	public class NewSecurityDepotEditor extends NewObjectEditor<SecurityDepot> {
