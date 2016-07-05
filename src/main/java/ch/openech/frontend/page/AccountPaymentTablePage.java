@@ -16,18 +16,23 @@ import ch.openech.model.tax.AccountPayment;
 public class AccountPaymentTablePage extends TablePageWithDetail<AccountPayment, AccountPaymentPage> {
 	public static final Object[] COLUMNS = {$.paymentDate, $.paymentDate, $.amountCurrency, $.amount};
 
-	private final Account bankAccount;
+	private Account account;
 	private final boolean accountType;
 	
-	public AccountPaymentTablePage(Account bankAccount, boolean accountType) {
+	public AccountPaymentTablePage(Account account, boolean accountType) {
 		super(AccountPaymentTablePage.COLUMNS);
-		this.bankAccount = bankAccount;
+		this.account = account;
 		this.accountType = accountType;
+	}
+	
+	public void setBankAccount(Account account) {
+		this.account = account;
+		refresh();
 	}
 	
 	@Override
 	protected List<AccountPayment> load() {
-		return bankAccount.payment;
+		return account.payment;
 	}
 	
 	@Override
@@ -56,7 +61,7 @@ public class AccountPaymentTablePage extends TablePageWithDetail<AccountPayment,
 		
 		@Override
 		protected AccountPayment save(AccountPayment changedObject) {
-			bankAccount.payment.add(changedObject);
+			account.payment.add(changedObject);
 			return changedObject;
 		}
 	}

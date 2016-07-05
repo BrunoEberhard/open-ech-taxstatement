@@ -16,10 +16,13 @@ import ch.openech.model.tax.Account;
 public class AccountPage extends ObjectPage<Account> {
 	
 	private final boolean accountType;
+	private AccountPaymentTablePage paymentTablePage;
 	
 	public AccountPage(Account account, boolean accountType) {
 		super(account);
 		this.accountType = accountType;
+		
+		paymentTablePage = new AccountPaymentTablePage(account, accountType);
 	}
 
 	@Override
@@ -31,10 +34,16 @@ public class AccountPage extends ObjectPage<Account> {
 	public List<Action> getActions() {
 		List<Action> actions = new ArrayList<>();
 		actions.add(new AccountEditor());
-		actions.add(new DetailPageAction(this, new AccountPaymentTablePage(getObject(), accountType)));
+		actions.add(new DetailPageAction(this, paymentTablePage));
 		return actions;
 	}
 
+	@Override
+	public void setObject(Account account) {
+		super.setObject(account);
+		paymentTablePage.setBankAccount(account);
+	}
+	
 	public class AccountEditor extends ObjectEditor {
 
 		@Override
