@@ -2,12 +2,10 @@
 
 image::doc/taxstatement-edit-reduced.png[]
 
-Der von eCH definierte Standard beschreibt das Austauschformat zum elektronischen Steuerauzug. Dieser wird
-den natürlichen Personen mit Steuerdomizil Schweiz von den Finanzinstituten für die Zwecke des Privatvermögens
-zur Verfügung gestellt.
-
-link:http://openech.ch/produkte.html[Offizielle Produktseite]
-
+== Links
+* link:http://openech.ch/produkte.html[Offizielle Produktseite]
+* link:https://openech-taxstatement.herokuapp.com/[Live Demo]
+ 
 == Technische Hinweise zu der Implementierung
 
 === Java
@@ -34,4 +32,4 @@ Management besteht befinden sich eine Teilmenge der Klasse in einem lokalen Repo
 
 === Kontakt
 
-* Bruno Eberhard, mailto:bruno.eberhard@pop.ch[mailto:bruno.eberhard@pop.ch] 
+Bruno Eberhard, link:mailto:bruno.eberhard@pop.ch[mailto:bruno.eberhard@pop.ch] 
