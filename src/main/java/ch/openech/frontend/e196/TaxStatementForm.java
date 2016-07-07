@@ -19,6 +19,10 @@ public class TaxStatementForm extends Form<TaxStatement> {
 		line($.institution.name, $.institution.lei, $.institution.uid.value);
 
 		addTitle("Kunde");
+		if (editable && "true".equals(System.getProperty("onHeroku"))) {
+			text("Hinweis: Bitte verwenden sie keine echten Daten, da diese Applikation auf öffentlichen Servern betrieben wird");
+		}
+		
 		line($.getMainClient().clientNumber, $.getMainClient().tin);
 		line($.getMainClient().salutation, $.getMainClient().firstName, $.getMainClient().lastName);
 		

@@ -36,8 +36,13 @@ public class TaxStatementXmlEditor extends Editor<XmlValue, TaxStatement> {
 				return 400;
 			}
 		};
+		
 		form.line(XmlValue.$.requireValid);
 		form.line(new StringFormElement(Keys.getProperty(XmlValue.$.xml), true));
+		
+		if ("true".equals(System.getProperty("onHeroku"))) {
+			form.text("Hinweis: Bitte verwenden sie keine echten Daten, da diese Applikation auf öffentlichen Servern betrieben wird");
+		}
 		return form;
 	}
 	
