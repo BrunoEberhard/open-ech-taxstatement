@@ -20,6 +20,11 @@ public class AccountPaymentPage extends ObjectPage<AccountPayment> {
 		super(payment);
 		this.accountType = accountType;
 	}
+	
+	@Override
+	public String getTitle() {
+		return Resources.getString(accountType ? "BankAccountPayment" : "LiabilityAccountPayment");
+	}	
 
 	@Override
 	protected Form<AccountPayment> createForm() {

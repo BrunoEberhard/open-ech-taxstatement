@@ -2,12 +2,15 @@ package ch.openech.frontend.page;
 
 import static ch.openech.model.tax.AccountPayment.*;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
+import org.minimalj.frontend.page.TablePage;
 import org.minimalj.frontend.page.TablePage.TablePageWithDetail;
+import org.minimalj.util.resources.Resources;
 
 import ch.openech.frontend.e196.AccountPaymentForm;
 import ch.openech.model.tax.Account;
@@ -23,6 +26,12 @@ public class AccountPaymentTablePage extends TablePageWithDetail<AccountPayment,
 		super(AccountPaymentTablePage.COLUMNS);
 		this.account = account;
 		this.accountType = accountType;
+	}
+	
+	@Override
+	public String getTitle() {
+		String className = Resources.getString(accountType ? "AccountPayment" : "LiabilityAccountPayment");
+		return MessageFormat.format(Resources.getString(TablePage.class.getSimpleName() + ".title"), className);
 	}
 	
 	public void setBankAccount(Account account) {

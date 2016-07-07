@@ -6,6 +6,7 @@ import java.util.List;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.page.TablePage.TablePageWithDetail;
+import org.minimalj.util.resources.Resources;
 
 import ch.openech.frontend.e196.AccountForm;
 import ch.openech.model.tax.Account;
@@ -49,6 +50,11 @@ public class LiabilityAccountTablePage extends TablePageWithDetail<Account, Acco
 		protected Form<Account> createForm() {
 			return new AccountForm(Form.EDITABLE,  Account.LIABILITY_ACCOUNT);
 		}		
+
+		@Override
+		protected Object[] getNameArguments() {
+			return new Object[]{Resources.getString("LiabilityAccount")};
+		}
 		
 		@Override
 		protected Account save(Account changedObject) {

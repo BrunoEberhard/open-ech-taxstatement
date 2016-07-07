@@ -26,6 +26,11 @@ public class AccountPage extends ObjectPage<Account> {
 	}
 
 	@Override
+	public String getTitle() {
+		return Resources.getString(accountType ? "BankAccount" : "LiabilityAccount");
+	}
+	
+	@Override
 	protected Form<Account> createForm() {
 		return new AccountForm(Form.READ_ONLY,  accountType);
 	}
