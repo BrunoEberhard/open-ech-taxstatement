@@ -32,7 +32,6 @@ import org.minimalj.frontend.page.Page;
 import ch.openech.action.NewTaxStatementAction;
 import ch.openech.action.TaxStatementMockAction;
 import ch.openech.action.TaxStatementXmlImport;
-import ch.openech.frontend.page.PropertiesPage;
 import ch.openech.model.common.CountryIdentification;
 import ch.openech.model.tax.TaxStatement;
 
@@ -57,8 +56,6 @@ public class TaxStatementApplication extends Application {
 		actions.add(new NewTaxStatementAction());
 		actions.add(new TaxStatementXmlImport());
 		actions.add(new TaxStatementMockAction());
-		
-		actions.add(new PropertiesPage());
 		
 		return Collections.singletonList(actions);
 	}
