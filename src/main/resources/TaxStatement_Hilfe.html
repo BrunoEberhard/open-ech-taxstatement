@@ -4,6 +4,7 @@
 <title>Hinweise zu Steuerauszug (Open-eCH)</title>
 </head>
 <body>
+
 <h1>Steuerauszug</h1>
 <p>Mit dieser Applikation können Dokumente gemäss der <a href="http://www.ech.ch/vechweb/page?p=dossier&documentNumber=eCH-0196">Spezifikation eCH 0196</a> visualisiert, erstellt
 oder bearbeitet werden. Sie ist als Hilfe gedacht bei der Arbeit mit den entsprechenden XML-Dateien.</p>
@@ -20,21 +21,85 @@ sollten die Daten über einen XML-Export auf einen lokalen Datenträger gespeich
 
 <h2>Bedienungshinweise</h2>
 
-<p><img src="browser_details.png" align="middle"/></p>
-
 <h3>Navigation</h3>
+
 <p>In der linken Seite des Browser befindet sich das Navigationsmenu. Es kann über das Kreuz in ihrer Titelleiste geschlossen werden. Über das Symbol der drei Linien oben links
-kann es bei Bedarf wieder angezeigt werden. Dieses Menu stellt den Einstiegspunkt für eine neue Bearbeitung dar. Die aktuelle Anzeige eines Steuerauszugs wird dabei
-komplett ausgetauscht. Das Menu kann jederzeit benutzt werden ausser es ist gerade ein Dialog geöffnet.<p>
+kann es bei Bedarf wieder angezeigt werden. Das Menu kann jederzeit benutzt werden ausser es ist gerade ein Dialog geöffnet.<p>
 
 <p>Wie gewohnt kann zudem mit den Vor- und Zurück Knöpfen des Browser im Verlauf geblättert werden.<p>
 
-<h3>Details anzeigen</h3>
 
-<p>Die Hauptsicht in der Mitte kann weitere Details zur Verfügung stellen. Diese sind über das Kontextmenu erreichbar. Das Kontextmenu kann auf zwei Arten angezeigt werden.
-In der Titelleiste der Sicht können die drei Linien angeklickt werden. Dann werden die Möglichkeiten der aktuellen Sicht rechts angezeigt. Zweitens kann diese Anzeige
-auch über die rechte Maustaste ein- und ausgeblendet werden. Sind mehrere Details gleichzeitig untereinander angezeigt wird durch die rechte Maustaste jeweils das
-Kontextmenu gesteuert in dem sich der Mauszeiger gerade befindet.</p>
+<h3>Erstellen eines Auszugs</h3>
+
+<p><img src="anleitung_1_erstellen.png" align="middle"/></p>
+
+<p>Die Navigation am linken Rand stellt den Einstiegspunkt für eine neue Bearbeitung dar. Es kann dabei auf drei Arten ein neuer Auszug erstellt werden:</p>
+<ul>
+<li>Neuer Steuerauszug erstellen: Es wird mit einem komplett leeren Formular für die Eingabe begonnen.</li>
+<li>Import aus XML-Datei: Aus einer anderen Applikation soll ein XML-Dokument übernommen werden.</li>
+<li>Aus Zufallwerten generieren: Es wird ein gültiger Auszug generiert, der jedoch fachlich keine relevanten Daten enthält. Dies ist nur nützlich für technische Arbeiten.</li>
+</ul>
+
+
+<h3>Bearbeitung</h3>
+<p><img src="anleitung_2_erstellen_dialog.png" align="middle"/></p>
+
+<p>Sämtliche Eingaben finden in einem Dialog Fenster statt. Dabei werden Felder mit noch nicht gültigem Inhalt markiert. Solange solche Felder existieren kann
+ein Dialog nicht geschlossen werden.</p>
+
+<p>Mit "Demodaten" können die Felder mit zufälligen Werten gefüllt werden, sodass ein Abspeichern mit "Ok" möglich wird. Dies ist hilfreich, wenn man sich
+nur mit dem Tool vertraut machen will.</p>
+
+
+<h3>Kontextmenu</h3>
+
+<p><img src="anleitung_3_anzeige.png" align="middle"/></p>
+
+<p>Nach dem erstellen eines Auszugs werden im mittleren Bereich die Daten angezeigt. Diese Hauptsicht kann weitere Details zur Verfügung stellen.
+Diese sind über das Kontextmenu rechts erreichbar. </p>
+
+<p>Das Kontextmenu ist zu Beginn sichtbar. Es kann mit den drei Linien auf der <i>rechten</i> oberen Seite ein- und ausgeblendet werden. Zusätzlich
+kann die Steuerung auch über die rechte Maustaste erfolgen. Hinweis: Sind mehrere Details gleichzeitig untereinander angezeigt wird durch die rechte Maustaste jeweils das
+Kontextmenu gesteuert in dem sich der Mauszeiger gerade befindet. Besitzt eine Ansicht kein Kontextmenu (erkenntlich daran dass die drei Linien
+in deren Kopfzeile fehlen) bewirkt die rechte Maustaste nichts.</p>
+
+
+<h3>Details</h3>
+
+<p><img src="anleitung_4_details.png" align="middle"/></p>
+
+<p>Bei Tabellen von Einträgen kann durch ein Doppelklick auf einen Eintrag die Detailsicht zu diesem Eintrag aktiviert werden. Diese wird
+unterhalb der Tabelle angezeigt. Wird danach die Auswahl in der Tabelle geändert, so wird jeweils diese Auswahl unten angezeigt. Dieser
+Mechanismus funktioniert auch über mehrere Stufen von Details.</p>
+
+<p>Wird eine Ansicht geschlossen, so werden alle Ansichten unterhalb dieser Ansicht ebenfalls geschlossen.</p>
+
+<h3>Ansichten Zusammenklappen</h3>
+
+<p><img src="anleitung_5_toolbar.png" align="middle"/></p>
+
+<p>Durch die Mehrstufigkeit der Ansichten kann die gesamte Anzeige vertikal sehr lang werden. Zur Übersichtlichkeit können einzelne Ansichten
+zusammengeklappt werden.</p>
+
+
+<h2>Source Code</h2>
+
+<p>Der Source Code dieser Applikation ist abgelegt auf <a href="https://github.com/BrunoEberhard/open-ech-taxstatement">github</a>.</p>
+
+
+<h2>Rechtliches</h2>
+
+<p>Sofern nicht anders vereinbart unterliegt diese Applikation der AGPL.</p>
+
+<p>Bitte beachten Sie dass diese Applikation auf eigene Gefahr verwendet wird. Es wird keine Garantie für die Sicherheit eingegebener Daten gegeben.
+Bitte verweden Sie keine echten Personen, Firmen oder Auszüge.</p>
+
+<p>Diese Applikation verwendet die Standards von eCH. eCH ist jedoch nicht für diese Applikation verantwortich.</p>
+
+
+<h2>Kontakt</h2>
+
+<p>Für Auskünfte oder Anmerkungen zu dieser Applikation wenden Sie sich an <a href="mailto:mail@openech.ch">mail@openech.ch</a>.</p>
 
 </body>
 </html>
