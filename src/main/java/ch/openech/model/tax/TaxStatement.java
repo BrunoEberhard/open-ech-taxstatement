@@ -128,7 +128,7 @@ xsd:ID attributes cannot have default or fixed values specified.
 		listOfSecurities.depot = new ArrayList<>();
 		for (int i = 1; i < 2 + random.nextInt(3); i++) {
 			SecurityDepot depot = new SecurityDepot();
-			depot.depotNumber = String.valueOf(random.nextLong() % 900000000000000L + 100000000000000L);
+			depot.depotNumber = String.valueOf(random.nextLong() % 90000000000000L + 100000000000000L);
 			listOfSecurities.depot.add(depot);
 			for (int j = 0; j < 1 + random.nextInt(3); j++) {
 				SecuritySecurity security = new SecuritySecurity();
