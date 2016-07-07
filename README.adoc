@@ -28,7 +28,7 @@ finden sich in dem package ch.openech.xml .
 === Open-eCH
 
 Einige Klassen werden aus der Register Applikation von Open-eCH verwendet. Da dazu noch kein offizielles Release
-Management besteht befinden sich eine Teilmenge der Klasse in einem lokalen Repository.
+Management besteht befinden sich eine Teilmenge der Klassen in einem lokalen Repository.
 
 === Kontakt
 
