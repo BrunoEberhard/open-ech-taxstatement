@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.minimalj.model.Keys;
+import org.minimalj.model.annotation.NotEmpty;
 import org.minimalj.model.annotation.Size;
 import org.minimalj.model.annotation.Sizes;
 import org.minimalj.util.mock.Mocking;
@@ -29,6 +30,7 @@ public class Account implements Mocking {
 	
 	public String iban;  // not empty for bank account (may be empty for liability)
 	public String bankAccountNumber;
+	@NotEmpty
 	public String bankAccountName;
 	
 	public CountryIdentification bankAccountCountry;
@@ -68,7 +70,8 @@ public class Account implements Mocking {
 	@Override
 	public void mock() {
 		Random random = new Random();
-		iban = String.valueOf(random.nextInt(900000) + 100000);
+		bankAccountName = "Demokonto " + random.nextInt();
+		iban = String.valueOf(random.nextLong() % 1000000000000000L + 100000000000000L);
 		totalTaxValue = BigDecimal.valueOf(random.nextInt(9000) + 1000);
 		
 		taxValue = new AccountTaxValue();
