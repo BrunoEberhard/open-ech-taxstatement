@@ -19,7 +19,7 @@ public class SecurityDepotTablePage extends TablePageWithDetail<SecurityDepot, S
 	public static final boolean SECURITIES = true;
 	public static final boolean LUMP = false;
 	
-	private static final Object[] columns = {$.depotNumber, $.currency};
+	private static final Object[] columns = {$.depotNumber};
 	private final TaxStatement taxStatement;
 	private final boolean securityDepotType;
 	
@@ -64,7 +64,6 @@ public class SecurityDepotTablePage extends TablePageWithDetail<SecurityDepot, S
 		protected Form<SecurityDepot> createForm() {
 	    	Form<SecurityDepot> form = new Form<SecurityDepot>(1);
 	    	form.line($.depotNumber);
-	    	form.line($.currency);
 	    	return form;
 		}		
 		

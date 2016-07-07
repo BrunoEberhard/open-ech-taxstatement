@@ -16,9 +16,6 @@ public class SecurityDepot {
 	
 	public List<SecuritySecurity> security = new ArrayList<>();
 
-	@NotEmpty @Size(EchFormats.currencyIdISO3)
-	public String currency = "CHF";
-	
 	@NotEmpty @Size(EchFormats.depotNumber)
 	public String depotNumber;
 }
