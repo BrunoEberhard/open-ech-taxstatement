@@ -13,6 +13,7 @@ import org.minimalj.util.mock.Mocking;
 
 import ch.openech.model.EchFormats;
 import ch.openech.model.organisation.UidStructure;
+import ch.openech.util.mock.MockSecurityName;
 
 @Sizes(EchFormats.class)
 public class SecuritySecurity implements Mocking {
@@ -73,7 +74,7 @@ public class SecuritySecurity implements Mocking {
 	
 	@Override
 	public void mock() {
-		securityName = "" + Math.random();
+		securityName = MockSecurityName.getName();
 	}
 
 }
