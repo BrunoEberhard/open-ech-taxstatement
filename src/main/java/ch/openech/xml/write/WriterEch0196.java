@@ -56,7 +56,9 @@ public class WriterEch0196 extends WriterElement {
 				if (name.equals("statementId")) {
 					name = "id";
 				}
-				child.writeAttribute(name, value != null ? value.toString() : "");
+				if (value != null) {
+					child.writeAttribute(name, value.toString());
+				}
 			} else if (EchCode.class.isAssignableFrom(property.getClazz())) {
 				EchCode code = (EchCode) property.getValue(object);
 				child.writeAttribute(name, code != null ? code.getValue() : "");
