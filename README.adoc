@@ -2,8 +2,7 @@
 
 image::doc/taxstatement-edit-reduced.png[]
 
-== Links
-* link:http://openech.ch/produkte.html[Offizielle Produktseite]
+== Link
 * link:https://openech-taxstatement.herokuapp.com/[Live Demo]
  
 == Technische Hinweise zu der Implementierung
