@@ -16,7 +16,7 @@ public class Expense {
 	public static final Expense $ = Keys.of(Expense.class);
 
 	public static enum ExpenseType { ACCOUNT, DEPOT };
-	public transient ExpenseType expenseType = ExpenseType.ACCOUNT;
+	public ExpenseType expenseType = ExpenseType.ACCOUNT;
 	
 	public Object id;
 	

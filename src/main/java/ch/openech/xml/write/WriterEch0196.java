@@ -5,6 +5,7 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.minimalj.model.Keys;
 import org.minimalj.model.properties.Properties;
 import org.minimalj.model.properties.PropertyInterface;
 import org.minimalj.util.FieldUtils;
@@ -12,11 +13,14 @@ import org.minimalj.util.FieldUtils;
 import ch.openech.model.common.Canton;
 import ch.openech.model.common.CountryIdentification;
 import ch.openech.model.organisation.UidStructure;
+import ch.openech.model.tax.Expense;
 import ch.openech.model.tax.TaxStatement;
 import ch.openech.model.types.EchCode;
 
 public class WriterEch0196 extends WriterElement {
 
+	private static String EXPENSE_TYPE = Keys.getProperty(Expense.$.expenseType).getName();
+	
 	protected final EchSchema context;
 	
 	public final String URI;
@@ -69,9 +73,8 @@ public class WriterEch0196 extends WriterElement {
 				Canton canton = (Canton) property.getValue(object);
 				child.writeAttribute(name, canton != null ? canton.id : "");					
 			} else {
-				// Die eigentliche Prüfung wäre hier auf !transient, aber das
-				// lässt sich leider über PropertyInterface nicht mehr ermitteln
-				if (!name.equals("expenseType")) {
+				// expenseType wird nur im Java Modell und nicht vom XML verwendet
+				if (!name.equals(EXPENSE_TYPE)) {
 					elementProperties.add(property);
 				}
 			}
