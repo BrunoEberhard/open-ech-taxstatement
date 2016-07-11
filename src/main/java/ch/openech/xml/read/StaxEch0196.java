@@ -100,13 +100,13 @@ public class StaxEch0196 {
 				PropertyInterface property = Properties.getProperty(object.getClass(), startName);
 				Class<?> elementClass = property.getClazz();
 				if (elementClass == List.class) {
-					Object oldValue = property.getValue(object);
-					if (oldValue == null) {
-						oldValue = new ArrayList<>();
-						property.setValue(object, oldValue);
+					Object list = property.getValue(object);
+					if (list == null) {
+						list = new ArrayList<>();
+						property.setValue(object, list);
 					}
 					Object value = process(xml, GenericUtils.getGenericClass(property.getType()));
-					((List) oldValue).add(value);
+					((List) list).add(value);
 				} else {
 					Object value = process(xml, elementClass);
 					if (!property.isFinal()) {
