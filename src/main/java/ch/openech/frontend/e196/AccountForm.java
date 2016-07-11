@@ -34,5 +34,10 @@ public class AccountForm extends Form<Account> {
 
 		addDependecy($.getHasTaxValue(), $.taxValue);
 	}
+	
+	@Override
+	protected int getColumnWidthPercentage() {
+		return 110;
+	}
 
 }
