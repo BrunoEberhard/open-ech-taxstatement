@@ -24,7 +24,7 @@ public class SecurityDepot implements Mocking {
 	@Override
 	public void mock() {
 		Random random = new Random();
-		depotNumber = "Depot " + String.valueOf(Math.abs(random.nextInt()) % 900000 + 100000);
+		depotNumber = "Depot " + String.valueOf(Math.abs(random.nextInt()) % 900000000 + 100000000);
 		
 		for (int j = 0; j < 1 + random.nextInt(3); j++) {
 			SecuritySecurity security = new SecuritySecurity();
