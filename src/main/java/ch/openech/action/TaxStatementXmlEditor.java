@@ -65,10 +65,15 @@ public class TaxStatementXmlEditor extends Editor<XmlValue, TaxStatement> {
 	@Override
 	protected void validate(XmlValue value, List<ValidationMessage> validationMessages) {
 		if (value.requireValid && !StringUtils.isBlank(value.xml)) {
-			String result = EchSchemaValidation.validate(value.xml);
-			if (!EchSchemaValidation.OK.equals(result)) {
-				validationMessages.add(new ValidationMessage(XmlValue.$.xml, result));
-			}		
+			try {
+				String result = EchSchemaValidation.validate(value.xml);
+				if (!EchSchemaValidation.OK.equals(result)) {
+					validationMessages.add(new ValidationMessage(XmlValue.$.xml, result));
+				}
+			} catch (Exception x) {
+				// todo move this to EchSchemaValidation
+				validationMessages.add(new ValidationMessage(XmlValue.$.xml, "Fehler bei Validierung"));
+			}
 		}
 	}
 	
