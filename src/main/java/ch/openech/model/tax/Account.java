@@ -70,8 +70,13 @@ public class Account implements Mocking {
 	@Override
 	public void mock() {
 		Random random = new Random();
-		bankAccountName = "Demokonto " + Math.abs(random.nextInt());
-		iban = String.valueOf(Math.abs(random.nextLong()) % 900000000000000L + 100000000000000L);
+		Iban iban = new Iban();
+		iban.mock();
+		this.iban = iban.number;
+		bankAccountNumber = this.iban.substring(12).replace(" ", "-");
+		bankAccountName = "Demokonto " + bankAccountNumber.replace("-", "");
+		bankAccountCurrency = "CHF";
+		
 		totalTaxValue = BigDecimal.valueOf(random.nextInt(9000) + 1000);
 		
 		taxValue = new AccountTaxValue();
