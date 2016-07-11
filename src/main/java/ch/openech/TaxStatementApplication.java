@@ -24,14 +24,18 @@ import java.util.List;
 import java.util.Set;
 
 import org.minimalj.application.Application;
+import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.action.ActionGroup;
 import org.minimalj.frontend.page.HtmlPage;
 import org.minimalj.frontend.page.Page;
+import org.minimalj.transaction.criteria.By;
 
 import ch.openech.action.NewTaxStatementAction;
+import ch.openech.action.TaxStatementInitialAction;
 import ch.openech.action.TaxStatementMockAction;
 import ch.openech.action.TaxStatementXmlImport;
+import ch.openech.model.common.Canton;
 import ch.openech.model.common.CountryIdentification;
 import ch.openech.model.tax.TaxStatement;
 
@@ -56,6 +60,11 @@ public class TaxStatementApplication extends Application {
 		actions.add(new NewTaxStatementAction());
 		actions.add(new TaxStatementXmlImport());
 		actions.add(new TaxStatementMockAction());
+
+		// Nach dem Start fehlen die Kantone und Länder in der Datenbank
+		if (Backend.read(Canton.class, By.all(), 1).isEmpty()) {
+			actions.add(new TaxStatementInitialAction());
+		}
 		
 		return Collections.singletonList(actions);
 	}
