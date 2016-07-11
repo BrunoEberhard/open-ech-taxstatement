@@ -22,7 +22,7 @@ public class Expense {
 	
 	public LocalDate referenceDate;
 	
-	@Size(255) // schema is missing size
+	@Size(255) @NotEmpty // schema is missing size
 	public String name;
 	
 	@Enabled("isBankAccount")
