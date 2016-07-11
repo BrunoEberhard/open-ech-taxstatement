@@ -2,12 +2,16 @@ package ch.openech.model.tax;
 
 import java.math.BigDecimal;
 
+import org.minimalj.model.annotation.Size;
 import org.minimalj.model.validation.Validatable;
 import org.minimalj.util.StringUtils;
 import org.minimalj.util.mock.Mocking;
 
+import ch.openech.model.EchFormats;
+
 public class Iban implements Validatable, Mocking {
 
+	@Size(EchFormats.iban)
 	public String number;
 
 	@Override
@@ -16,7 +20,9 @@ public class Iban implements Validatable, Mocking {
 			return null;
 		}
 		
-		if (number.length() < 12) {
+		// 15 ist im Schema als minimale Länge definiert. Ob
+		// das mit Leerzeichen ist ist nicht so klar
+		if (number.length() < 15) {
 			return "Ungültiges Format";
 		}
 		
