@@ -27,8 +27,8 @@ public class TaxStatementInHeapPersistence extends Persistence {
 	private final StaxEch0072 staxEch0072;
 	
 	public TaxStatementInHeapPersistence() {
-		staxEch0071 = new StaxEch0071(TaxStatementInHeapPersistence.class.getClassLoader().getResourceAsStream("eCH0071_canton.xml"));
-		staxEch0072 = new StaxEch0072(TaxStatementInHeapPersistence.class.getClassLoader().getResourceAsStream("eCH0072.xml"));
+		staxEch0071 = new StaxEch0071(getClass().getResourceAsStream("/eCH0071_canton.xml"));
+		staxEch0072 = new StaxEch0072(getClass().getResourceAsStream("/eCH0072.xml"));
 		for (Canton canton : staxEch0071.getCantons()) {
 			insert(canton);
 		}

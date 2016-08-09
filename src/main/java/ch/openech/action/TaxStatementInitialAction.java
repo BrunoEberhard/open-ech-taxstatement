@@ -4,7 +4,6 @@ import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.transaction.Transaction;
 
-import ch.openech.backend.TaxStatementInHeapPersistence;
 import ch.openech.model.common.Canton;
 import ch.openech.model.common.CountryIdentification;
 import ch.openech.xml.read.StaxEch0071;
@@ -21,12 +20,12 @@ public class TaxStatementInitialAction extends Action {
 
 		@Override
 		public Void execute() {
-			StaxEch0072 staxEch0072 = new StaxEch0072(TaxStatementInHeapPersistence.class.getClassLoader().getResourceAsStream("eCH0072.xml"));
+			StaxEch0072 staxEch0072 = new StaxEch0072(getClass().getResourceAsStream("/eCH0072.xml"));
 			for (CountryIdentification country : staxEch0072.getCountryIdentifications()) {
 				Backend.insert(country);
 			}
 			
-			StaxEch0071 staxEch0071 = new StaxEch0071(TaxStatementInHeapPersistence.class.getClassLoader().getResourceAsStream("eCH0071_canton.xml"));
+			StaxEch0071 staxEch0071 = new StaxEch0071(getClass().getResourceAsStream("/eCH0071_canton.xml"));
 			for (Canton canton : staxEch0071.getCantons()) {
 				Backend.insert(canton);
 			}
