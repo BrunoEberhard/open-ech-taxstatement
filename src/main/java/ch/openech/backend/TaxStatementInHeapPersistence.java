@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.minimalj.backend.Persistence;
 import org.minimalj.model.Code;
 import org.minimalj.model.Keys;
 import org.minimalj.model.properties.FlatProperties;
 import org.minimalj.model.properties.PropertyInterface;
-import org.minimalj.transaction.criteria.By;
-import org.minimalj.transaction.criteria.Criteria;
-import org.minimalj.transaction.criteria.FieldCriteria;
+import org.minimalj.persistence.Persistence;
+import org.minimalj.persistence.criteria.By;
+import org.minimalj.persistence.criteria.Criteria;
+import org.minimalj.persistence.criteria.FieldCriteria;
 import org.minimalj.util.CloneHelper;
 import org.minimalj.util.IdUtils;
 import org.minimalj.util.StringUtils;

@@ -29,7 +29,7 @@ import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.action.ActionGroup;
 import org.minimalj.frontend.page.HtmlPage;
 import org.minimalj.frontend.page.Page;
-import org.minimalj.transaction.criteria.By;
+import org.minimalj.persistence.criteria.By;
 
 import ch.openech.action.NewTaxStatementAction;
 import ch.openech.action.TaxStatementInitialAction;

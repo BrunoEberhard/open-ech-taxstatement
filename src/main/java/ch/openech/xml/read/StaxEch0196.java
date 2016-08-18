@@ -16,7 +16,7 @@ import org.minimalj.backend.Backend;
 import org.minimalj.model.Code;
 import org.minimalj.model.properties.Properties;
 import org.minimalj.model.properties.PropertyInterface;
-import org.minimalj.transaction.criteria.By;
+import org.minimalj.persistence.criteria.By;
 import org.minimalj.util.CloneHelper;
 import org.minimalj.util.Codes;
 import org.minimalj.util.FieldUtils;
