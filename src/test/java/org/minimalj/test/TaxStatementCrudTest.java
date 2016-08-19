@@ -1,5 +1,6 @@
 package org.minimalj.test;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.minimalj.application.Application;
 import org.minimalj.backend.Backend;
@@ -8,7 +9,6 @@ import ch.openech.TaxStatementApplication;
 import ch.openech.backend.TaxStatementInHeapPersistence;
 import ch.openech.model.tax.SecuritySecurity;
 import ch.openech.model.tax.TaxStatement;
-import junit.framework.Assert;
 
 public class TaxStatementCrudTest {
 

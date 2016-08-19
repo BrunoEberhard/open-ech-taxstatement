@@ -1,5 +1,6 @@
 package org.minimalj.test;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.minimalj.application.Application;
 import org.minimalj.backend.Backend;
@@ -9,7 +10,6 @@ import ch.openech.backend.TaxStatementInHeapPersistence;
 import ch.openech.model.tax.TaxStatement;
 import ch.openech.xml.read.StaxEch0196;
 import ch.openech.xml.write.WriterEch0196;
-import junit.framework.Assert;
 
 public class TaxStatementXmlTest {
 
