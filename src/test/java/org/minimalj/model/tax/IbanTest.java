@@ -12,7 +12,7 @@ public class IbanTest {
 		for (int i = 0; i<100; i++) {
 			Iban iban = new Iban();
 			iban.mock();
-			Assert.assertTrue("Mock generates invalid iban", iban.validate() == null);
+			Assert.assertTrue(iban.validateNullSafe().isEmpty());
 		}
 	}
 	
@@ -20,30 +20,30 @@ public class IbanTest {
 	public void testValidExample() {
 		Iban iban = new Iban();
 		iban.number = "DE68 2105 0170 0012 3456 78";
-		Assert.assertNull(iban.validate());
+		Assert.assertTrue(iban.validateNullSafe().isEmpty());
 	}
 
 	@Test
 	public void testinvalidExample() {
 		Iban iban = new Iban();
 		iban.number = "DE68 2105 0170 0012 3456 79";
-		Assert.assertNotNull(iban.validate() == null);
+		Assert.assertFalse(iban.validateNullSafe().isEmpty());
 	}
 
 	@Test
 	public void testTooShort() {
 		Iban iban = new Iban();
 		iban.number = "DE6";
-		Assert.assertNotNull(iban.validate() == null);
+		Assert.assertFalse(iban.validateNullSafe().isEmpty());
 	}
 
 	@Test
 	public void testWrongFormat() {
 		Iban iban = new Iban();
 		iban.number = "DE68 2105 0170 0012 3456 6A";
-		Assert.assertNotNull(iban.validate() == null);
+		Assert.assertFalse(iban.validateNullSafe().isEmpty());
 		iban.number = "DEA8 2105 0170 0012 3456 79";
-		Assert.assertNotNull(iban.validate() == null);
+		Assert.assertFalse(iban.validateNullSafe().isEmpty());
 	}
 
 }

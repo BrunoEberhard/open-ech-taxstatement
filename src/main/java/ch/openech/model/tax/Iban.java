@@ -1,21 +1,25 @@
 package ch.openech.model.tax;
 
 import java.math.BigDecimal;
+import java.util.List;
 
+import org.minimalj.model.Keys;
 import org.minimalj.model.annotation.Size;
-import org.minimalj.model.validation.Validatable;
+import org.minimalj.model.validation.Validation;
+import org.minimalj.model.validation.ValidationMessage;
 import org.minimalj.util.StringUtils;
 import org.minimalj.util.mock.Mocking;
 
 import ch.openech.model.EchFormats;
 
-public class Iban implements Validatable, Mocking {
-
+public class Iban implements Validation, Mocking {
+	public static final Iban $ = Keys.of(Iban.class);
+	
 	@Size(EchFormats.iban)
 	public String number;
 
 	@Override
-	public String validate() {
+	public List<ValidationMessage> validate() {
 		if (StringUtils.isEmpty(number)) {
 			return null;
 		}
@@ -23,18 +27,18 @@ public class Iban implements Validatable, Mocking {
 		// 15 ist im Schema als minimale Länge definiert. Ob
 		// das mit Leerzeichen ist ist nicht so klar
 		if (number.length() < 15) {
-			return "Ungültiges Format";
+			return Validation.message($.number, "Ungültiges Format");
 		}
 		
 		for (int i = 0; i<number.length(); i++) {
 			char c = number.charAt(i);
 			if (i < 2) {
 				if (!(c >= 'A' && c <= 'Z')) {
-					return "Ungültiges Format";
+					return Validation.message($.number, "Ungültiges Format");
 				}
 			} else {
 				if (!(Character.isDigit(c) || c == ' ')) {
-					return "Ungültiges Format";
+					return Validation.message($.number, "Ungültiges Format");
 				}
 			}
 		}
@@ -43,7 +47,7 @@ public class Iban implements Validatable, Mocking {
 		int checksum = checksum(countryAtEnd);
 		
 		if (checksum != 1) {
-			return "Ungültige IBAN";
+			return Validation.message($.number, "Ungültige IBAN");
 		}
 		
 		return null;
