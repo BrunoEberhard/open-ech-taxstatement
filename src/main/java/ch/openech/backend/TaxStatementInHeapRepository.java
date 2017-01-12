@@ -8,7 +8,7 @@ import org.minimalj.model.Code;
 import org.minimalj.model.Keys;
 import org.minimalj.model.properties.FlatProperties;
 import org.minimalj.model.properties.PropertyInterface;
-import org.minimalj.persistence.Persistence;
+import org.minimalj.persistence.Repository;
 import org.minimalj.persistence.criteria.By;
 import org.minimalj.persistence.criteria.Criteria;
 import org.minimalj.persistence.criteria.FieldCriteria;
@@ -21,12 +21,12 @@ import ch.openech.model.common.CountryIdentification;
 import ch.openech.xml.read.StaxEch0071;
 import ch.openech.xml.read.StaxEch0072;
 
-public class TaxStatementInHeapPersistence extends Persistence {
+public class TaxStatementInHeapRepository extends Repository {
 	
 	private final StaxEch0071 staxEch0071;
 	private final StaxEch0072 staxEch0072;
 	
-	public TaxStatementInHeapPersistence() {
+	public TaxStatementInHeapRepository() {
 		staxEch0071 = new StaxEch0071(getClass().getResourceAsStream("/eCH0071_canton.xml"));
 		staxEch0072 = new StaxEch0072(getClass().getResourceAsStream("/eCH0072.xml"));
 		for (Canton canton : staxEch0071.getCantons()) {

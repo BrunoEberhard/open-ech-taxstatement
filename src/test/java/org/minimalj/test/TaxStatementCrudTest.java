@@ -6,7 +6,7 @@ import org.minimalj.application.Application;
 import org.minimalj.backend.Backend;
 
 import ch.openech.TaxStatementApplication;
-import ch.openech.backend.TaxStatementInHeapPersistence;
+import ch.openech.backend.TaxStatementInHeapRepository;
 import ch.openech.model.tax.SecuritySecurity;
 import ch.openech.model.tax.TaxStatement;
 
@@ -15,7 +15,7 @@ public class TaxStatementCrudTest {
 	@Test
 	public void testCrud() {
 		Application.setThreadInstance(new TaxStatementApplication());
-		Backend.getInstance().setPersistence(new TaxStatementInHeapPersistence());
+		Backend.getInstance().setRepository(new TaxStatementInHeapRepository());
 		
 		TaxStatement taxStatement = new TaxStatement();
 		taxStatement.mock();
