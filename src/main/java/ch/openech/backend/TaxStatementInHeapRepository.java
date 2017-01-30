@@ -8,10 +8,11 @@ import org.minimalj.model.Code;
 import org.minimalj.model.Keys;
 import org.minimalj.model.properties.FlatProperties;
 import org.minimalj.model.properties.PropertyInterface;
-import org.minimalj.persistence.Repository;
-import org.minimalj.persistence.criteria.By;
-import org.minimalj.persistence.criteria.Criteria;
-import org.minimalj.persistence.criteria.FieldCriteria;
+import org.minimalj.repository.Repository;
+import org.minimalj.repository.criteria.By;
+import org.minimalj.repository.criteria.Criteria;
+import org.minimalj.repository.criteria.FieldCriteria;
+import org.minimalj.repository.sql.LazyList;
 import org.minimalj.util.CloneHelper;
 import org.minimalj.util.IdUtils;
 import org.minimalj.util.StringUtils;
@@ -21,7 +22,7 @@ import ch.openech.model.common.CountryIdentification;
 import ch.openech.xml.read.StaxEch0071;
 import ch.openech.xml.read.StaxEch0072;
 
-public class TaxStatementInHeapRepository extends Repository {
+public class TaxStatementInHeapRepository implements Repository {
 	
 	private final StaxEch0071 staxEch0071;
 	private final StaxEch0072 staxEch0072;
@@ -83,20 +84,20 @@ public class TaxStatementInHeapRepository extends Repository {
 	}
 	
 	@Override
-	public <ELEMENT> List<ELEMENT> getList(String listName, Object parentId) {
-		throw new IllegalStateException("LazyList should not be needed with " + this.getClass().getSimpleName());
-	}
-	
-	@Override
-	public <ELEMENT> ELEMENT add(String listName, Object parentId, ELEMENT element) {
+	public <ELEMENT, PARENT> List<ELEMENT> getList(LazyList<PARENT, ELEMENT> list) {
 		throw new IllegalStateException("LazyList should not be needed with " + this.getClass().getSimpleName());
 	}
 
 	@Override
-	public void remove(String listName, Object parentId, int position) {
+	public <ELEMENT, PARENT> ELEMENT add(LazyList<PARENT, ELEMENT> list, ELEMENT element) {
 		throw new IllegalStateException("LazyList should not be needed with " + this.getClass().getSimpleName());
 	}
-	
+
+	@Override
+	public <ELEMENT, PARENT> void remove(LazyList<PARENT, ELEMENT> list, int position) {
+		throw new IllegalStateException("LazyList should not be needed with " + this.getClass().getSimpleName());
+	}
+
 	private static void markInMemoryObject(Object object) {
 		markInHeapObject(object, new ArrayList<>());
 	}
@@ -146,16 +147,6 @@ public class TaxStatementInHeapRepository extends Repository {
 			return super.add(object);
 		}
 		
-	}
-
-	@Override
-	public void startTransaction(int transactionIsolationLevel) {
-		// not supported
-	}
-	
-	@Override
-	public void endTransaction(boolean commit) {
-		// not supported
 	}
 	
 }
