@@ -16,7 +16,7 @@ import org.minimalj.backend.Backend;
 import org.minimalj.model.Code;
 import org.minimalj.model.properties.Properties;
 import org.minimalj.model.properties.PropertyInterface;
-import org.minimalj.repository.criteria.By;
+import org.minimalj.repository.query.By;
 import org.minimalj.util.CloneHelper;
 import org.minimalj.util.Codes;
 import org.minimalj.util.FieldUtils;
@@ -128,7 +128,7 @@ public class StaxEch0196 {
 	private CountryIdentification countryIdentification(String iso) {
 		CountryIdentification country = null;
 		if (!StringUtils.isBlank(iso)) {
-			List<CountryIdentification> countries = Backend.read(CountryIdentification.class, By.field(CountryIdentification.$.countryIdISO2, iso), 1);
+			List<CountryIdentification> countries = Backend.find(CountryIdentification.class, By.field(CountryIdentification.$.countryIdISO2, iso));
 			if (!countries.isEmpty()) {
 				country = countries.get(0);
 			} else {

@@ -29,12 +29,13 @@ import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.action.ActionGroup;
 import org.minimalj.frontend.page.HtmlPage;
 import org.minimalj.frontend.page.Page;
-import org.minimalj.repository.criteria.By;
+import org.minimalj.repository.query.By;
 
 import ch.openech.action.NewTaxStatementAction;
 import ch.openech.action.TaxStatementInitialAction;
 import ch.openech.action.TaxStatementMockAction;
 import ch.openech.action.TaxStatementXmlImport;
+import ch.openech.backend.TaxStatementInHeapRepository;
 import ch.openech.model.common.Canton;
 import ch.openech.model.common.CountryIdentification;
 import ch.openech.model.tax.TaxStatement;
@@ -42,7 +43,7 @@ import ch.openech.model.tax.TaxStatement;
 public class TaxStatementApplication extends Application {
 
 	public TaxStatementApplication() {
-		
+		Backend.getInstance().setRepository(new TaxStatementInHeapRepository());
 	}
 	
 	@Override
@@ -62,7 +63,7 @@ public class TaxStatementApplication extends Application {
 		actions.add(new TaxStatementMockAction());
 
 		// Nach dem Start fehlen die Kantone und Länder in der Datenbank
-		if (Backend.read(Canton.class, By.all(), 1).isEmpty()) {
+		if (Backend.find(Canton.class, By.all()).isEmpty()) {
 			actions.add(new TaxStatementInitialAction());
 		}
 		

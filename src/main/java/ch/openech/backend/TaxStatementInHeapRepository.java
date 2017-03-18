@@ -9,10 +9,9 @@ import org.minimalj.model.Keys;
 import org.minimalj.model.properties.FlatProperties;
 import org.minimalj.model.properties.PropertyInterface;
 import org.minimalj.repository.Repository;
-import org.minimalj.repository.criteria.By;
-import org.minimalj.repository.criteria.Criteria;
-import org.minimalj.repository.criteria.FieldCriteria;
-import org.minimalj.repository.sql.LazyList;
+import org.minimalj.repository.query.By;
+import org.minimalj.repository.query.FieldCriteria;
+import org.minimalj.repository.query.Query;
 import org.minimalj.util.CloneHelper;
 import org.minimalj.util.IdUtils;
 import org.minimalj.util.StringUtils;
@@ -56,12 +55,12 @@ public class TaxStatementInHeapRepository implements Repository {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> List<T> read(Class<T> clazz, Criteria criteria, int maxResults) {
+	public <T> List<T> find(Class<T> clazz, Query query) {
 		if (clazz == CountryIdentification.class) {
-			if (criteria == By.ALL) {
+			if (query == By.ALL) {
 				return (List<T>) staxEch0072.getCountryIdentifications();
-			} else if (criteria instanceof FieldCriteria) {
-				FieldCriteria fieldCriteria = (FieldCriteria) criteria;
+			} else if (query instanceof FieldCriteria) {
+				FieldCriteria fieldCriteria = (FieldCriteria) query;
 				if (fieldCriteria.getPath().equals(Keys.getProperty(CountryIdentification.$.countryIdISO2).getPath())) {
 					List countries = new ArrayList();
 					for (CountryIdentification c : staxEch0072.getCountryIdentifications()) {
@@ -79,25 +78,15 @@ public class TaxStatementInHeapRepository implements Repository {
 	}
 
 	@Override
+	public <T> long count(Class<T> clazz, Query query) {
+		return find(clazz, query).size();
+	}
+	
+	@Override
 	public <T> void delete(Class<T> clazz, Object id) {
 		throw new RuntimeException("Not supported");
 	}
 	
-	@Override
-	public <ELEMENT, PARENT> List<ELEMENT> getList(LazyList<PARENT, ELEMENT> list) {
-		throw new IllegalStateException("LazyList should not be needed with " + this.getClass().getSimpleName());
-	}
-
-	@Override
-	public <ELEMENT, PARENT> ELEMENT add(LazyList<PARENT, ELEMENT> list, ELEMENT element) {
-		throw new IllegalStateException("LazyList should not be needed with " + this.getClass().getSimpleName());
-	}
-
-	@Override
-	public <ELEMENT, PARENT> void remove(LazyList<PARENT, ELEMENT> list, int position) {
-		throw new IllegalStateException("LazyList should not be needed with " + this.getClass().getSimpleName());
-	}
-
 	private static void markInMemoryObject(Object object) {
 		markInHeapObject(object, new ArrayList<>());
 	}
