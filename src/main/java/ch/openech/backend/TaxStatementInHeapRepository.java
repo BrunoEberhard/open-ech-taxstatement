@@ -62,13 +62,13 @@ public class TaxStatementInHeapRepository implements Repository {
 			} else if (query instanceof FieldCriteria) {
 				FieldCriteria fieldCriteria = (FieldCriteria) query;
 				if (fieldCriteria.getPath().equals(Keys.getProperty(CountryIdentification.$.countryIdISO2).getPath())) {
-					List countries = new ArrayList();
+					List<CountryIdentification> countries = new ArrayList<CountryIdentification>();
 					for (CountryIdentification c : staxEch0072.getCountryIdentifications()) {
 						if (StringUtils.equals(c.countryIdISO2, (String) fieldCriteria.getValue())) {
 							countries.add(c);
 						}
 					}
-					return countries;
+					return (List<T>) countries;
 				}
 			}
 		} else if (clazz == Canton.class) {
