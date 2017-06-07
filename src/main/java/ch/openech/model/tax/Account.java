@@ -51,7 +51,7 @@ public class Account implements Mocking {
 	//
 	
 	public Boolean getHasTaxValue() {
-		if (Keys.isKeyObject(this)) return Keys.methodOf(this, "hasTaxValue", Boolean.class);
+		if (Keys.isKeyObject(this)) return Keys.methodOf(this, "hasTaxValue");
 		return taxValue != null;
 	}
 

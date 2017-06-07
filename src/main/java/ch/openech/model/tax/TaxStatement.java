@@ -94,7 +94,7 @@ xsd:ID attributes cannot have default or fixed values specified.
 	public BigDecimal totalWithHoldingTaxClaim;
 	
 	public Client getMainClient() {
-		if (Keys.isKeyObject(this)) return Keys.methodOf(this, "mainClient", Client.class);
+		if (Keys.isKeyObject(this)) return Keys.methodOf(this, "mainClient");
 		if (client.isEmpty()) {
 			client.add(new Client());
 		}
