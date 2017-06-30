@@ -1,6 +1,6 @@
 package ch.openech.frontend.e196;
 
-import static ch.openech.model.tax.Account.*;
+import static ch.openech.model.tax.Account.$;
 
 import org.minimalj.frontend.form.Form;
 import org.minimalj.model.Keys;
@@ -32,6 +32,7 @@ public class AccountForm extends Form<Account> {
 			line($.totalGrossRevenueB, $.totalTaxValue);
 		}
 
+		// wenn hasTaxValue auf false gesetzt wird sollen die Werte in taxValue verschwinden
 		addDependecy($.getHasTaxValue(), $.taxValue);
 	}
 	
