@@ -3,10 +3,10 @@ package org.minimalj.test;
 import org.junit.Assert;
 import org.junit.Test;
 import org.minimalj.application.Application;
-import org.minimalj.backend.Backend;
+import org.minimalj.application.Configuration;
+import org.minimalj.repository.memory.InMemoryRepository;
 
 import ch.openech.TaxStatementApplication;
-import ch.openech.backend.TaxStatementInHeapRepository;
 import ch.openech.model.tax.TaxStatement;
 import ch.openech.xml.read.StaxEch0196;
 import ch.openech.xml.write.WriterEch0196;
@@ -16,7 +16,7 @@ public class TaxStatementXmlTest {
 	@Test
 	public void testXmlConversion() {
 		Application.setThreadInstance(new TaxStatementApplication());
-		Backend.getInstance().setRepository(new TaxStatementInHeapRepository());
+		Configuration.set("MjRepository", InMemoryRepository.class.getName());
 		
 		TaxStatement taxStatementOriginal = new TaxStatement();
 		taxStatementOriginal.mock();

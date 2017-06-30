@@ -3,10 +3,11 @@ package org.minimalj.test;
 import org.junit.Assert;
 import org.junit.Test;
 import org.minimalj.application.Application;
+import org.minimalj.application.Configuration;
 import org.minimalj.backend.Backend;
+import org.minimalj.repository.memory.InMemoryRepository;
 
 import ch.openech.TaxStatementApplication;
-import ch.openech.backend.TaxStatementInHeapRepository;
 import ch.openech.model.tax.SecuritySecurity;
 import ch.openech.model.tax.TaxStatement;
 
@@ -15,7 +16,7 @@ public class TaxStatementCrudTest {
 	@Test
 	public void testCrud() {
 		Application.setThreadInstance(new TaxStatementApplication());
-		Backend.getInstance().setRepository(new TaxStatementInHeapRepository());
+		Configuration.set("MjRepository", InMemoryRepository.class.getName());
 		
 		TaxStatement taxStatement = new TaxStatement();
 		taxStatement.mock();

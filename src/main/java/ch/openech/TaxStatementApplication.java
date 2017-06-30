@@ -24,18 +24,20 @@ import java.util.List;
 import java.util.Set;
 
 import org.minimalj.application.Application;
+import org.minimalj.application.Configuration;
 import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.action.ActionGroup;
+import org.minimalj.frontend.impl.nanoserver.NanoWebServer;
 import org.minimalj.frontend.page.HtmlPage;
 import org.minimalj.frontend.page.Page;
+import org.minimalj.repository.memory.InMemoryRepository;
 import org.minimalj.repository.query.By;
 
 import ch.openech.action.NewTaxStatementAction;
 import ch.openech.action.TaxStatementInitialAction;
 import ch.openech.action.TaxStatementMockAction;
 import ch.openech.action.TaxStatementXmlImport;
-import ch.openech.backend.TaxStatementInHeapRepository;
 import ch.openech.model.common.Canton;
 import ch.openech.model.common.CountryIdentification;
 import ch.openech.model.tax.TaxStatement;
@@ -43,7 +45,10 @@ import ch.openech.model.tax.TaxStatement;
 public class TaxStatementApplication extends Application {
 
 	public TaxStatementApplication() {
-		Backend.getInstance().setRepository(new TaxStatementInHeapRepository());
+		if (!Configuration.available("MjRepository")) {
+			Configuration.set("MjRepository", InMemoryRepository.class.getName());
+		}
+		Configuration.set("MjInit", TaxStatementInit.class.getName());
 	}
 	
 	@Override
