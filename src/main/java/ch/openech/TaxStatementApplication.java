@@ -18,21 +18,22 @@
 */
 package ch.openech;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import org.minimalj.application.Application;
 import org.minimalj.application.Configuration;
 import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.action.ActionGroup;
-import org.minimalj.frontend.impl.nanoserver.NanoWebServer;
 import org.minimalj.frontend.page.HtmlPage;
 import org.minimalj.frontend.page.Page;
 import org.minimalj.repository.memory.InMemoryRepository;
 import org.minimalj.repository.query.By;
+import org.minimalj.util.resources.MultiResourceBundle;
 
 import ch.openech.action.NewTaxStatementAction;
 import ch.openech.action.TaxStatementInitialAction;
@@ -52,14 +53,14 @@ public class TaxStatementApplication extends Application {
 	}
 	
 	@Override
-	protected Set<String> getResourceBundleNames() {
-		Set<String> resourceBundleNames = new HashSet<>();
-		resourceBundleNames.add(this.getClass().getName());
-		resourceBundleNames.add(this.getClass().getName() + "_xml");
-		resourceBundleNames.add("OpenEch");
-		return resourceBundleNames;
+	public ResourceBundle getResourceBundle(Locale locale) {
+		List<ResourceBundle> resourceBundles = new ArrayList<>();
+		resourceBundles.add(ResourceBundle.getBundle(this.getClass().getName(), locale));
+		resourceBundles.add(ResourceBundle.getBundle(this.getClass().getName()+ "_xml", locale));
+		resourceBundles.add(ResourceBundle.getBundle("OpenEch", locale));
+		return new MultiResourceBundle(resourceBundles);
 	}
-	
+
 	@Override
 	public List<Action> getNavigation() {
 		ActionGroup actions = new ActionGroup("Steuerauszug");
