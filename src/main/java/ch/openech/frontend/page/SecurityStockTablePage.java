@@ -1,6 +1,6 @@
 package ch.openech.frontend.page;
 
-import static ch.openech.model.tax.SecurityStock.*;
+import static ch.openech.model.tax.SecurityStock.$;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,7 @@ import ch.openech.frontend.e196.SecurityStockForm;
 import ch.openech.model.tax.SecuritySecurity;
 import ch.openech.model.tax.SecurityStock;
 
+//die TablePage könnten mit den neuen Unterklassen ab MJ 1.13.0.0 vereinfacht werden
 public class SecurityStockTablePage extends TablePageWithDetail<SecurityStock, SecurityStockPage> {
 	public static final Object[] COLUMNS = {$.referenceDate, $.name, $.quantity};
 
@@ -51,7 +52,7 @@ public class SecurityStockTablePage extends TablePageWithDetail<SecurityStock, S
 		return page;
 	}
 	
-	public class NewSecurityStockEditor extends NewDetailEditor<SecurityStock> {
+	public class NewSecurityStockEditor extends NewDetailEditor{
 		@Override
 		protected Form<SecurityStock> createForm() {
 			return new SecurityStockForm(Form.EDITABLE);

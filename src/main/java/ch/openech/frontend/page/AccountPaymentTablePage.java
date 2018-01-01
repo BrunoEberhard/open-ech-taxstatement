@@ -1,6 +1,6 @@
 package ch.openech.frontend.page;
 
-import static ch.openech.model.tax.AccountPayment.*;
+import static ch.openech.model.tax.AccountPayment.$;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -16,6 +16,7 @@ import ch.openech.frontend.e196.AccountPaymentForm;
 import ch.openech.model.tax.Account;
 import ch.openech.model.tax.AccountPayment;
 
+//die TablePage könnten mit den neuen Unterklassen ab MJ 1.13.0.0 vereinfacht werden
 public class AccountPaymentTablePage extends TablePageWithDetail<AccountPayment, AccountPaymentPage> {
 	public static final Object[] COLUMNS = {$.paymentDate, $.paymentDate, $.amountCurrency, $.amount};
 
@@ -62,7 +63,7 @@ public class AccountPaymentTablePage extends TablePageWithDetail<AccountPayment,
 		return page;
 	}
 	
-	public class NewBankAccountPaymentEditor extends NewDetailEditor<AccountPayment> {
+	public class NewBankAccountPaymentEditor extends NewDetailEditor {
 		@Override
 		protected Form<AccountPayment> createForm() {
 			return new AccountPaymentForm(Form.EDITABLE,  Account.BANK_ACCOUNT);

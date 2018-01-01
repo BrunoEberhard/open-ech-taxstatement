@@ -1,6 +1,6 @@
 package ch.openech.frontend.page;
 
-import static ch.openech.model.tax.SecurityPayment.*;
+import static ch.openech.model.tax.SecurityPayment.$;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,7 @@ import ch.openech.frontend.e196.SecurityPaymentForm;
 import ch.openech.model.tax.SecurityPayment;
 import ch.openech.model.tax.SecuritySecurity;
 
+//die TablePage könnten mit den neuen Unterklassen ab MJ 1.13.0.0 vereinfacht werden
 public class SecurityPaymentTablePage extends TablePageWithDetail<SecurityPayment, SecurityPaymentPage> {
 	public static final Object[] COLUMNS = {$.paymentDate, $.paymentDate, $.amountCurrency, $.amount};
 
@@ -51,7 +52,7 @@ public class SecurityPaymentTablePage extends TablePageWithDetail<SecurityPaymen
 		return page;
 	}
 	
-	public class NewBankSecurityPaymentEditor extends NewDetailEditor<SecurityPayment> {
+	public class NewBankSecurityPaymentEditor extends NewDetailEditor {
 		@Override
 		protected Form<SecurityPayment> createForm() {
 			return new SecurityPaymentForm(Form.EDITABLE);

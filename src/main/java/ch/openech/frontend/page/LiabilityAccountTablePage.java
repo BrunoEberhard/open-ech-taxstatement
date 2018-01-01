@@ -12,6 +12,7 @@ import ch.openech.frontend.e196.AccountForm;
 import ch.openech.model.tax.Account;
 import ch.openech.model.tax.TaxStatement;
 
+// die TablePage könnten mit den neuen Unterklassen ab MJ 1.13.0.0 vereinfacht werden
 // pretty much the same as BankAccountTablePage
 public class LiabilityAccountTablePage extends TablePageWithDetail<Account, AccountPage> {
 
@@ -45,10 +46,10 @@ public class LiabilityAccountTablePage extends TablePageWithDetail<Account, Acco
 		return page;
 	}
 	
-	public class NewLiabilityAccountEditor extends NewDetailEditor<Account> {
+	public class NewLiabilityAccountEditor extends NewDetailEditor {
 		@Override
 		protected Form<Account> createForm() {
-			return new AccountForm(Form.EDITABLE,  Account.LIABILITY_ACCOUNT);
+			return new AccountForm(Form.EDITABLE, Account.LIABILITY_ACCOUNT);
 		}		
 
 		@Override

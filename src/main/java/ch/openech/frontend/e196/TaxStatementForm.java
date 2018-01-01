@@ -1,6 +1,6 @@
 package ch.openech.frontend.e196;
 
-import static ch.openech.model.tax.TaxStatement.*;
+import static ch.openech.model.tax.TaxStatement.$;
 
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.form.element.TextFormElement;
@@ -15,7 +15,7 @@ public class TaxStatementForm extends Form<TaxStatement> {
 		
 		addTitle("Steuerauszug");
 		line($.taxPeriod, $.statementId, $.minorVersion, $.creationDate);
-		line($.periodFrom, $.periodTo, editable ? new CantonFormElement($.canton) : new TextFormElement($.canton));
+		line($.periodFrom, $.periodTo, editable ? new CantonFormElement($.canton) : new TextFormElement($.canton.id));
 		line($.institution.name, $.institution.lei, $.institution.uid.value);
 
 		addTitle("Kunde");

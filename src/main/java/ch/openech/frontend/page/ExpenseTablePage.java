@@ -1,6 +1,6 @@
 package ch.openech.frontend.page;
 
-import static ch.openech.model.tax.Expense.*;
+import static ch.openech.model.tax.Expense.$;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,7 @@ import ch.openech.frontend.e196.ExpenseForm;
 import ch.openech.model.tax.Expense;
 import ch.openech.model.tax.TaxStatement;
 
+//die TablePage könnten mit den neuen Unterklassen ab MJ 1.13.0.0 vereinfacht werden
 public class ExpenseTablePage extends TablePageWithDetail<Expense, ExpensePage> {
 	public static final Object[] COLUMNS = {$.referenceDate, $.name, $.amountCurrency, $.amount};
 
@@ -46,7 +47,7 @@ public class ExpenseTablePage extends TablePageWithDetail<Expense, ExpensePage> 
 		return page;
 	}
 	
-	public class NewBankExpenseEditor extends NewDetailEditor<Expense> {
+	public class NewBankExpenseEditor extends NewDetailEditor {
 		@Override
 		protected Form<Expense> createForm() {
 			return new ExpenseForm(Form.EDITABLE);

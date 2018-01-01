@@ -1,6 +1,6 @@
 package ch.openech.frontend.page;
 
-import static ch.openech.model.tax.SecurityTaxValue.*;
+import static ch.openech.model.tax.SecurityTaxValue.$;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,7 @@ import ch.openech.frontend.e196.SecurityTaxValueForm;
 import ch.openech.model.tax.SecuritySecurity;
 import ch.openech.model.tax.SecurityTaxValue;
 
+//die TablePage könnten mit den neuen Unterklassen ab MJ 1.13.0.0 vereinfacht werden
 public class SecurityTaxValueTablePage extends TablePageWithDetail<SecurityTaxValue, SecurityTaxValuePage> {
 	public static final Object[] COLUMNS = {$.referenceDate, $.name, $.quantity};
 
@@ -51,7 +52,7 @@ public class SecurityTaxValueTablePage extends TablePageWithDetail<SecurityTaxVa
 		return page;
 	}
 	
-	public class NewSecurityTaxValueEditor extends NewDetailEditor<SecurityTaxValue> {
+	public class NewSecurityTaxValueEditor extends NewDetailEditor {
 		@Override
 		protected Form<SecurityTaxValue> createForm() {
 			return new SecurityTaxValueForm(Form.EDITABLE);
