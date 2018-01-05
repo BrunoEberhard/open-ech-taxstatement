@@ -7,14 +7,14 @@ import java.util.List;
 
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
-import org.minimalj.frontend.page.TablePage.TablePageWithDetail;
+import org.minimalj.frontend.page.SimpleTableEditorPage;
 
 import ch.openech.frontend.e196.SecurityPaymentForm;
 import ch.openech.model.tax.SecurityPayment;
 import ch.openech.model.tax.SecuritySecurity;
 
 //die TablePage könnten mit den neuen Unterklassen ab MJ 1.13.0.0 vereinfacht werden
-public class SecurityPaymentTablePage extends TablePageWithDetail<SecurityPayment, SecurityPaymentPage> {
+public class SecurityPaymentTablePage extends SimpleTableEditorPage<SecurityPayment> {
 	public static final Object[] COLUMNS = {$.paymentDate, $.paymentDate, $.amountCurrency, $.amount};
 
 	private SecuritySecurity security;
@@ -35,33 +35,25 @@ public class SecurityPaymentTablePage extends TablePageWithDetail<SecurityPaymen
 	}
 	
 	@Override
-	public List<Action> getActions() {
+	public List<Action> getTableActions() {
 		List<Action> actions = new ArrayList<>();
-		actions.add(new NewBankSecurityPaymentEditor());
+		actions.add(new TableNewObjectEditor());
 		return actions;
 	}
 
 	@Override
-	protected SecurityPaymentPage createDetailPage(SecurityPayment payment) {
+	protected SecurityPaymentPage getDetailPage(SecurityPayment payment) {
 		return new SecurityPaymentPage(payment);
 	}
 	
 	@Override
-	protected SecurityPaymentPage updateDetailPage(SecurityPaymentPage page, SecurityPayment payment) {
-		page.setObject(payment);
-		return page;
+	protected Form<SecurityPayment> createForm(boolean editable, boolean newObject) {
+		return new SecurityPaymentForm(editable);
 	}
-	
-	public class NewBankSecurityPaymentEditor extends NewDetailEditor {
-		@Override
-		protected Form<SecurityPayment> createForm() {
-			return new SecurityPaymentForm(Form.EDITABLE);
-		}		
-		
-		@Override
-		protected SecurityPayment save(SecurityPayment changedObject) {
-			security.payment.add(changedObject);
-			return changedObject;
-		}
+
+	@Override
+	protected SecurityPayment save(SecurityPayment changedObject) {
+		security.payment.add(changedObject);
+		return changedObject;
 	}
 }

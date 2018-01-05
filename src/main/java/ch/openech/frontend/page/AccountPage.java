@@ -8,6 +8,7 @@ import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.page.DetailPageAction;
 import org.minimalj.frontend.page.ObjectPage;
+import org.minimalj.frontend.page.TablePage;
 import org.minimalj.util.resources.Resources;
 
 import ch.openech.frontend.e196.AccountForm;
@@ -15,11 +16,13 @@ import ch.openech.model.tax.Account;
 
 public class AccountPage extends ObjectPage<Account> {
 	
+	private final TablePage<?> tablePage;
 	private final boolean accountType;
 	private AccountPaymentTablePage paymentTablePage;
 	
-	public AccountPage(Account account, boolean accountType) {
+	public AccountPage(TablePage<?> tablePage, Account account, boolean accountType) {
 		super(account);
+		this.tablePage = tablePage;
 		this.accountType = accountType;
 		
 		paymentTablePage = new AccountPaymentTablePage(account, accountType);
@@ -64,6 +67,12 @@ public class AccountPage extends ObjectPage<Account> {
 		@Override
 		protected Account save(Account object) {
 			return Backend.save(object);
+		}
+		
+		@Override
+		protected void finished(Account result) {
+			super.finished(result);
+			tablePage.refresh();
 		}
 		
 	}

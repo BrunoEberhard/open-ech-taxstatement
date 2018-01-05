@@ -1,6 +1,7 @@
 package ch.openech.model.tax;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.minimalj.model.Keys;
@@ -16,7 +17,7 @@ import ch.openech.model.EchFormats;
 public class ListOfAccounts implements Rendering {
 	public static final ListOfAccounts $ = Keys.of(ListOfAccounts.class);
 	
-	public List<Account> bankAccount;
+	public List<Account> bankAccount = new ArrayList<>();
 	
 	@NotEmpty @Size(EchFormats.currencyIdISO3)
 	public String currency = "CHF";

@@ -7,14 +7,14 @@ import java.util.List;
 
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
-import org.minimalj.frontend.page.TablePage.TablePageWithDetail;
+import org.minimalj.frontend.page.SimpleTableEditorPage;
 
 import ch.openech.frontend.e196.SecurityStockForm;
 import ch.openech.model.tax.SecuritySecurity;
 import ch.openech.model.tax.SecurityStock;
 
 //die TablePage könnten mit den neuen Unterklassen ab MJ 1.13.0.0 vereinfacht werden
-public class SecurityStockTablePage extends TablePageWithDetail<SecurityStock, SecurityStockPage> {
+public class SecurityStockTablePage extends SimpleTableEditorPage<SecurityStock> {
 	public static final Object[] COLUMNS = {$.referenceDate, $.name, $.quantity};
 
 	private SecuritySecurity security;
@@ -35,33 +35,26 @@ public class SecurityStockTablePage extends TablePageWithDetail<SecurityStock, S
 	}
 	
 	@Override
-	public List<Action> getActions() {
+	public List<Action> getTableActions() {
 		List<Action> actions = new ArrayList<>();
-		actions.add(new NewSecurityStockEditor());
+		actions.add(new TableNewObjectEditor());
 		return actions;
 	}
 
 	@Override
-	protected SecurityStockPage createDetailPage(SecurityStock payment) {
+	protected SecurityStockPage getDetailPage(SecurityStock payment) {
 		return new SecurityStockPage(payment);
 	}
-	
+
 	@Override
-	protected SecurityStockPage updateDetailPage(SecurityStockPage page, SecurityStock payment) {
-		page.setObject(payment);
-		return page;
+	protected Form<SecurityStock> createForm(boolean editable, boolean newObject) {
+		return new SecurityStockForm(editable);
 	}
-	
-	public class NewSecurityStockEditor extends NewDetailEditor{
-		@Override
-		protected Form<SecurityStock> createForm() {
-			return new SecurityStockForm(Form.EDITABLE);
-		}		
-		
-		@Override
-		protected SecurityStock save(SecurityStock changedObject) {
-			security.stock.add(changedObject);
-			return changedObject;
-		}
+
+	@Override
+	protected SecurityStock save(SecurityStock changedObject) {
+		security.stock.add(changedObject);
+		return changedObject;
 	}
+
 }

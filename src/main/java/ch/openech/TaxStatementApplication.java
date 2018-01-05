@@ -29,6 +29,7 @@ import org.minimalj.application.Configuration;
 import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.action.ActionGroup;
+import org.minimalj.frontend.impl.nanoserver.NanoWebServer;
 import org.minimalj.frontend.page.HtmlPage;
 import org.minimalj.frontend.page.Page;
 import org.minimalj.repository.memory.InMemoryRepository;
@@ -84,5 +85,9 @@ public class TaxStatementApplication extends Application {
 	@Override
 	public Page createDefaultPage() {
 		return new HtmlPage("TaxStatement_Hilfe.html", "Hinweise zu Steuerauszug (Open-eCH)");
+	}
+	
+	public static void main(String[] args) {
+		NanoWebServer.start(new TaxStatementApplication());
 	}
 }

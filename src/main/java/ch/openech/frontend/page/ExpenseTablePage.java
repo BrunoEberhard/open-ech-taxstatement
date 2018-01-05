@@ -7,14 +7,14 @@ import java.util.List;
 
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
-import org.minimalj.frontend.page.TablePage.TablePageWithDetail;
+import org.minimalj.frontend.page.SimpleTableEditorPage;
 
 import ch.openech.frontend.e196.ExpenseForm;
 import ch.openech.model.tax.Expense;
 import ch.openech.model.tax.TaxStatement;
 
 //die TablePage könnten mit den neuen Unterklassen ab MJ 1.13.0.0 vereinfacht werden
-public class ExpenseTablePage extends TablePageWithDetail<Expense, ExpensePage> {
+public class ExpenseTablePage extends SimpleTableEditorPage<Expense> {
 	public static final Object[] COLUMNS = {$.referenceDate, $.name, $.amountCurrency, $.amount};
 
 	private final TaxStatement taxStatement;
@@ -28,35 +28,27 @@ public class ExpenseTablePage extends TablePageWithDetail<Expense, ExpensePage> 
 	protected List<Expense> load() {
 		return taxStatement.listOfExpenses.expense;
 	}
+
+	@Override
+	protected Form<Expense> createForm(boolean editable, boolean newObject) {
+		return new ExpenseForm(editable);
+	}
 	
 	@Override
-	public List<Action> getActions() {
+	protected Expense save(Expense changedObject) {
+		taxStatement.listOfExpenses.expense.add(changedObject);
+		return changedObject;
+	}
+	
+	@Override
+	public List<Action> getTableActions() {
 		List<Action> actions = new ArrayList<>();
-		actions.add(new NewBankExpenseEditor());
+		actions.add(new TableNewObjectEditor());
 		return actions;
 	}
 
 	@Override
-	protected ExpensePage createDetailPage(Expense expense) {
+	protected ExpensePage getDetailPage(Expense expense) {
 		return new ExpensePage(expense);
-	}
-	
-	@Override
-	protected ExpensePage updateDetailPage(ExpensePage page, Expense expense) {
-		page.setObject(expense);
-		return page;
-	}
-	
-	public class NewBankExpenseEditor extends NewDetailEditor {
-		@Override
-		protected Form<Expense> createForm() {
-			return new ExpenseForm(Form.EDITABLE);
-		}		
-		
-		@Override
-		protected Expense save(Expense changedObject) {
-			taxStatement.listOfExpenses.expense.add(changedObject);
-			return changedObject;
-		}
 	}
 }

@@ -7,14 +7,14 @@ import java.util.List;
 
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
-import org.minimalj.frontend.page.TablePage.TablePageWithDetail;
+import org.minimalj.frontend.page.SimpleTableEditorPage;
 
 import ch.openech.frontend.e196.SecurityTaxValueForm;
 import ch.openech.model.tax.SecuritySecurity;
 import ch.openech.model.tax.SecurityTaxValue;
 
 //die TablePage könnten mit den neuen Unterklassen ab MJ 1.13.0.0 vereinfacht werden
-public class SecurityTaxValueTablePage extends TablePageWithDetail<SecurityTaxValue, SecurityTaxValuePage> {
+public class SecurityTaxValueTablePage extends SimpleTableEditorPage<SecurityTaxValue> {
 	public static final Object[] COLUMNS = {$.referenceDate, $.name, $.quantity};
 
 	private SecuritySecurity security;
@@ -35,33 +35,20 @@ public class SecurityTaxValueTablePage extends TablePageWithDetail<SecurityTaxVa
 	}
 	
 	@Override
-	public List<Action> getActions() {
+	protected Form<SecurityTaxValue> createForm(boolean editable, boolean newObject) {
+		return new SecurityTaxValueForm(editable);
+	}
+	
+	@Override
+	public List<Action> getTableActions() {
 		List<Action> actions = new ArrayList<>();
-		actions.add(new NewSecurityTaxValueEditor());
+		actions.add(new TableNewObjectEditor());
 		return actions;
 	}
 
 	@Override
-	protected SecurityTaxValuePage createDetailPage(SecurityTaxValue taxValue) {
+	protected SecurityTaxValuePage getDetailPage(SecurityTaxValue taxValue) {
 		return new SecurityTaxValuePage(taxValue);
 	}
 	
-	@Override
-	protected SecurityTaxValuePage updateDetailPage(SecurityTaxValuePage page, SecurityTaxValue payment) {
-		page.setObject(payment);
-		return page;
-	}
-	
-	public class NewSecurityTaxValueEditor extends NewDetailEditor {
-		@Override
-		protected Form<SecurityTaxValue> createForm() {
-			return new SecurityTaxValueForm(Form.EDITABLE);
-		}		
-		
-		@Override
-		protected SecurityTaxValue save(SecurityTaxValue changedObject) {
-			security.taxValue.add(changedObject);
-			return changedObject;
-		}
-	}
 }

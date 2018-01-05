@@ -8,8 +8,8 @@ import java.util.List;
 
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
+import org.minimalj.frontend.page.SimpleTableEditorPage;
 import org.minimalj.frontend.page.TablePage;
-import org.minimalj.frontend.page.TablePage.TablePageWithDetail;
 import org.minimalj.util.resources.Resources;
 
 import ch.openech.frontend.e196.AccountPaymentForm;
@@ -17,8 +17,8 @@ import ch.openech.model.tax.Account;
 import ch.openech.model.tax.AccountPayment;
 
 //die TablePage könnten mit den neuen Unterklassen ab MJ 1.13.0.0 vereinfacht werden
-public class AccountPaymentTablePage extends TablePageWithDetail<AccountPayment, AccountPaymentPage> {
-	public static final Object[] COLUMNS = {$.paymentDate, $.paymentDate, $.amountCurrency, $.amount};
+public class AccountPaymentTablePage extends SimpleTableEditorPage<AccountPayment> {
+	public static final Object[] COLUMNS = {$.paymentDate, $.amountCurrency, $.amount};
 
 	private Account account;
 	private final boolean accountType;
@@ -46,33 +46,26 @@ public class AccountPaymentTablePage extends TablePageWithDetail<AccountPayment,
 	}
 	
 	@Override
-	public List<Action> getActions() {
+	protected Form<AccountPayment> createForm(boolean editable, boolean newObject) {
+		return new AccountPaymentForm(editable,  Account.BANK_ACCOUNT);
+	}
+	
+	@Override
+	protected AccountPayment save(AccountPayment changedObject) {
+		account.payment.add(changedObject);
+		return changedObject;
+	}
+	
+	@Override
+	public List<Action> getTableActions() {
 		List<Action> actions = new ArrayList<>();
-		actions.add(new NewBankAccountPaymentEditor());
+		actions.add(new TableNewObjectEditor());
 		return actions;
 	}
 
 	@Override
-	protected AccountPaymentPage createDetailPage(AccountPayment payment) {
+	protected AccountPaymentPage getDetailPage(AccountPayment payment) {
 		return new AccountPaymentPage(payment, accountType);
 	}
 	
-	@Override
-	protected AccountPaymentPage updateDetailPage(AccountPaymentPage page, AccountPayment payment) {
-		page.setObject(payment);
-		return page;
-	}
-	
-	public class NewBankAccountPaymentEditor extends NewDetailEditor {
-		@Override
-		protected Form<AccountPayment> createForm() {
-			return new AccountPaymentForm(Form.EDITABLE,  Account.BANK_ACCOUNT);
-		}		
-		
-		@Override
-		protected AccountPayment save(AccountPayment changedObject) {
-			account.payment.add(changedObject);
-			return changedObject;
-		}
-	}
 }
