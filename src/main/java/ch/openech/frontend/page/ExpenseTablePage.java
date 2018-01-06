@@ -5,9 +5,11 @@ import static ch.openech.model.tax.Expense.$;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.page.SimpleTableEditorPage;
+import org.minimalj.util.IdUtils;
 
 import ch.openech.frontend.e196.ExpenseForm;
 import ch.openech.model.tax.Expense;
@@ -17,7 +19,7 @@ import ch.openech.model.tax.TaxStatement;
 public class ExpenseTablePage extends SimpleTableEditorPage<Expense> {
 	public static final Object[] COLUMNS = {$.referenceDate, $.name, $.amountCurrency, $.amount};
 
-	private final TaxStatement taxStatement;
+	private TaxStatement taxStatement;
 	
 	public ExpenseTablePage(TaxStatement taxStatement) {
 		super(ExpenseTablePage.COLUMNS);
@@ -26,6 +28,7 @@ public class ExpenseTablePage extends SimpleTableEditorPage<Expense> {
 
 	@Override
 	protected List<Expense> load() {
+		taxStatement = Backend.read(TaxStatement.class, IdUtils.getId(taxStatement));
 		return taxStatement.listOfExpenses.expense;
 	}
 
@@ -35,9 +38,16 @@ public class ExpenseTablePage extends SimpleTableEditorPage<Expense> {
 	}
 	
 	@Override
+	protected Expense save(Expense editedObject, Expense originalObject) {
+		return Backend.save(editedObject);
+	}
+	
+	@Override
 	protected Expense save(Expense changedObject) {
-		taxStatement.listOfExpenses.expense.add(changedObject);
-		return changedObject;
+		Expense savedObject = Backend.save(changedObject);
+		taxStatement.listOfExpenses.expense.add(savedObject);
+		Backend.save(taxStatement);
+		return savedObject;
 	}
 	
 	@Override

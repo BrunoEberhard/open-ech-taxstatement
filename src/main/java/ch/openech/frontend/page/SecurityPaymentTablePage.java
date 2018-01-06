@@ -5,9 +5,11 @@ import static ch.openech.model.tax.SecurityPayment.$;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.page.SimpleTableEditorPage;
+import org.minimalj.util.IdUtils;
 
 import ch.openech.frontend.e196.SecurityPaymentForm;
 import ch.openech.model.tax.SecurityPayment;
@@ -31,6 +33,7 @@ public class SecurityPaymentTablePage extends SimpleTableEditorPage<SecurityPaym
 	
 	@Override
 	protected List<SecurityPayment> load() {
+		security = Backend.read(SecuritySecurity.class, IdUtils.getId(security));
 		return security.payment;
 	}
 	
@@ -52,8 +55,16 @@ public class SecurityPaymentTablePage extends SimpleTableEditorPage<SecurityPaym
 	}
 
 	@Override
-	protected SecurityPayment save(SecurityPayment changedObject) {
-		security.payment.add(changedObject);
-		return changedObject;
+	protected SecurityPayment save(SecurityPayment editedObject, SecurityPayment originalObject) {
+		return Backend.save(editedObject);
 	}
+	
+	@Override
+	protected SecurityPayment save(SecurityPayment changedObject) {
+		SecurityPayment savedObject = Backend.save(changedObject);
+		security.payment.add(savedObject);
+		Backend.save(security);
+		return savedObject;
+	}
+	
 }

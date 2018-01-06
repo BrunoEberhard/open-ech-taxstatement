@@ -2,12 +2,12 @@ package ch.openech.frontend.page;
 
 import static ch.openech.model.tax.Account.$;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.minimalj.frontend.action.Action;
+import org.minimalj.backend.Backend;
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.page.SimpleTableEditorPage;
+import org.minimalj.util.IdUtils;
 
 import ch.openech.frontend.e196.AccountForm;
 import ch.openech.model.tax.Account;
@@ -17,7 +17,7 @@ import ch.openech.model.tax.TaxStatement;
 public class BankAccountTablePage extends SimpleTableEditorPage<Account> {
 	public static final Object[] COLUMNS = {$.bankAccountNumber, $.iban, $.bankAccountName, $.bankAccountCurrency, $.taxValue.balance};
 
-	private final TaxStatement taxStatement;
+	private TaxStatement taxStatement;
 	
 	public BankAccountTablePage(TaxStatement taxStatement) {
 		super(BankAccountTablePage.COLUMNS);
@@ -26,6 +26,7 @@ public class BankAccountTablePage extends SimpleTableEditorPage<Account> {
 
 	@Override
 	protected List<Account> load() {
+		taxStatement = Backend.read(TaxStatement.class, IdUtils.getId(taxStatement));
 		return taxStatement.listOfBankAccounts.bankAccount;
 	}
 	
@@ -35,21 +36,20 @@ public class BankAccountTablePage extends SimpleTableEditorPage<Account> {
 	}
 
 	@Override
-	protected Account save(Account changedObject) {
-		taxStatement.listOfBankAccounts.bankAccount.add(changedObject);
-		return changedObject;
+	protected Account save(Account editedObject, Account originalObject) {
+		return Backend.save(editedObject);
 	}
-
+	
 	@Override
-	public List<Action> getTableActions() {
-		List<Action> actions = new ArrayList<>();
-		actions.add(new TableNewObjectEditor());
-		return actions;
+	protected Account save(Account changedObject) {
+		Account saved = Backend.save(changedObject);
+		taxStatement.listOfBankAccounts.bankAccount.add(saved);
+		Backend.save(taxStatement);
+		return saved;
 	}
 
 	@Override
 	protected AccountPage getDetailPage(Account account) {
 		return new AccountPage(this, account, Account.BANK_ACCOUNT);
 	}
-
 }

@@ -6,10 +6,12 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.page.SimpleTableEditorPage;
 import org.minimalj.frontend.page.TablePage;
+import org.minimalj.util.IdUtils;
 import org.minimalj.util.resources.Resources;
 
 import ch.openech.frontend.e196.AccountPaymentForm;
@@ -42,6 +44,7 @@ public class AccountPaymentTablePage extends SimpleTableEditorPage<AccountPaymen
 	
 	@Override
 	protected List<AccountPayment> load() {
+		account = Backend.read(Account.class, IdUtils.getId(account));
 		return account.payment;
 	}
 	
@@ -51,9 +54,16 @@ public class AccountPaymentTablePage extends SimpleTableEditorPage<AccountPaymen
 	}
 	
 	@Override
+	protected AccountPayment save(AccountPayment editedObject, AccountPayment originalObject) {
+		return Backend.save(editedObject);
+	}
+	
+	@Override
 	protected AccountPayment save(AccountPayment changedObject) {
-		account.payment.add(changedObject);
-		return changedObject;
+		AccountPayment savedObject = Backend.save(changedObject);
+		account.payment.add(savedObject);
+		Backend.save(account);
+		return savedObject;
 	}
 	
 	@Override

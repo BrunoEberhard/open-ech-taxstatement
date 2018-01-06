@@ -5,9 +5,11 @@ import static ch.openech.model.tax.SecuritySecurity.$;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.page.SimpleTableEditorPage;
+import org.minimalj.util.IdUtils;
 
 import ch.openech.frontend.e196.SecuritySecurityForm;
 import ch.openech.model.tax.SecurityDepot;
@@ -32,6 +34,7 @@ public class SecurityTablePage extends SimpleTableEditorPage<SecuritySecurity> {
 	
 	@Override
 	protected List<SecuritySecurity> load() {
+		depot = Backend.read(SecurityDepot.class, IdUtils.getId(depot));
 		return depot.security;
 	}
 	
@@ -41,11 +44,18 @@ public class SecurityTablePage extends SimpleTableEditorPage<SecuritySecurity> {
 	}
 	
 	@Override
-	protected SecuritySecurity save(SecuritySecurity newObject) {
-		depot.security.add(newObject);
-		return newObject;
+	protected SecuritySecurity save(SecuritySecurity editedObject, SecuritySecurity originalObject) {
+		return Backend.save(editedObject);
 	}
 	
+	@Override
+	protected SecuritySecurity save(SecuritySecurity changedObject) {
+		SecuritySecurity savedObject = Backend.save(changedObject);
+		depot.security.add(savedObject);
+		Backend.save(depot);
+		return savedObject;
+	}
+		
 	@Override
 	public List<Action> getTableActions() {
 		List<Action> actions = new ArrayList<>();

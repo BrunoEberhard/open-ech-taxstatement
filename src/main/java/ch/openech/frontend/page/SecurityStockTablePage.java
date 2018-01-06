@@ -5,9 +5,11 @@ import static ch.openech.model.tax.SecurityStock.$;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.page.SimpleTableEditorPage;
+import org.minimalj.util.IdUtils;
 
 import ch.openech.frontend.e196.SecurityStockForm;
 import ch.openech.model.tax.SecuritySecurity;
@@ -31,6 +33,7 @@ public class SecurityStockTablePage extends SimpleTableEditorPage<SecurityStock>
 	
 	@Override
 	protected List<SecurityStock> load() {
+		security = Backend.read(SecuritySecurity.class, IdUtils.getId(security));
 		return security.stock;
 	}
 	
@@ -50,11 +53,18 @@ public class SecurityStockTablePage extends SimpleTableEditorPage<SecurityStock>
 	protected Form<SecurityStock> createForm(boolean editable, boolean newObject) {
 		return new SecurityStockForm(editable);
 	}
-
+	
+	@Override
+	protected SecurityStock save(SecurityStock editedObject, SecurityStock originalObject) {
+		return Backend.save(editedObject);
+	}
+	
 	@Override
 	protected SecurityStock save(SecurityStock changedObject) {
-		security.stock.add(changedObject);
-		return changedObject;
+		SecurityStock savedObject = Backend.save(changedObject);
+		security.stock.add(savedObject);
+		Backend.save(security);
+		return savedObject;
 	}
 
 }

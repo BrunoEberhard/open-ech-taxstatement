@@ -5,9 +5,11 @@ import static ch.openech.model.tax.SecurityTaxValue.$;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.minimalj.backend.Backend;
 import org.minimalj.frontend.action.Action;
 import org.minimalj.frontend.form.Form;
 import org.minimalj.frontend.page.SimpleTableEditorPage;
+import org.minimalj.util.IdUtils;
 
 import ch.openech.frontend.e196.SecurityTaxValueForm;
 import ch.openech.model.tax.SecuritySecurity;
@@ -31,12 +33,26 @@ public class SecurityTaxValueTablePage extends SimpleTableEditorPage<SecurityTax
 	
 	@Override
 	protected List<SecurityTaxValue> load() {
+		security = Backend.read(SecuritySecurity.class, IdUtils.getId(security));
 		return security.taxValue;
 	}
 	
 	@Override
 	protected Form<SecurityTaxValue> createForm(boolean editable, boolean newObject) {
 		return new SecurityTaxValueForm(editable);
+	}
+	
+	@Override
+	protected SecurityTaxValue save(SecurityTaxValue editedObject, SecurityTaxValue originalObject) {
+		return Backend.save(editedObject);
+	}
+	
+	@Override
+	protected SecurityTaxValue save(SecurityTaxValue changedObject) {
+		SecurityTaxValue savedObject = Backend.save(changedObject);
+		security.taxValue.add(savedObject);
+		Backend.save(security);
+		return savedObject;
 	}
 	
 	@Override
