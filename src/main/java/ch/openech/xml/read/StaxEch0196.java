@@ -20,7 +20,6 @@ import org.minimalj.repository.query.By;
 import org.minimalj.util.CloneHelper;
 import org.minimalj.util.Codes;
 import org.minimalj.util.FieldUtils;
-import org.minimalj.util.GenericUtils;
 import org.minimalj.util.StringUtils;
 
 import ch.openech.model.common.CountryIdentification;
@@ -105,7 +104,7 @@ public class StaxEch0196 {
 						list = new ArrayList<>();
 						property.setValue(object, list);
 					}
-					Object value = process(xml, GenericUtils.getGenericClass(property.getType()));
+					Object value = process(xml, property.getGenericClass());
 					((List) list).add(value);
 				} else {
 					Object value = process(xml, elementClass);
